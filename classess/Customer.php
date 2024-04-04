@@ -22,16 +22,16 @@ private $fm;
 public function customerRegistration($data){
 
 $name = mysqli_real_escape_string($this->db->link, $data['name']);
-$address = mysqli_real_escape_string($this->db->link, $data['address']);
-$city = mysqli_real_escape_string($this->db->link, $data['city']);
-$country = mysqli_real_escape_string($this->db->link, $data['country']);
-$zip = mysqli_real_escape_string($this->db->link, $data['zip']);
-$phone = mysqli_real_escape_string($this->db->link, $data['phone']);
+# $address = mysqli_real_escape_string($this->db->link, $data['address']);
+# $city = mysqli_real_escape_string($this->db->link, $data['city']);
+# $country = mysqli_real_escape_string($this->db->link, $data['country']);
+# $zip = mysqli_real_escape_string($this->db->link, $data['zip']);
+# $phone = mysqli_real_escape_string($this->db->link, $data['phone']);
 $email = mysqli_real_escape_string($this->db->link, $data['email']);
 $pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
 
-if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == "" || $pass == "") {
+if ($name == "" || $email == "" || $pass == "") {
 	
 	$msg = "<span class='error'>Fields must not be empty !</span>";
 	return $msg;
@@ -45,7 +45,7 @@ if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == ""
   }else{
 
 
-  	 $query = "INSERT INTO tbl_customer(name,address,city,country,zip,phone,email,pass) VALUES('$name','$address','$city','$country','$zip','$phone','$email','$pass')";
+  	 $query = "INSERT INTO tbl_customer(name,email,pass) VALUES('$name','$email','$pass')";
 
 	 $inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
