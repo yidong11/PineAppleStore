@@ -97,6 +97,5 @@ if (isset($_GET['delpro'])) {
 </script>
 
 
-
           
 <?php include 'inc/footer.php'; ?>

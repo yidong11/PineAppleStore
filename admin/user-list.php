@@ -70,7 +70,7 @@ if (isset($_GET['delcmr'])) {
         <td><?php echo $result['country'] ;?></td>
         <td><?php echo $result['zip'] ;?></td>
         <td>
-          <a href="user-detail.php?cmrId=<?php echo $result['id'];?>">Details</a> ||
+          <a href="user-detail.php?cmrid=<?php echo $result['id'];?>">Details</a> ||
           <a onclick="return confirm('Are you sure to delete?')" href="?delcmr=<?php echo $result['id'];?>">Delete</a>
         </td>
       </tr>
