@@ -234,7 +234,7 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
           <label class="payment-text18">
             <span>Payment Total:</span>
             <br />
-            <span>HKD 169.99</span>
+            <span>HKD <?php echo $sum;?></span>
           </label>
           <span class="payment-text22">
             <span>By placing your order you agree to PineApple's</span>
