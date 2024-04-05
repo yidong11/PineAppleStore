@@ -118,9 +118,6 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
                 <a href="change-address.php" class="payment-change navbar-link">
                   change
                 </a>
-                <button type="button" class="payment-instruction navbar-link">
-                  Add delivery instructions
-                </button>
             <?php }} ?>
           </div>
           <div class="payment-paymentmethod">
