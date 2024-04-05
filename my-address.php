@@ -275,6 +275,7 @@ if (isset($_GET['cid'])) {
                 ><span class="my-address-text04">User ID:&nbsp;</span></div
               ><div class="my-address-container05"
                 ><input
+                  name="id"
                   type="text"
                   disabled="true"
                   value="<?php echo $result['id'];?>"
@@ -284,6 +285,7 @@ if (isset($_GET['cid'])) {
                 ><span class="my-address-text05">User Name:&nbsp;</span></div
               ><div class="my-address-container08"
                 ><input
+                  name="name"
                   type="text"
                   disabled="true"
                   value=""<?php echo $result['name'];?>""
@@ -293,6 +295,7 @@ if (isset($_GET['cid'])) {
                 ><span class="my-address-text06">User Address:&nbsp;</span></div
               ><div class="my-address-container11"
                 ><input
+                  name="address"
                   type="text"
                   disabled="true"
                   value="<?php echo $result['address'];?>"
@@ -304,6 +307,7 @@ if (isset($_GET['cid'])) {
                 ></div
               ><div class="my-address-container14"
                 ><input
+                  name="phone"
                   type="text"
                   disabled="true"
                   value="<?php echo $result['phone'];?>"
