@@ -1,3 +1,8 @@
+<?php
+// start output buffering
+ob_start();
+?>
+
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Product.php';?>
@@ -9,8 +14,7 @@
 $pd = new Product();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-    $insertProduct = $pd->productInsert($_POST,$_FILES);
-    // header('Location: product-list.php');
+    $insertProduct = $pd->productInsert($_POST, $_FILES);
 }
 ?>
 
@@ -138,3 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
           
 <?php include 'inc/footer.php'; ?>
+
+<?php
+// get the content of the buffer and put it in your file
+ob_end_flush();
+?>

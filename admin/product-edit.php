@@ -16,7 +16,6 @@ $pd = new Product();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   $updateProduct = $pd->productUpdate($_POST,$_FILES,$id);
-  // header('Location: product-list.php');
 }
 ?>
 
@@ -30,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   <span class="admin-page-main-text">Edit Product</span>
 
   <?php
-    if (isset($insertProduct)) {
-        echo $insertProduct;
+    if (isset($updateProduct)) {
+        echo $updateProduct;
     }
   ?>  
 

@@ -65,8 +65,7 @@ if ($productName == "" || $catId == "" || $brandId == "" || $body == "" || $pric
 
 	 $inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
-				$msg = "<span class='success'>Product inserted Successfully.</span>";
-				return $msg;
+				header("Location:product-list.php");
 			} else{
 				$msg = "<span class='error'>Product Not inserted.</span>";
 				return $msg;
@@ -106,7 +105,7 @@ public function getProById($id){
 
 }
 
-public function productUpdate($data,$file,$id){
+public function productUpdate($data, $file, $id){
 	$productName = $this->fm->validation($data['productName']);
 	$catId = $this->fm->validation($data['catId']);
 	$brandId = $this->fm->validation($data['brandId']);
@@ -137,13 +136,13 @@ public function productUpdate($data,$file,$id){
 	} else {
 		if (!empty($file_name)) {
 			if ($file_size >1048567) {
-				echo "<span class='error'>Image Size should be less then 1MB!
-				</span>";
+				$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
+				return $msg;
 			} elseif (in_array($file_ext, $permited) === false) {
-				echo "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+				$msg = "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+				return $msg;
 			} else {
 				move_uploaded_file($file_temp, $uploaded_image);
-
 
 				$query = "UPDATE tbl_product 
 				SET
@@ -177,13 +176,13 @@ public function productUpdate($data,$file,$id){
 			WHERE productId = '$id'";
 
 			$updatedted_row = $this->db->update($query);
-					if ($updatedted_row) {
-						$msg = "<span class='success'>Product Updated Successfully.</span>";
-						return $msg;
-					} else{
-						$msg = "<span class='error'>Product Not Updated.</span>";
-						return $msg;
-				}
+			if ($updatedted_row) {
+				$msg = "<span class='success'>Product Updated Successfully.</span>";
+				return $msg;
+			} else{
+				$msg = "<span class='error'>Product Not Updated.</span>";
+				return $msg;
+			}
 		}
 	}
 }
