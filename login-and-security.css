@@ -85,6 +85,11 @@
   margin-left: 0px;
   margin-right: var(--dl-space-space-twounits);
 }
+.logo-root-class-name16 {
+  align-self: center;
+  margin-left: 0px;
+  margin-right: var(--dl-space-space-twounits);
+}
 @media(max-width: 1200px) {
   .logo-root-class-name1 {
     top: 0px;
@@ -200,13 +205,17 @@
   transition: 0.3s;
   padding-top: 0px;
   border-width: 0px;
-  margin-right: var(--dl-space-space-halfunit);
+  margin-right: 0px;
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
 }
 .product-detail-header-icon2:hover {
   fill: var(--dl-color-pallet-yellow);
+}
+.product-detail-header-text {
+  width: 75px;
+  font-size: 18px;
 }
 .product-detail-header-thq-dropdown {
   cursor: pointer;
@@ -284,7 +293,7 @@
   color: #fff;
   background-color: #595959;
 }
-.product-detail-header-text {
+.product-detail-header-text1 {
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -317,7 +326,7 @@
   color: #fff;
   background-color: #595959;
 }
-.product-detail-header-text1 {
+.product-detail-header-text2 {
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -325,7 +334,6 @@
   font-style: normal;
   font-weight: 500;
 }
-
 
 
 
@@ -353,29 +361,6 @@
   flex-direction: column;
 }
 .login-and-security-container1 {
-  top: 268px;
-  flex: 0 0 auto;
-  left: 1068px;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  flex-direction: column;
-}
-.login-and-security-image {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-color: var(--dl-color-gray-black80);
-  border-width: 2px;
-  border-radius: var(--dl-radius-radius-round);
-}
-.login-and-security-button {
-  margin-top: var(--dl-space-space-twounits);
-  margin-left: var(--dl-space-space-threeunits);
-  margin-right: var(--dl-space-space-threeunits);
-  border-radius: var(--dl-radius-radius-radius8);
-}
-.login-and-security-container2 {
   top: 377px;
   flex: 0 0 auto;
   left: 192px;
@@ -394,10 +379,12 @@
   width: 114px;
   position: absolute;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
-.login-and-security-container3 {
+.login-and-security-container2 {
   top: 497px;
   flex: 0 0 auto;
   left: 193px;
@@ -411,7 +398,7 @@
   border-style: dashed;
   border-width: 3px;
 }
-.login-and-security-container4 {
+.login-and-security-container3 {
   top: 257px;
   flex: 0 0 auto;
   left: 193px;
@@ -430,7 +417,9 @@
   bottom: 29px;
   position: absolute;
   box-shadow: 5px 5px 10px 0px #d4d4d4,5px 5px 10px 0px #d4d4d4;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
 .login-and-security-textinput {
@@ -447,15 +436,17 @@
   width: 114px;
   position: absolute;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
-.login-and-security-text3 {
+.login-and-security-text {
   top: 217px;
   left: 305px;
   position: absolute;
 }
-.login-and-security-text5 {
+.login-and-security-text2 {
   color: var(--dl-color-pallet-yellow);
 }
 .login-and-security-navlink3 {
@@ -464,7 +455,7 @@
   position: absolute;
   text-decoration: none;
 }
-.login-and-security-text6 {
+.login-and-security-text3 {
   top: 389px;
   left: 217px;
   position: absolute;
@@ -472,7 +463,7 @@
   font-style: normal;
   font-weight: 700;
 }
-.login-and-security-text7 {
+.login-and-security-text4 {
   top: 510px;
   left: 222px;
   position: absolute;
@@ -480,7 +471,7 @@
   font-style: normal;
   font-weight: 700;
 }
-.login-and-security-text8 {
+.login-and-security-text5 {
   top: 265px;
   left: 217px;
   position: absolute;
