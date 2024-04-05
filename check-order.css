@@ -708,6 +708,6 @@
   position: absolute;
   align-items: center;
   border-style: hidden;
-  border-width: 2px;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }

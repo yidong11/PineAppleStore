@@ -413,7 +413,7 @@
   flex-direction: column;
 }
 .search-page-form {
-  width: 100%;
+  width: 1600px;
   height: auto;
   display: flex;
   flex-direction: column;
