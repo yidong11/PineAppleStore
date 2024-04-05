@@ -85,6 +85,11 @@
   margin-left: 0px;
   margin-right: var(--dl-space-space-twounits);
 }
+.logo-root-class-name16 {
+  align-self: center;
+  margin-left: 0px;
+  margin-right: var(--dl-space-space-twounits);
+}
 @media(max-width: 1200px) {
   .logo-root-class-name1 {
     top: 0px;
@@ -305,6 +310,7 @@
 .edit-email-textinput {
   top: 275px;
   left: 55px;
+  color: #000000;
   width: 282px;
   position: absolute;
   box-shadow: 5px 5px 10px 0px #d4d4d4,5px 5px 10px 0px #d4d4d4;
@@ -319,7 +325,8 @@
   color: var(--dl-color-gray-black);
   width: 261px;
   position: absolute;
-  box-shadow: 5px 5px 10px 0px #d4d4d4,5px 5px 10px 0px #d4d4d4;
+  box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  text-align: center;
   border-radius: var(--dl-radius-radius-radius8);
   text-decoration: none;
   background-color: var(--dl-color-pallet-yellow);
