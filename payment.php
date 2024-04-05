@@ -218,7 +218,7 @@ $cmr = new Customer();
           </a>
           <h1>
             <span>Checkout</span>
-            <span class="payment-text16">(1 Item)</span>
+            <span class="payment-text16">(<?php echo $qty;?> Item)</span>
           </h1>
         </div>
         <div class="payment-right">

@@ -5,7 +5,6 @@
   if (isset($_GET['customerId'])) {
     $id = $_GET['customerId'];
     $confirm = $ct->productShiftConfirm($id);
-
   }
 ?>
 
@@ -112,5 +111,10 @@
       });
     </script>
 
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts">
+    </script>
   </body>
 </html>
+<?php include 'inc/footer_clean.php';?>
