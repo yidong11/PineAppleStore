@@ -293,6 +293,19 @@
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius4);
 }
+.payment-select1 {
+  top: 32px;
+  left: 465px;
+  width: 225px;
+  height: 56px;
+  z-index: 100;
+  position: absolute;
+  box-shadow: 5px 5px 10px 0px #d4d4d4;
+  border-color: var(--dl-color-gray-black);
+  border-style: hidden;
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius4);
+}
 .payment-text08 {
   top: 82px;
   left: 117px;
