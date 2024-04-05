@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+
+?> 
 <html lang="en"
   ><head
     ><title>Edit-Name - PineApple</title
@@ -120,7 +134,20 @@
             >you may do so below. Be sure to click the Save Changes button when
             you are done.</span
           ></span
+          <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
         ><div class="edit-name-container1"
+        <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
           ><a href="login-and-security.html" class="edit-name-navlink button"
             >Save</a
           ><input
@@ -137,6 +164,7 @@
           >Your Account
         </a></div
       ></div
+      <?php }} ?>
     >
     <script
       defer=""
