@@ -23,6 +23,12 @@ $fm = new Format();
   header("Cache-Control: max-age=2592000");
 ?>
 
+<?php
+  if (isset($_GET['action']) && $_GET['action'] == "logout") {
+      Session::destroy_admin();
+  }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -144,13 +150,6 @@ $fm = new Format();
               <span>PineApple - Administrator</span>
               <br />
             </a>
-
-
-            <?php
-              if (isset($_GET['action']) && $_GET['action'] == "logout") {
-                  Session::destroy();
-              }
-            ?>
 
 
             <div class="admin-page-header2-icons">

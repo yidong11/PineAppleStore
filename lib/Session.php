@@ -46,5 +46,10 @@ class Session{
   session_destroy();
   header("Location:login.php");
  }
+
+ public static function destroy_admin(){
+    session_destroy();
+    header("Location:login.php");
+   }
 }
 ?>
