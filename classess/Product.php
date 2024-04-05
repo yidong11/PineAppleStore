@@ -157,8 +157,7 @@ public function productUpdate($data, $file, $id){
 
 	 			$updatedted_row = $this->db->update($query);
 				if ($updatedted_row) {
-					$msg = "<span class='success'>Product Updated Successfully.</span>";
-					return $msg;
+					header("Location:product-list.php");
 				} else {
 					$msg = "<span class='error'>Product Not Updated.</span>";
 					return $msg;
@@ -177,8 +176,7 @@ public function productUpdate($data, $file, $id){
 
 			$updatedted_row = $this->db->update($query);
 			if ($updatedted_row) {
-				$msg = "<span class='success'>Product Updated Successfully.</span>";
-				return $msg;
+				header("Location:product-list.php");
 			} else{
 				$msg = "<span class='error'>Product Not Updated.</span>";
 				return $msg;

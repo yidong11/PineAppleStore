@@ -1,3 +1,8 @@
+<?php
+// start output buffering
+ob_start();
+?>
+
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Product.php';?>
@@ -15,11 +20,9 @@ if (!isset($_GET['proid']) || $_GET['proid'] == NULL) {
 $pd = new Product();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-  $updateProduct = $pd->productUpdate($_POST,$_FILES,$id);
+  $updateProduct = $pd->productUpdate($_POST, $_FILES, $id);
 }
 ?>
-
-
 
 
 <div
@@ -169,3 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
           
 <?php include 'inc/footer.php'; ?>
+
+<?php
+// get the content of the buffer and put it in your file
+ob_end_flush();
+?>
