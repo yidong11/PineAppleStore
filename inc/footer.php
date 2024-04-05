@@ -1,27 +1,27 @@
 <footer class="homepage-footer">
-          <div class="homepage-container15">
+          <div class="homepage-container13">
             <a href="index.php" class="homepage-navlink4">
               <img
                 alt="logo"
                 src="public/Pineapple Icons/logo_no_bg-1400w.png"
-                class="homepage-image6"
+                class="homepage-image5"
               />
             </a>
-            <span class="homepage-text23">
+            <span class="homepage-text20">
               <span>© 2024 PineApple,</span>
               <br />
               <span>All Rights Reserved.</span>
             </span>
           </div>
           <div class="homepage-links-container">
-            <div class="homepage-container16">
+            <div class="homepage-container14">
               <div class="homepage-contact">
-                <span class="homepage-text27">Contact Us</span>
-                <span class="homepage-text28">hello@pineapple.hk</span>
+                <span class="homepage-text24">Contact Us</span>
+                <span class="homepage-text25">hello@pineapple.hk</span>
                 <span>+852 1234 5678</span>
               </div>
               <div class="homepage-socials">
-                <span class="homepage-text30">Follow Us</span>
+                <span class="homepage-text27">Follow Us</span>
                 <div class="homepage-icon-group">
                   <svg
                     viewBox="0 0 950.8571428571428 1024"
