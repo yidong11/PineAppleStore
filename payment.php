@@ -1,3 +1,37 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+  include_once "classess/".$class.".php";
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+  $login = Session::get("cuslogin");
+  if ($login == false) {
+    header("Location:login.php");
+  }
+?>
+
+<?php 
+  if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
+    $cmrId = Session::get("cmrId");
+    $insertOrder = $ct->orderProduct($cmrId);
+    $delData = $ct->delCustomerCart();
+    header("Location:check-order.php");
+}
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,83 +97,100 @@
       <div class="payment-container">
         <div class="payment-left">
           <div class="payment-address">
-            <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
-            <ul class="payment-ul list">
-              <li class="list-item"><span>Changwen LUAN</span></li>
-              <li class="list-item">
-                <span>CUHK, UC College, Chan Chun Ha Hostel 605</span>
-              </li>
-              <li class="list-item">
-                <span>Shatin,&nbsp;New Territories, HK</span>
-              </li>
-            </ul>
-            <a href="change-address.html" class="payment-change navbar-link">
-              change
-            </a>
-            <button type="button" class="payment-instruction navbar-link">
-              Add delivery instructions
-            </button>
+            <?php 
+              $id = Session::get("cmrId");
+              $getdata = $cmr->getCustomerData($id);
+              if ($getdata) {
+                while ($result = $getdata->fetch_assoc()) {
+
+            ?>
+                <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
+                <ul class="payment-ul list">
+                  <li class="list-item"><span><?php echo $result['name'];?></span></li>
+                  <li class="list-item">
+                    <span><?php echo $result['address'];?></span>
+                  </li>
+                  <li class="list-item">
+                    <span><?php echo $result['city'];?></span>
+                  </li>
+                </ul>
+                <a href="change-address.php" class="payment-change navbar-link">
+                  change
+                </a>
+            <?php }} ?>
           </div>
           <div class="payment-paymentmethod">
             <h1 class="payment-text04">2&nbsp; &nbsp; Payment method</h1>
-            <ul class="payment-ul1 list">
-              <li class="list-item"><span>Master Card</span></li>
-              <li class="list-item">
-                <span>Billing address: Changwen LUAN, TaiJuanLe</span>
-              </li>
-              <li class="list-item"></li>
-            </ul>
-            <button
-              type="button"
-              disabled="true"
-              class="payment-change1 navbar-link"
-            >
-              change
-            </button>
+            <select name = "payment-method" size="1" class="payment-select1">
+              <option value="Wechat">Wechat</option>
+              <option value="AliPay">AliPay</option>
+              <option value="MasterCard">MasterCard</option>
+            </select>
           </div>
           <div class="payment-detail">
             <h1 class="payment-text07">
               3&nbsp; &nbsp; Review items and shipping
             </h1>
             <div class="payment-item">
-              <img
-                alt="image"
-                src="public/Pineapple Icons/iphone-500h.png"
-                class="payment-image"
-              />
-              <ul class="payment1-ul list payment1-root-class-name">
-                <li class="list-item">
-                  <span class="payment1-text">
-                    <span>
-                      Unlocked Android PineApple Phone I15 PROMAX 5G Cell Phone
-                      with 12GB+512GB Deca Core Dynamic Island and Titanium
-                      Design Smart Phones 6.8“ HD Screen 48MP+108MP Camera 6800
-                      mAh Long Battery Dual SIM Phone (Blue)
-                    </span>
-                  </span>
-                </li>
-                <li class="list-item"></li>
-                <li class="list-item">
-                  <span class="payment1-text1"><span>HKD 169.99</span></span>
-                </li>
-              </ul>
-              <select size="1" class="payment-select">
-                <option value="Option 1">Qty: 1</option>
-                <option value="Option 1">Qty: 2</option>
-                <option value="Option 2">Qty: 3</option>
-                <option value="Option 3">Qty: 4</option>
-              </select>
+            <table class="data display datatable" id="example" style="width: 1200px;">
+    
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Image</th>
+        <th>Total</th>
+
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <?php
+      $getPd = $ct->getCartProduct();
+      if ($getPd) {
+        $i = 0;
+				$sum = 0;
+				$qty = 0;
+        while ($result = $getPd->fetch_assoc()) {
+          $i++;
+      ?>
+      <tr class="odd gradeX">
+        <td><?php echo $result['productId'];?></td>
+        <td><?php echo $result['productName'] ;?></td>
+        <td>HKD <?php echo $result['price'] ;?></td>
+        <td><?php echo $result['quantity'] ;?></td>
+        <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
+        <td>HKD <?php
+						$total = $result['price'] * $result['quantity'];
+						echo $total;?>
+        </td>
+      </tr>
+      <?php 
+				$qty = $qty + $result['quantity'];
+				$sum = $sum + $total;
+				Session::set("qty",$qty);
+				Session::set("sum",$sum);
+			?>
+      
+      <?php } } ?>
+      
+    </tbody>
+	</table>
+
             </div>
-            <label class="payment-text08">Delivery:</label>
+            <label class="payment-text08">Delivery: <?php echo date('Y-m-d');?></label>
             <div class="payment-payment">
               <button type="button" class="payment-button button">
-                Place your order in HKD
+                <a href="?orderid=Order">Place your order in HKD</a>
               </button>
               <span class="payment-text09">
                 You'll be securely redirected to Master Card to complete this
                 transaction
               </span>
-              <label class="payment-text10">Payment Total: HKD 169.99</label>
+              <label class="payment-text10">Payment Total: HKD <?php echo $sum;?></label>
               <span class="payment-text11">
                 <span>By placing your order you agree to PineApple's</span>
                 <a href="template.html" class="payment-navlink">
@@ -151,16 +202,10 @@
                 </a>
               </span>
             </div>
-            <span class="payment-date-time">
-              <date-time-primitive
-                format="DD/MM/YYYY"
-                date="Wed Mar 20 2024 03:13:01 GMT+0800 (中国标准时间)"
-              ></date-time-primitive>
-            </span>
           </div>
         </div>
         <div class="payment-head">
-          <a href="homepage.html" class="payment-navlink2">
+          <a href="index.php" class="payment-navlink2">
             <div class="logo-container navbar-logo-title logo-root-class-name6">
               <span class="logo-logo-center Logo navbar-logo-title">
                 <span>PineApple</span>
@@ -179,7 +224,7 @@
         </div>
         <div class="payment-right">
           <button type="button" class="payment-button1 button">
-            Place your order in HKD
+            <a href="?orderid=Order">Place your order in HKD</a>
           </button>
           <span class="payment-text17">
             You'll be securely redirected to Master Card to complete this
@@ -188,7 +233,7 @@
           <label class="payment-text18">
             <span>Payment Total:</span>
             <br />
-            <span>HKD 169.99</span>
+            <span>HKD <?php echo $sum;?></span>
           </label>
           <span class="payment-text22">
             <span>By placing your order you agree to PineApple's</span>

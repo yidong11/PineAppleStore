@@ -23,6 +23,12 @@ $fm = new Format();
   header("Cache-Control: max-age=2592000");
 ?>
 
+<?php
+  if (isset($_GET['action']) && $_GET['action'] == "logout") {
+      Session::destroy_admin();
+  }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,13 +152,6 @@ $fm = new Format();
             </a>
 
 
-            <?php
-              if (isset($_GET['action']) && $_GET['action'] == "logout") {
-                  Session::destroy();
-              }
-            ?>
-
-
             <div class="admin-page-header2-icons">
               <div
                 data-thq="thq-dropdown"
@@ -182,22 +181,6 @@ $fm = new Format();
                   data-thq="thq-dropdown-list"
                   class="admin-page-header2-dropdown-list"
                 >
-
-                  <li
-                    data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                  >
-                    <a href="edit-admin-info.php">
-                      <div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                      >
-                        <span class="admin-page-header2-text2">
-                          <span>Edit Info</span>
-                        </span>
-                      </div>
-                    </a>
-                  </li>
 
                   <li
                     data-thq="thq-dropdown"

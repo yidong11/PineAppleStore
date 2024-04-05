@@ -1,8 +1,35 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en"
   ><head
-    ><title>Edit-Email - PineApple</title
-    ><meta property="og:title" content="Edit-Email - PineApple" /><meta
+    ><title>Edit-Name - PineApple</title
+    ><meta property="og:title" content="Edit-Name - PineApple" /><meta
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     /><meta charset="utf-8" /><meta
@@ -49,8 +76,8 @@
     </style></head
   ><body
     ><link rel="stylesheet" href="./style.css" /><div
-      ><link href="./edit-email.css" rel="stylesheet" /><div
-        class="edit-email-container"
+      ><link href="./edit-name.css" rel="stylesheet" /><div
+        class="edit-name-container"
         ><header
           data-role="Header"
           class="admin-page-header2-header max-width-container"
@@ -111,21 +138,46 @@
                         ><span class="admin-page-header2-text3"
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
-        ><div class="edit-email-container1"
-          ><input type="text" class="edit-email-textinput input" /></div
-        ><a href="login-and-security.html" class="edit-email-navlink button"
-          >Confirm</a
-        ><span class="edit-email-text"
-          ><span>Current email address: lcw68886@gmail.com</span
-          ><br /><br /><span
-            >Enter the new email address you would like to associate with your
-            account below. </span
+        >
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+        <span class="edit-name-text">New Name</span
+        ><span class="edit-name-text01"
+          ><span
+            >If you want to change the name associated with your Amazon customer
+            account, </span
           ><br /><span
-            >We will send a One Time Password (OTP) to that address.</span
+            >you may do so below. Be sure to click the Save Changes button when
+            you are done.</span
           ></span
-        ><h1 class="edit-email-text7">Change your email address</h1
-        ><span class="edit-email-text8">New Email Address</span></div
+        >
+        <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
+              <div class="edit-name-container1"
+          ><a href="login-and-security.html" class="edit-name-navlink button"
+            >Save</a
+         ><input name = "name" type="text" placeholder="LIANG Leyan" class="edit-name-textinput input" value="<?php echo $result['name'];?>"/></div
+        ><span class="edit-name-text05">Edit Name</span
+        ><span class="edit-name-text06">&gt; </span
+        ><span class="edit-name-text07">&gt; </span
+        ><a href="login-and-security.html" class="edit-name-navlink1"
+          ><span>&nbsp; &nbsp; </span
+          ><span class="edit-name-text09">Login &amp; Security</span></a
+        ><a href="personal-info.html" class="edit-name-navlink2"
+          >Your Account
+        </a></div
       ></div
+      <?php }} ?>
     >
     <script
       defer=""

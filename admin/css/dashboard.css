@@ -914,6 +914,10 @@
   width: 150px;
   margin-right: 0px;
 }
+.add_product_entry_text_content {
+  width: auto;
+  margin-right: 0px;
+}
 .add_product_button_container {
   flex: 0 0 auto;
   width: 100%;
@@ -959,3 +963,5 @@
 .add_product_description:hover {
   border-color: var(--dl-color-gray-black);
 }
+.success{font-size: 18px;color: green;}
+.error{font-size: 18px;color: red;}

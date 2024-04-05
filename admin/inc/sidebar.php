@@ -44,19 +44,6 @@
             </div>
             </li>
         </a>
-        <a href="user-edit.php">
-            <li
-            data-thq="thq-dropdown"
-            class="admin-page-navbar-dropdown1 list-item"
-            >
-            <div
-                data-thq="thq-dropdown-toggle"
-                class="admin-page-navbar-dropdown-toggle02"
-            >
-                <span class="admin-page-navbar-text02">Edit User</span>
-            </div>
-            </li>
-        </a>
         </ul>
     </div>
     <div

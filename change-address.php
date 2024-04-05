@@ -1,3 +1,37 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,37 +107,59 @@
             </div>
             <h1>Checkout</h1>
           </div>
-          <div class="change-address-container3">
-            <h1 class="change-address-text1">Change Address</h1>
-            <div class="change-address-container4">
-              <div class="change-address-container5">
-                <input type="text" class="change-address-textinput input" />
-                <h1 class="change-address-text2">Full name</h1>
+          <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+            <div class="change-address-container3">
+              <h1 class="change-address-text1">Change Address</h1>
+              <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
+              <div class="change-address-container4">
+                <div class="change-address-container5">
+                  <input name = "name" type="text" class="change-address-textinput input" value="<?php echo $result['name'];?>"/>
+                  <h1 class="change-address-text2">Full name</h1>
+                </div>
+              </div>
+              <div class="change-address-container6">
+                <input name = "phone" type="text" class="change-address-textinput1 input" value="<?php echo $result['phone'];?>"/>
+                <h1 class="change-address-text4">Phone number</h1>
+              </div>
+              <div class="change-address-container8">
+                <input name = "email" type="text" class="change-address-textinput4 input" value="<?php echo $result['email'];?>"/>
+                <h1 class="change-address-text6">Email</h1>
+              </div>
+              <div class="change-address-container7">
+                <input name = "address" type="text" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
+                <h1 class="change-address-text5">Address</h1>
+                <input name = "city" type="text" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
+              </div>
+              <div class="change-address-container9">
+                <input name = "zip" type="text" class="change-address-textinput4 input" value="<?php echo $result['zip'];?>"/>
+                <h1 class="change-address-text6">Zipcode</h1>
               </div>
               <div class="change-address-ct1">
-                <h1 class="change-address-text3">Country</h1>
-                <select size="1" class="change-address-select">
-                  <option value="Option 1">China</option>
-                  <option value="Option 1">China HK</option>
-                </select>
-              </div>
+                  <h1 class="change-address-text3">Country</h1>
+                  <select name = "country" size="1" class="change-address-select">
+                    <option type = "text" value="China">China</option>
+                    <option type = "text" value="China HK">China HK</option>
+                  </select>
+                </div>
+              <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
+              <a href="payment.php" class="change-address-navlink button">
+                Return
+              </a>
             </div>
-            <div class="change-address-container6">
-              <input type="text" class="change-address-textinput1 input" />
-              <h1 class="change-address-text4">Phone number</h1>
-            </div>
-            <div class="change-address-container7">
-              <input type="text" class="change-address-textinput2 input" />
-              <h1 class="change-address-text5">Address</h1>
-              <input type="text" class="change-address-textinput3 input" />
-            </div>
-            <a href="payment.html" class="change-address-navlink button">
-              Use this address
-            </a>
-            <a href="payment.html" class="change-address-navlink1 navbar-link">
-              Return
-            </a>
-          </div>
+          </form>
+          <?php }} ?>
         </div>
       </div>
     </div>
