@@ -184,22 +184,6 @@ $fm = new Format();
 
                   <li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                  >
-                    <a href="edit-admin-info.php">
-                      <div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                      >
-                        <span class="admin-page-header2-text2">
-                          <span>Edit Info</span>
-                        </span>
-                      </div>
-                    </a>
-                  </li>
-
-                  <li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
                   >
                     <a href="?action=logout">
