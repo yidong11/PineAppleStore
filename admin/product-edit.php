@@ -12,7 +12,7 @@ ob_start();
 
 <?php
 if (!isset($_GET['proid']) || $_GET['proid'] == NULL) {
-  echo "<script>window.location='productlist.php';</script>";
+  echo "<script>window.location='product-list.php';</script>";
 } else {
   $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['proid']);
 }
