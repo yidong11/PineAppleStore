@@ -33,6 +33,14 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
  header("Location:success.php");
 }
   ?>
+   <?php 
+if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
+ $cmrId = Session::get("cmrId");
+ $insertOrder = $ct->orderProduct($cmrId);
+ $delData = $ct->delCustomerCart();
+ header("Location:check-order.php");
+}
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

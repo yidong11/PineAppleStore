@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<?php 
-$login = Session::get("cuslogin");
-if ($login == false) {
-    header("Location:login.php");
-}
- ?>
+
 
 <?php
 $cmrId = Session::get("cmrId");
