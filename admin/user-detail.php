@@ -132,7 +132,10 @@ $fm = new Format();
         </td>
       </tr>
 
-      <?php } } ?>
+      <?php } } else {
+        echo "No existing orders";
+      }
+      ?>
 
     </tbody>
   </table>
