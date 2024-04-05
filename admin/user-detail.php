@@ -10,7 +10,7 @@
   id="user_info_content"
   class="admin-page-main-container2 column"
 >
-  <span class="admin-page-main-text">Edit User Information</span>
+  <span class="admin-page-main-text">User Information Details</span>
 </div>
 
 
