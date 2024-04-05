@@ -32,6 +32,7 @@ if (isset($_GET['delpro'])) {
 
 
   <table class="data display datatable" id="example" style="width: 1200px;">
+    
     <thead>
       <tr>
         <th>Product ID</th>
@@ -45,6 +46,7 @@ if (isset($_GET['delpro'])) {
         <th>Action</th>
       </tr>
     </thead>
+
     <tbody>
 
       <?php
@@ -74,7 +76,7 @@ if (isset($_GET['delpro'])) {
             
 
           </td>
-        <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete!')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
+        <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
       </tr>
 
       <?php } } ?>
