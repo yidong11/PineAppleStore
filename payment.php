@@ -6,8 +6,7 @@ Session::init();
 include 'lib/Database.php';
 include 'helpers/Formate.php';
 spl_autoload_register(function($class){
-include_once "classess/".$class.".php";
-
+  include_once "classess/".$class.".php";
 });
 
 $db = new Database();
@@ -19,26 +18,18 @@ $cmr = new Customer();
 ?>
 
 <?php 
-$login = Session::get("cuslogin");
-if ($login == false) {
+  $login = Session::get("cuslogin");
+  if ($login == false) {
     header("Location:login.php");
-}
- ?>
+  }
+?>
 
- <?php 
-if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
- $cmrId = Session::get("cmrId");
- $insertOrder = $ct->orderProduct($cmrId);
- $delData = $ct->delCustomerCart();
- header("Location:success.php");
-}
-  ?>
-   <?php 
-if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
- $cmrId = Session::get("cmrId");
- $insertOrder = $ct->orderProduct($cmrId);
- $delData = $ct->delCustomerCart();
- header("Location:check-order.php");
+<?php 
+  if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
+    $cmrId = Session::get("cmrId");
+    $insertOrder = $ct->orderProduct($cmrId);
+    $delData = $ct->delCustomerCart();
+    header("Location:check-order.php");
 }
   ?>
 <!DOCTYPE html>
@@ -193,7 +184,7 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
             <label class="payment-text08">Delivery: <?php echo date('Y-m-d');?></label>
             <div class="payment-payment">
               <button type="button" class="payment-button button">
-                Place your order in HKD
+                <a href="?orderid=Order">Place your order in HKD</a>
               </button>
               <span class="payment-text09">
                 You'll be securely redirected to Master Card to complete this
@@ -233,7 +224,7 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
         </div>
         <div class="payment-right">
           <button type="button" class="payment-button1 button">
-            Place your order in HKD
+            <a href="?orderid=Order">Place your order in HKD</a>
           </button>
           <span class="payment-text17">
             You'll be securely redirected to Master Card to complete this
