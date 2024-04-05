@@ -55,7 +55,6 @@ if (isset($_GET['delpro'])) {
         $i = 0;
         while ($result = $getPd->fetch_assoc()) {
           $i++;
-
       ?>
       <tr class="odd gradeX">
         <td><?php echo $result['productId'];?></td>
