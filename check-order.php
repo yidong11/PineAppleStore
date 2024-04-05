@@ -37,19 +37,6 @@
           <link href="./check-order.css" rel="stylesheet" />
           <div class="check-order-container02">
             <h1 class="check-order-text">Your orders</h1>
-            <input
-              type="text"
-              placeholder="Search all orders"
-              class="check-order-input input"
-            />
-            <button type="button" class="check-order-button button">
-              Search orders
-            </button>
-            <img
-              alt="image"
-              src="public/d4ea6a63_e775824_f774866d-200h.png"
-              class="check-order-image"
-            />
           </div>
           <div class="check-order-container03">
             <span class="check-order-text1 navbar-link">Orders</span>
