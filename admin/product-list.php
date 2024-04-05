@@ -74,7 +74,7 @@ if (isset($_GET['delpro'])) {
             
 
           </td>
-        <td><a href="productedit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete!')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
+        <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete!')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
       </tr>
 
       <?php } } ?>

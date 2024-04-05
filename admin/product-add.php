@@ -10,6 +10,7 @@ $pd = new Product();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $insertProduct = $pd->productInsert($_POST,$_FILES);
+    // header('Location: product-list.php');
 }
 ?>
 
@@ -35,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         <input type="text" name="productName" placeholder="Enter Product Name..." class="add_product_textinput" />
       </div>
 
+
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Category</span>
         <select name="catId" id="select" class="add_product_select_box">
@@ -45,13 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             if ($getCat) {
                 while ($result = $getCat->fetch_assoc()) {
           ?>
-          <option value="<?php echo $result['catId']; ?>"><?php echo $result['catName']; ?></option>
+          <option 
+            value="<?php echo $result['catId']; ?>">
+            <?php echo $result['catName']; ?>
+          </option>
           <?php
                 }
             }
           ?>
         </select>
       </div>
+
 
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Brand</span>
@@ -63,7 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             if ($getBrand) {
                 while ($result = $getBrand->fetch_assoc()) {
           ?>
-          <option value="<?php echo $result['brandId']; ?>"><?php echo $result['brandName']; ?></option>
+          <option 
+            value="<?php echo $result['brandId']; ?>">
+            <?php echo $result['brandName']; ?>
+          </option>
           <?php
                 }
             }
@@ -71,20 +80,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         </select>
       </div>
 
+
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Description</span>
         <textarea type="text" name="body" placeholder="Enter the text description" class="add_product_description"></textarea>
       </div>
+
       
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Price</span>
         <input type="text" placeholder="Enter price" name="price" class="add_product_textinput" />
       </div>
 
+
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Upload Image</span>
         <input type="file" name="image" />
       </div>
+
 
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Product Type</span>
@@ -111,13 +124,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
       >
         Cancel
       </a>
-
-
     </div>
 
   </form>
-
-
 
 
 
