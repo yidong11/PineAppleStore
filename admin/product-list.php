@@ -61,7 +61,7 @@ if (isset($_GET['delpro'])) {
         <td><?php echo $result['catName'] ;?></td>
         <td><?php echo $result['brandName'] ;?></td>
         <td><?php echo $fm->textShorten($result['body'],50) ;?></td>
-        <td>TK.<?php echo $result['price'] ;?></td>
+        <td>HKD <?php echo $result['price'] ;?></td>
         <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
         <td>
           <?php 
@@ -74,7 +74,7 @@ if (isset($_GET['delpro'])) {
             
 
           </td>
-        <td><a href="productedit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete!')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
+        <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete!')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
       </tr>
 
       <?php } } ?>
