@@ -134,51 +134,50 @@ $cmr = new Customer();
             <div class="payment-item">
             <table class="data display datatable" id="example" style="width: 1200px;">
     
-    <thead>
-      <tr>
-        <th>Product ID</th>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Image</th>
-        <th>Total</th>
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Image</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
 
-      </tr>
-    </thead>
+              <tbody>
 
-    <tbody>
-
-      <?php
-      $getPd = $ct->getCartProduct();
-      if ($getPd) {
-        $i = 0;
-				$sum = 0;
-				$qty = 0;
-        while ($result = $getPd->fetch_assoc()) {
-          $i++;
-      ?>
-      <tr class="odd gradeX">
-        <td><?php echo $result['productId'];?></td>
-        <td><?php echo $result['productName'] ;?></td>
-        <td>HKD <?php echo $result['price'] ;?></td>
-        <td><?php echo $result['quantity'] ;?></td>
-        <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
-        <td>HKD <?php
-						$total = $result['price'] * $result['quantity'];
-						echo $total;?>
-        </td>
-      </tr>
-      <?php 
-				$qty = $qty + $result['quantity'];
-				$sum = $sum + $total;
-				Session::set("qty",$qty);
-				Session::set("sum",$sum);
-			?>
-      
-      <?php } } ?>
-      
-    </tbody>
-	</table>
+                <?php
+                  $getPd = $ct->getCartProduct();
+                  if ($getPd) {
+                    $i = 0;
+                    $sum = 0;
+                    $qty = 0;
+                    while ($result = $getPd->fetch_assoc()) {
+                      $i++;
+                ?>
+                <tr class="odd gradeX">
+                  <td><?php echo $result['productId'];?></td>
+                  <td><?php echo $result['productName'] ;?></td>
+                  <td>HKD <?php echo $result['price'] ;?></td>
+                  <td><?php echo $result['quantity'] ;?></td>
+                  <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
+                  <td>HKD <?php
+                      $total = $result['price'] * $result['quantity'];
+                      echo $total;?>
+                  </td>
+                </tr>
+                <?php 
+                  $qty = $qty + $result['quantity'];
+                  $sum = $sum + $total;
+                  Session::set("qty",$qty);
+                  Session::set("sum",$sum);
+                ?>
+                
+                <?php } } ?>
+                
+              </tbody>
+	          </table>
 
             </div>
             <label class="payment-text08">Delivery: <?php echo date('Y-m-d');?></label>
@@ -246,6 +245,13 @@ $cmr = new Customer();
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          setupLeftMenu();
+          $('.datatable').dataTable();
+      setSidebarHeight();
+      });
+    </script>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"

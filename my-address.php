@@ -41,96 +41,7 @@ if (isset($_GET['cid'])) {
     <meta property="twitter:card" content="summary_large_image" />
 
     <style data-tag="reset-style-sheet">
-      html {
-      line-height: 1.15;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    * {
-      box-sizing: border-box;
-      border-width: 0;
-      border-style: solid;
-    }
-
-    p,
-    li,
-    ul,
-    pre,
-    div,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    figure,
-    blockquote,
-    figcaption {
-      margin: 0;
-      padding: 0;
-    }
-
-    button {
-      background-color: transparent;
-    }
-
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-      font-family: inherit;
-      font-size: 100%;
-      line-height: 1.15;
-      margin: 0;
-    }
-
-    button,
-    select {
-      text-transform: none;
-    }
-
-    button,
-    [type="button"],
-    [type="reset"],
-    [type="submit"] {
-      -webkit-appearance: button;
-    }
-
-    button::-moz-focus-inner,
-    [type="button"]::-moz-focus-inner,
-    [type="reset"]::-moz-focus-inner,
-    [type="submit"]::-moz-focus-inner {
-      border-style: none;
-      padding: 0;
-    }
-
-    button:-moz-focus,
-    [type="button"]:-moz-focus,
-    [type="reset"]:-moz-focus,
-    [type="submit"]:-moz-focus {
-      outline: 1px dotted ButtonText;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: inherit;
-    }
-
-    input {
-      padding: 2px 4px;
-    }
-
-    img {
-      display: block;
-    }
-
-    html {
-      scroll-behavior: smooth
-    }
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
     </style>
     <style data-tag="default-style-sheet">
       html {
@@ -140,7 +51,7 @@ if (isset($_GET['cid'])) {
 
       body {
         font-weight: 400;
-        font-style: normal;
+        font-style:normal;
         text-decoration: none;
         text-transform: none;
         letter-spacing: 0.02;
@@ -178,7 +89,6 @@ if (isset($_GET['cid'])) {
     <link rel="stylesheet" href="./style.css" />
     <div>
       <link href="./css/homepage.css" rel="stylesheet" />
-      <link href="login-and-security.css" rel="stylesheet" />
 
       <div class="homepage-container">
 
@@ -345,3 +255,79 @@ if (isset($_GET['cid'])) {
             </div>
           </div>
         </header>
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+        <form action="" method="post">
+        <span class="my-address-text"
+          ><span>&gt;&nbsp; &nbsp; </span
+          ><span class="my-address-text02">Your Addresses</span>
+          <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
+          </span
+        ><a href="personal-info.html" class="my-address-navlink"
+          >Your Account </a
+        ><h1 class="my-address-text03">Your Addresses</h1
+        ><div class="my-address-container01"
+          ><div class="my-address-container02"
+            ><div class="my-address-container03"
+              ><div class="my-address-container04"
+                ><span class="my-address-text04">User ID:&nbsp;</span></div
+              ><div class="my-address-container05"
+                ><input
+                  name="id"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['id'];?>"
+                  class="my-address-textinput input" /></div></div
+            ><div class="my-address-container06"
+              ><div class="my-address-container07"
+                ><span class="my-address-text05">User Name:&nbsp;</span></div
+              ><div class="my-address-container08"
+                ><input
+                  name="name"
+                  type="text"
+                  disabled="true"
+                  value=""<?php echo $result['name'];?>""
+                  class="my-address-textinput1 input" /></div></div
+            ><div class="my-address-container09"
+              ><div class="my-address-container10"
+                ><span class="my-address-text06">User Address:&nbsp;</span></div
+              ><div class="my-address-container11"
+                ><input
+                  name="address"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['address'];?>"
+                  class="my-address-textinput2 input" /></div></div
+            ><div class="my-address-container12"
+              ><div class="my-address-container13"
+                ><span class="my-address-text07"
+                  >User Phone Number:&nbsp;</span
+                ></div
+              ><div class="my-address-container14"
+                ><input
+                  name="phone"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['phone'];?>"
+                  class="my-address-textinput3 input" /></div></div></div></div
+        ><a href="change-address1.html" class="my-address-navlink1 button"
+          >Add New Address</a
+        >
+        <?php }} ?></div
+      ></div
+    >
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script></body
+></html>
