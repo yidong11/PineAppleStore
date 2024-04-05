@@ -1,211 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>check-order - PineApple</title>
-    <meta property="og:title" content="check-order - PineApple" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
+<?php include 'inc/header.php';?>
+    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" /> -->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
+    <link href="css/table/demo_page.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN: load jquery -->
+    <script src="js/jquery-1.6.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery.ui.core.min.js"></script>
+    <script src="js/jquery-ui/jquery.ui.widget.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.accordion.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.effects.core.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.effects.slide.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.mouse.min.js" type="text/javascript"></script>
+    <script src="js/jquery-ui/jquery.ui.sortable.min.js" type="text/javascript"></script>
+    <script src="js/table/jquery.dataTables.min.js" type="text/javascript"></script>
+    <!-- END: load jquery -->
+    <script type="text/javascript" src="js/table/table.js"></script>
+    <script src="js/setup.js" type="text/javascript"></script>
+	  <script type="text/javascript">
+        $(document).ready(function () {
+            setupLeftMenu();
+		    setSidebarHeight();
+        });
+    </script>
+<?php include_once './helpers/Formate.php';?>
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Jost;
-        font-size: 16px;
-      }
+<?php 
+  if (isset($_GET['customerId'])) {
+    $id = $_GET['customerId'];
+    $confirm = $ct->productShiftConfirm($id);
+  }
+?>
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: 0.02;
-        line-height: 1.55;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
 
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/animate.css@4.1.1/animate.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
-    />
-    <style>
-      [data-thq="thq-dropdown"]:hover > [data-thq="thq-dropdown-list"] {
-          display: flex;
-        }
-
-        [data-thq="thq-dropdown"]:hover > div [data-thq="thq-dropdown-arrow"] {
-          transform: rotate(90deg);
-        }
-    </style>
-  </head>
-  <body>
-    <link rel="stylesheet" href="./style.css" />
-    <div>
-      <link href="./check-order.css" rel="stylesheet" />
-
-      <div class="check-order-container">
-        <div class="check-order-container01">
-          <header
-            data-role="Header"
-            class="product-detail-header-header max-width-container product-detail-header-root-class-name5"
-          >
-            <div class="product-detail-header-navbar">
-              <a href="homepage.html" class="product-detail-header-navlink">
-                <div
-                  class="logo-container navbar-logo-title logo-root-class-name10"
-                >
-                  <span class="logo-logo-center Logo navbar-logo-title">
-                    <span>PineApple</span>
-                  </span>
-                  <img
-                    alt="image"
-                    src="public/Pineapple Icons/logo_no_bg_2-200h.png"
-                    class="logo-image"
-                  />
-                </div>
-              </a>
-              <div class="product-detail-header-container">
-                <input
-                  type="text"
-                  id="Search bar"
-                  placeholder="e.g. Nvidia RTX 4090"
-                  autocomplete="off"
-                  class="product-detail-header-textinput input"
-                />
-                <a
-                  href="search-page.html"
-                  class="product-detail-header-navlink1 button"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    class="product-detail-header-icon"
-                  >
-                    <path
-                      d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-              <div class="product-detail-header-icons">
-                <a
-                  href="shopping-cart-page.html"
-                  class="product-detail-header-navlink2 button"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    class="product-detail-header-icon2"
-                  >
-                    <path
-                      d="M726 768q34 0 59 26t25 60-25 59-59 25-60-25-26-59 26-60 60-26zM42 86h140l40 84h632q18 0 30 13t12 31q0 2-6 20l-152 276q-24 44-74 44h-318l-38 70-2 6q0 10 10 10h494v86h-512q-34 0-59-26t-25-60q0-20 10-40l58-106-154-324h-86v-84zM298 768q34 0 60 26t26 60-26 59-60 25-59-25-25-59 25-60 59-26z"
-                    ></path>
-                  </svg>
-                </a>
-                <div
-                  data-thq="thq-dropdown"
-                  class="product-detail-header-thq-dropdown list-item"
-                >
-                  <div
-                    data-thq="thq-dropdown-toggle"
-                    class="product-detail-header-dropdown-toggle"
-                  >
-                    <div
-                      data-thq="thq-dropdown-arrow"
-                      class="product-detail-header-dropdown-arrow"
-                    >
-                      <div class="product-detail-header-container1">
-                        <svg
-                          viewBox="0 0 1024 1024"
-                          class="product-detail-header-icon4"
-                        >
-                          <path
-                            d="M512 0c282.857 0 512 229.143 512 512 0 281.143-228 512-512 512-283.429 0-512-230.286-512-512 0-282.857 229.143-512 512-512zM865.714 772c53.143-73.143 85.143-162.857 85.143-260 0-241.714-197.143-438.857-438.857-438.857s-438.857 197.143-438.857 438.857c0 97.143 32 186.857 85.143 260 20.571-102.286 70.286-186.857 174.857-186.857 46.286 45.143 109.143 73.143 178.857 73.143s132.571-28 178.857-73.143c104.571 0 154.286 84.571 174.857 186.857zM731.429 402.286c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <ul
-                    data-thq="thq-dropdown-list"
-                    class="product-detail-header-dropdown-list"
-                  >
-                    <li
-                      data-thq="thq-dropdown"
-                      class="product-detail-header-dropdown list-item"
-                    >
-                      <a href="personal-info.html">
-                        <div
-                          data-thq="thq-dropdown-toggle"
-                          class="product-detail-header-dropdown-toggle1"
-                        >
-                          <span class="product-detail-header-text">
-                            <span>Information</span>
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                    <li
-                      data-thq="thq-dropdown"
-                      class="product-detail-header-dropdown1 list-item"
-                    >
-                      <a href="login.html">
-                        <div
-                          data-thq="thq-dropdown-toggle"
-                          class="product-detail-header-dropdown-toggle2"
-                        >
-                          <span class="product-detail-header-text1">
-                            <span>Log out</span>
-                            <br />
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </header>
+          <link href="./check-order.css" rel="stylesheet" />
           <div class="check-order-container02">
             <h1 class="check-order-text">Your orders</h1>
-            <input
-              type="text"
-              placeholder="Search all orders"
-              class="check-order-input input"
-            />
-            <button type="button" class="check-order-button button">
-              Search orders
-            </button>
-            <img
-              alt="image"
-              src="public/d4ea6a63_e775824_f774866d-200h.png"
-              class="check-order-image"
-            />
           </div>
           <div class="check-order-container03">
             <span class="check-order-text1 navbar-link">Orders</span>
             <span class="check-order-text2 navbar-link">Delivery Order</span>
             <a
               href="not-yet-dispatched.html"
-              class="check-order-navlink navbar-link"
-            >
+              class="check-order-navlink navbar-link">
               Not yet dispatched
             </a>
             <a
               href="cancelled-order.html"
-              class="check-order-navlink1 navbar-link"
-            >
+              class="check-order-navlink1 navbar-link">
               Cancelled Order
             </a>
           </div>
@@ -214,71 +57,65 @@
               <label class="check-order-text3">1 order</label>
               <span class="check-order-text4">placed in</span>
               <select size="1" class="check-order-select">
+                <option value="Option 3">all the time</option>
                 <option value="Option 1">past a week</option>
                 <option value="Option 1">past a month</option>
                 <option value="Option 1">past three months</option>
                 <option value="Option 2">past six months</option>
                 <option value="Option 2">past a year</option>
-                <option value="Option 3">all the time</option>
               </select>
             </div>
             <div class="check-order-container06">
-              <img
-                alt="image"
-                src="public/Pineapple Icons/iphone-400h.png"
-                class="check-order-image1"
-              />
-              <div class="check-order-container07"></div>
-              <button type="button" class="check-order-button1 button">
-                Get help
-              </button>
-              <span class="check-order-text5">
-                Unlocked Android Phone I15 PROMAX 5G Cell Phone with 12GB+512GB
-                Deca Core Dynamic Island and Titanium Design Smart Phones 6.8“
-                HD Screen 48MP+108MP Camera 6800 mAh Long Battery Dual SIM Phone
-                (Blue)
-              </span>
-              <a href="product-detail.html" class="check-order-navlink2 button">
-                View your item
-              </a>
-              <button type="button" class="check-order-button2 button">
-                Leave seller feedback
-              </button>
-              <button type="button" class="check-order-button3 button">
-                Write a product review
-              </button>
+              <table class="data display datatable" id="example" style="width: 1200px;">
+    
+                <thead>
+                  <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  <?php
+                    $cmrId = Session::get("cmrId");
+                    $getPd = $ct->getOrderedProduct($cmrId);
+                    if ($getPd) {
+                      $i = 0;
+                      $sum = 0;
+                      $qty = 0;
+                      while ($result = $getPd->fetch_assoc()) {
+                        $i++;
+                  ?>
+                  <tr class="odd gradeX">
+                    <td><?php echo $result['productId'];?></td>
+                    <td><?php echo $result['productName'] ;?></td>
+                    <td>HKD <?php echo $result['price'] ;?></td>
+                    <td><?php echo $result['quantity'] ;?></td>
+                    <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
+                    <td>HKD <?php
+                        $total = $result['price'] * $result['quantity'];
+                        echo $total;?>
+                    </td>
+                    <td><a href="product-rate.php?proid=<?php echo $result['productId'];?>">Rate</a></td>
+                  </tr>                 
+                  <?php } } ?>
+                  
+                </tbody>
+	            </table>
             </div>
-          </div>
-          <div class="check-order-container08">
-            <div class="check-order-container09">
-              <button type="button" class="check-order-button4 button">
-                Previous
-              </button>
-              <button type="button" class="check-order-button5 button">
-                1
-              </button>
-              <button type="button" class="check-order-button6 button">
-                2
-              </button>
-              <button type="button" class="check-order-button7 button">
-                3
-              </button>
-              <input
-                type="text"
-                placeholder="..."
-                class="check-order-textinput input"
-              />
-              <button type="button" class="check-order-button8 button">
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script
-      defer=""
-      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script>
-  </body>
-</html>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+          setupLeftMenu();
+          $('.datatable').dataTable();
+      setSidebarHeight();
+      });
+    </script>
+
+<?php include 'inc/footer_clean.php';?>
