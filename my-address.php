@@ -277,7 +277,7 @@ if (isset($_GET['cid'])) {
                 ><input
                   type="text"
                   disabled="true"
-                  placeholder="<?php echo $result['id'];?>"
+                  value="<?php echo $result['id'];?>"
                   class="my-address-textinput input" /></div></div
             ><div class="my-address-container06"
               ><div class="my-address-container07"
@@ -286,7 +286,7 @@ if (isset($_GET['cid'])) {
                 ><input
                   type="text"
                   disabled="true"
-                  placeholder=""<?php echo $result['name'];?>""
+                  value=""<?php echo $result['name'];?>""
                   class="my-address-textinput1 input" /></div></div
             ><div class="my-address-container09"
               ><div class="my-address-container10"
@@ -295,7 +295,7 @@ if (isset($_GET['cid'])) {
                 ><input
                   type="text"
                   disabled="true"
-                  placeholder="<?php echo $result['address'];?>"
+                  value="<?php echo $result['address'];?>"
                   class="my-address-textinput2 input" /></div></div
             ><div class="my-address-container12"
               ><div class="my-address-container13"
@@ -306,7 +306,7 @@ if (isset($_GET['cid'])) {
                 ><input
                   type="text"
                   disabled="true"
-                  placeholder="<?php echo $result['phone'];?>"
+                  value="<?php echo $result['phone'];?>"
                   class="my-address-textinput3 input" /></div></div></div></div
         ><a href="change-address1.html" class="my-address-navlink1 button"
           >Add New Address</a
