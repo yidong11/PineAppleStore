@@ -914,6 +914,10 @@
   width: 150px;
   margin-right: 0px;
 }
+.add_product_entry_text_content {
+  width: auto;
+  margin-right: 0px;
+}
 .add_product_button_container {
   flex: 0 0 auto;
   width: 100%;

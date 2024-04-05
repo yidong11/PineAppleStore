@@ -85,6 +85,11 @@
   margin-left: 0px;
   margin-right: var(--dl-space-space-twounits);
 }
+.logo-root-class-name16 {
+  align-self: center;
+  margin-left: 0px;
+  margin-right: var(--dl-space-space-twounits);
+}
 @media(max-width: 1200px) {
   .logo-root-class-name1 {
     top: 0px;
@@ -200,13 +205,17 @@
   transition: 0.3s;
   padding-top: 0px;
   border-width: 0px;
-  margin-right: var(--dl-space-space-halfunit);
+  margin-right: 0px;
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
 }
 .product-detail-header-icon2:hover {
   fill: var(--dl-color-pallet-yellow);
+}
+.product-detail-header-text {
+  width: 75px;
+  font-size: 18px;
 }
 .product-detail-header-thq-dropdown {
   cursor: pointer;
@@ -284,7 +293,7 @@
   color: #fff;
   background-color: #595959;
 }
-.product-detail-header-text {
+.product-detail-header-text1 {
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -317,7 +326,7 @@
   color: #fff;
   background-color: #595959;
 }
-.product-detail-header-text1 {
+.product-detail-header-text2 {
   width: 100%;
   cursor: pointer;
   display: flex;
@@ -325,7 +334,6 @@
   font-style: normal;
   font-weight: 500;
 }
-
 
 
 
@@ -344,41 +352,18 @@
   }
 }
 
-.login-and-security-container {
-  width: 100%;
+.app-component-container {
+  width: 668px;
+  height: 381px;
   display: flex;
-  overflow: auto;
-  min-height: 100vh;
+  position: relative;
   align-items: center;
   flex-direction: column;
 }
-.login-and-security-container1 {
-  top: 268px;
+.app-component-container1 {
+  top: 161px;
   flex: 0 0 auto;
-  left: 1068px;
-  display: flex;
-  position: absolute;
-  align-items: center;
-  flex-direction: column;
-}
-.login-and-security-image {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-color: var(--dl-color-gray-black80);
-  border-width: 2px;
-  border-radius: var(--dl-radius-radius-round);
-}
-.login-and-security-button {
-  margin-top: var(--dl-space-space-twounits);
-  margin-left: var(--dl-space-space-threeunits);
-  margin-right: var(--dl-space-space-threeunits);
-  border-radius: var(--dl-radius-radius-radius8);
-}
-.login-and-security-container2 {
-  top: 377px;
-  flex: 0 0 auto;
-  left: 192px;
+  left: 0px;
   width: 667px;
   height: 100px;
   display: flex;
@@ -388,21 +373,23 @@
   border-style: dashed;
   border-width: 3px;
 }
-.login-and-security-navlink {
+.app-component-navlink {
   top: 28px;
   right: 20px;
   width: 114px;
   position: absolute;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
-.login-and-security-container3 {
-  top: 497px;
+.app-component-container2 {
   flex: 0 0 auto;
-  left: 193px;
+  left: 1px;
   width: 667px;
   border: 2px dashed rgba(120, 120, 120, 0.4);
+  bottom: 0px;
   height: 100px;
   display: flex;
   position: absolute;
@@ -411,10 +398,10 @@
   border-style: dashed;
   border-width: 3px;
 }
-.login-and-security-container4 {
-  top: 257px;
+.app-component-container3 {
+  top: 41px;
   flex: 0 0 auto;
-  left: 193px;
+  left: 1px;
   width: 667px;
   height: 100px;
   display: flex;
@@ -424,16 +411,18 @@
   border-style: dashed;
   border-width: 3px;
 }
-.login-and-security-navlink1 {
+.app-component-navlink1 {
   right: 25px;
   width: 114px;
   bottom: 29px;
   position: absolute;
   box-shadow: 5px 5px 10px 0px #d4d4d4,5px 5px 10px 0px #d4d4d4;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
-.login-and-security-textinput {
+.app-component-textinput {
   top: 46px;
   left: 22px;
   position: absolute;
@@ -441,68 +430,84 @@
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius8);
 }
-.login-and-security-navlink2 {
-  top: 527px;
-  left: 722px;
+.app-component-navlink2 {
+  right: 24px;
   width: 114px;
+  bottom: 30.39999771118164px;
   position: absolute;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
 }
-.login-and-security-text3 {
-  top: 217px;
-  left: 305px;
+.app-component-text {
+  top: 1px;
+  left: 113px;
   position: absolute;
 }
-.login-and-security-text5 {
+.app-component-text2 {
   color: var(--dl-color-pallet-yellow);
 }
-.login-and-security-navlink3 {
-  top: 216px;
-  left: 193px;
+.app-component-navlink3 {
+  top: 0px;
+  left: 1px;
   position: absolute;
   text-decoration: none;
 }
-.login-and-security-text6 {
-  top: 389px;
-  left: 217px;
+.app-component-text3 {
+  top: 173px;
+  left: 25px;
   position: absolute;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
 }
-.login-and-security-text7 {
-  top: 510px;
-  left: 222px;
+.app-component-text4 {
+  left: 30px;
+  bottom: 56px;
   position: absolute;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
 }
-.login-and-security-text8 {
-  top: 265px;
-  left: 217px;
+.app-component-text5 {
+  top: 49px;
+  left: 25px;
   position: absolute;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
 }
-.login-and-security-textinput1 {
-  top: 428px;
-  left: 216px;
+.app-component-textinput1 {
+  left: 24px;
   width: 220px;
+  bottom: 133px;
   position: absolute;
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius8);
 }
-.login-and-security-textinput2 {
-  top: 545px;
-  left: 217px;
+.app-component-textinput2 {
+  left: 25px;
   width: 220px;
+  bottom: 16px;
   position: absolute;
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius8);
+}
+.app-component-root-class-name {
+  top: 216px;
+  left: 192px;
+  position: absolute;
+}
+
+.login-and-security-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
 }

@@ -1,3 +1,5 @@
+<?php include 'inc/header.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,125 +60,6 @@
 
       <div class="check-order-container">
         <div class="check-order-container01">
-          <header
-            data-role="Header"
-            class="product-detail-header-header max-width-container product-detail-header-root-class-name5"
-          >
-            <div class="product-detail-header-navbar">
-              <a href="homepage.html" class="product-detail-header-navlink">
-                <div
-                  class="logo-container navbar-logo-title logo-root-class-name10"
-                >
-                  <span class="logo-logo-center Logo navbar-logo-title">
-                    <span>PineApple</span>
-                  </span>
-                  <img
-                    alt="image"
-                    src="public/Pineapple Icons/logo_no_bg_2-200h.png"
-                    class="logo-image"
-                  />
-                </div>
-              </a>
-              <div class="product-detail-header-container">
-                <input
-                  type="text"
-                  id="Search bar"
-                  placeholder="e.g. Nvidia RTX 4090"
-                  autocomplete="off"
-                  class="product-detail-header-textinput input"
-                />
-                <a
-                  href="search-page.html"
-                  class="product-detail-header-navlink1 button"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    class="product-detail-header-icon"
-                  >
-                    <path
-                      d="M406 598q80 0 136-56t56-136-56-136-136-56-136 56-56 136 56 136 136 56zM662 598l212 212-64 64-212-212v-34l-12-12q-76 66-180 66-116 0-197-80t-81-196 81-197 197-81 196 81 80 197q0 42-20 95t-46 85l12 12h34z"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
-              <div class="product-detail-header-icons">
-                <a
-                  href="shopping-cart-page.html"
-                  class="product-detail-header-navlink2 button"
-                >
-                  <svg
-                    viewBox="0 0 1024 1024"
-                    class="product-detail-header-icon2"
-                  >
-                    <path
-                      d="M726 768q34 0 59 26t25 60-25 59-59 25-60-25-26-59 26-60 60-26zM42 86h140l40 84h632q18 0 30 13t12 31q0 2-6 20l-152 276q-24 44-74 44h-318l-38 70-2 6q0 10 10 10h494v86h-512q-34 0-59-26t-25-60q0-20 10-40l58-106-154-324h-86v-84zM298 768q34 0 60 26t26 60-26 59-60 25-59-25-25-59 25-60 59-26z"
-                    ></path>
-                  </svg>
-                </a>
-                <div
-                  data-thq="thq-dropdown"
-                  class="product-detail-header-thq-dropdown list-item"
-                >
-                  <div
-                    data-thq="thq-dropdown-toggle"
-                    class="product-detail-header-dropdown-toggle"
-                  >
-                    <div
-                      data-thq="thq-dropdown-arrow"
-                      class="product-detail-header-dropdown-arrow"
-                    >
-                      <div class="product-detail-header-container1">
-                        <svg
-                          viewBox="0 0 1024 1024"
-                          class="product-detail-header-icon4"
-                        >
-                          <path
-                            d="M512 0c282.857 0 512 229.143 512 512 0 281.143-228 512-512 512-283.429 0-512-230.286-512-512 0-282.857 229.143-512 512-512zM865.714 772c53.143-73.143 85.143-162.857 85.143-260 0-241.714-197.143-438.857-438.857-438.857s-438.857 197.143-438.857 438.857c0 97.143 32 186.857 85.143 260 20.571-102.286 70.286-186.857 174.857-186.857 46.286 45.143 109.143 73.143 178.857 73.143s132.571-28 178.857-73.143c104.571 0 154.286 84.571 174.857 186.857zM731.429 402.286c0-121.143-98.286-219.429-219.429-219.429s-219.429 98.286-219.429 219.429 98.286 219.429 219.429 219.429 219.429-98.286 219.429-219.429z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <ul
-                    data-thq="thq-dropdown-list"
-                    class="product-detail-header-dropdown-list"
-                  >
-                    <li
-                      data-thq="thq-dropdown"
-                      class="product-detail-header-dropdown list-item"
-                    >
-                      <a href="personal-info.html">
-                        <div
-                          data-thq="thq-dropdown-toggle"
-                          class="product-detail-header-dropdown-toggle1"
-                        >
-                          <span class="product-detail-header-text">
-                            <span>Information</span>
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                    <li
-                      data-thq="thq-dropdown"
-                      class="product-detail-header-dropdown1 list-item"
-                    >
-                      <a href="login.html">
-                        <div
-                          data-thq="thq-dropdown-toggle"
-                          class="product-detail-header-dropdown-toggle2"
-                        >
-                          <span class="product-detail-header-text1">
-                            <span>Log out</span>
-                            <br />
-                          </span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </header>
           <div class="check-order-container02">
             <h1 class="check-order-text">Your orders</h1>
             <input
@@ -282,3 +165,4 @@
     ></script>
   </body>
 </html>
+<?php include 'inc/footer.php';?>

@@ -164,8 +164,8 @@
 }
 .admin-page-header2-icon {
   fill: var(--dl-color-gray-black);
-  width: 35px;
-  height: 35px;
+  width: 34px;
+  height: 34px;
 }
 .admin-page-header2-dropdown-list {
   right: 0px;
@@ -316,6 +316,7 @@
   box-shadow: 5px 5px 10px 0px #d4d4d4,5px 5px 10px 0px #d4d4d4;
   border-color: var(--dl-color-gray-black);
   border-width: 2px;
+  padding-left: 5px;
   border-radius: var(--dl-radius-radius-radius8);
   background-color: var(--dl-color-gray-white);
 }
@@ -327,7 +328,9 @@
   position: absolute;
   box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
   text-align: center;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
+  justify-content: center;
   text-decoration: none;
   background-color: var(--dl-color-pallet-yellow);
 }
