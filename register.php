@@ -166,9 +166,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             <input name="email" type="text" placeholder="E-mail" class="register-textinput1 input" />
             <input name="pass" type="text" placeholder="Password" class="register-textinput2 input" />
             <input name="confirm_pass" type="text" placeholder="Confirm Password" class="register-textinput3 input" />
-          </div>
-          <div class="register-navlink button">
-              <div><button class="register-text1", name="register">Register</button></div>
+            <div class="register-navlink button">
+                <div><button class="register-text1", name="register">Register</button></div>
+            </div>
           </div>
           </form>
           <div class="register-container4">

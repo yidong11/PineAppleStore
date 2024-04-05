@@ -169,9 +169,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             <div class="login-container3">
               <input name="email" type="text" placeholder="Email" class="login-textinput input" />
               <input name="pass" type="password" placeholder="Password" class="login-textinput1 input" />
-            </div>
-            <div class="login-navlink button">
-              <div><button class="login-text1", name="login">Login</button></div>
+              <div class="login-navlink button">
+                <div><button class="login-text1", name="login">Login</button></div>
+              </div>
             </div>
           </form>
           <div class="login-container4">
