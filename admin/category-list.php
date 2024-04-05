@@ -33,7 +33,7 @@ if (isset($_GET['delcat'])) {
   <table class="data display datatable" id="example" style="width: 600px;">
     <thead>
       <tr>
-        <th style="width: 20%;">Serial No.</th>
+        <th style="width: 20%;">Category ID</th>
         <th style="width: 62%;">Category Name</th>
         <th style="width: 18%;">Action</th>
       </tr>
