@@ -85,6 +85,11 @@
   margin-left: 0px;
   margin-right: var(--dl-space-space-twounits);
 }
+.logo-root-class-name16 {
+  align-self: center;
+  margin-left: 0px;
+  margin-right: var(--dl-space-space-twounits);
+}
 @media(max-width: 1200px) {
   .logo-root-class-name1 {
     top: 0px;
@@ -281,22 +286,13 @@
 }
 
 .edit-name-container {
+  color: var(--dl-color-gray-black);
   width: 100%;
   display: flex;
   overflow: auto;
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-}
-.edit-name-navlink {
-  top: 438px;
-  left: 213px;
-  width: 114px;
-  position: absolute;
-  box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
-  border-radius: var(--dl-radius-radius-radius8);
-  text-decoration: none;
-  background-color: var(--dl-color-pallet-yellow);
 }
 .edit-name-text {
   top: 336px;
@@ -315,7 +311,6 @@
   top: 261px;
   left: 196px;
   width: 667px;
-  border: 2px dashed rgba(120, 120, 120, 0.4);
   height: 233px;
   display: flex;
   position: absolute;
@@ -324,9 +319,20 @@
   border-style: dashed;
   border-width: 3px;
 }
+.edit-name-navlink {
+  left: 15px;
+  width: 114px;
+  bottom: 16px;
+  position: absolute;
+  box-shadow: rgb(212, 212, 212) 5px 5px 10px 0px, rgb(212, 212, 212) 5px 5px 10px 0px;
+  text-align: center;
+  border-radius: var(--dl-radius-radius-radius8);
+  text-decoration: none;
+  background-color: var(--dl-color-pallet-yellow);
+}
 .edit-name-textinput {
-  top: 378px;
-  left: 213px;
+  top: 119px;
+  left: 13px;
   position: absolute;
   border-color: var(--dl-color-gray-black);
   border-width: 1px;
