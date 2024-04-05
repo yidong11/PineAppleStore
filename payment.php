@@ -118,27 +118,15 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
                 <a href="change-address.php" class="payment-change navbar-link">
                   change
                 </a>
-                <button type="button" class="payment-instruction navbar-link">
-                  Add delivery instructions
-                </button>
             <?php }} ?>
           </div>
           <div class="payment-paymentmethod">
             <h1 class="payment-text04">2&nbsp; &nbsp; Payment method</h1>
-            <ul class="payment-ul1 list">
-              <li class="list-item"><span>Master Card</span></li>
-              <li class="list-item">
-                <span>Billing address: Changwen LUAN, TaiJuanLe</span>
-              </li>
-              <li class="list-item"></li>
-            </ul>
-            <button
-              type="button"
-              disabled="true"
-              class="payment-change1 navbar-link"
-            >
-              change
-            </button>
+            <select name = "payment-method" size="1" class="payment-select1">
+              <option value="Wechat">Wechat</option>
+              <option value="AliPay">AliPay</option>
+              <option value="MasterCard">MasterCard</option>
+            </select>
           </div>
           <div class="payment-detail">
             <h1 class="payment-text07">
