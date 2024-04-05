@@ -245,6 +245,13 @@ $cmr = new Customer();
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+          setupLeftMenu();
+          $('.datatable').dataTable();
+      setSidebarHeight();
+      });
+    </script>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
