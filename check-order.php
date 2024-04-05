@@ -57,12 +57,12 @@
               <label class="check-order-text3">1 order</label>
               <span class="check-order-text4">placed in</span>
               <select size="1" class="check-order-select">
+                <option value="Option 3">all the time</option>
                 <option value="Option 1">past a week</option>
                 <option value="Option 1">past a month</option>
                 <option value="Option 1">past three months</option>
                 <option value="Option 2">past six months</option>
                 <option value="Option 2">past a year</option>
-                <option value="Option 3">all the time</option>
               </select>
             </div>
             <div class="check-order-container06">
@@ -76,6 +76,7 @@
                     <th>Quantity</th>
                     <th>Image</th>
                     <th>Total</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
 
@@ -101,14 +102,8 @@
                         $total = $result['price'] * $result['quantity'];
                         echo $total;?>
                     </td>
-                  </tr>
-                  <?php 
-                    $qty = $qty + $result['quantity'];
-                    $sum = $sum + $total;
-                    Session::set("qty",$qty);
-                    Session::set("sum",$sum);
-                  ?>
-                  
+                    <td><a href="product-rate.php?proid=<?php echo $result['productId'];?>">Rate</a></td>
+                  </tr>                 
                   <?php } } ?>
                   
                 </tbody>
