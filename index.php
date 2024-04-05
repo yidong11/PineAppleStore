@@ -131,7 +131,7 @@
   <!-- Trending items -->
   <div class="homepage-trending-items section-container">
     <div class="max-width-container">
-      <div class="section-heading-section-heading  section-heading-root-class-name3">
+      <div class="section-heading-section-heading section-heading-root-class-name3">
         <h1 class="section-heading-text Heading-2">
           <span>TRENDING ITEMS</span>
         </h1>
