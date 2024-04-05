@@ -98,22 +98,30 @@ if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
       <div class="payment-container">
         <div class="payment-left">
           <div class="payment-address">
-            <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
-            <ul class="payment-ul list">
-              <li class="list-item"><span><?php echo $result['name'];?></span></li>
-              <li class="list-item">
-                <span><?php echo $result['address'];?></span>
-              </li>
-              <li class="list-item">
-                <span><?php echo $result['city'];?></span>
-              </li>
-            </ul>
-            <a href="change-address.php" class="payment-change navbar-link">
-              change
-            </a>
-            <button type="button" class="payment-instruction navbar-link">
-              Add delivery instructions
-            </button>
+            <?php 
+              $id = Session::get("cmrId");
+              $getdata = $cmr->getCustomerData($id);
+              if ($getdata) {
+                while ($result = $getdata->fetch_assoc()) {
+
+            ?>
+                <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
+                <ul class="payment-ul list">
+                  <li class="list-item"><span><?php echo $result['name'];?></span></li>
+                  <li class="list-item">
+                    <span><?php echo $result['address'];?></span>
+                  </li>
+                  <li class="list-item">
+                    <span><?php echo $result['city'];?></span>
+                  </li>
+                </ul>
+                <a href="change-address.php" class="payment-change navbar-link">
+                  change
+                </a>
+                <button type="button" class="payment-instruction navbar-link">
+                  Add delivery instructions
+                </button>
+            <?php }} ?>
           </div>
           <div class="payment-paymentmethod">
             <h1 class="payment-text04">2&nbsp; &nbsp; Payment method</h1>
