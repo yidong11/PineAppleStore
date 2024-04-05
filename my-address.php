@@ -89,7 +89,6 @@ if (isset($_GET['cid'])) {
     <link rel="stylesheet" href="./style.css" />
     <div>
       <link href="./css/homepage.css" rel="stylesheet" />
-      <link href="login-and-security.css" rel="stylesheet" />
 
       <div class="homepage-container">
 
@@ -256,3 +255,79 @@ if (isset($_GET['cid'])) {
             </div>
           </div>
         </header>
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+        <form action="" method="post">
+        <span class="my-address-text"
+          ><span>&gt;&nbsp; &nbsp; </span
+          ><span class="my-address-text02">Your Addresses</span>
+          <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
+          </span
+        ><a href="personal-info.html" class="my-address-navlink"
+          >Your Account </a
+        ><h1 class="my-address-text03">Your Addresses</h1
+        ><div class="my-address-container01"
+          ><div class="my-address-container02"
+            ><div class="my-address-container03"
+              ><div class="my-address-container04"
+                ><span class="my-address-text04">User ID:&nbsp;</span></div
+              ><div class="my-address-container05"
+                ><input
+                  name="id"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['id'];?>"
+                  class="my-address-textinput input" /></div></div
+            ><div class="my-address-container06"
+              ><div class="my-address-container07"
+                ><span class="my-address-text05">User Name:&nbsp;</span></div
+              ><div class="my-address-container08"
+                ><input
+                  name="name"
+                  type="text"
+                  disabled="true"
+                  value=""<?php echo $result['name'];?>""
+                  class="my-address-textinput1 input" /></div></div
+            ><div class="my-address-container09"
+              ><div class="my-address-container10"
+                ><span class="my-address-text06">User Address:&nbsp;</span></div
+              ><div class="my-address-container11"
+                ><input
+                  name="address"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['address'];?>"
+                  class="my-address-textinput2 input" /></div></div
+            ><div class="my-address-container12"
+              ><div class="my-address-container13"
+                ><span class="my-address-text07"
+                  >User Phone Number:&nbsp;</span
+                ></div
+              ><div class="my-address-container14"
+                ><input
+                  name="phone"
+                  type="text"
+                  disabled="true"
+                  value="<?php echo $result['phone'];?>"
+                  class="my-address-textinput3 input" /></div></div></div></div
+        ><a href="change-address1.html" class="my-address-navlink1 button"
+          >Add New Address</a
+        >
+        <?php }} ?></div
+      ></div
+    >
+    <script
+      defer=""
+      src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
+    ></script></body
+></html>
