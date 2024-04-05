@@ -204,17 +204,17 @@ public function productUpdate($data, $file, $id){
 		}
 	}
 
-	public function getFeaturedProduct()
+	public function getSliderProduct()
 	{
 
-		$query = "SELECT * FROM tbl_product WHERE type = '0' ORDER BY productId DESC LIMIT 4";
+		$query = "SELECT * FROM tbl_product WHERE type = '0' ORDER BY productId DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	public function getNewProduct()
+	public function getTrendingProduct()
 	{
-		$query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 4";
+		$query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
