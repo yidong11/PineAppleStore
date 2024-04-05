@@ -231,12 +231,6 @@ header("Cache-Control: max-age=2592000");
           </div>
         </header>
 
-<?php 
-$search = mysqli_real_escape_string($db->link,$_GET['search']);
-if (!isset($search) || $search == NULL) {
-	header("Location:404.php");
-}
-?>
 
 
     <div>
@@ -250,7 +244,7 @@ if (!isset($search) || $search == NULL) {
                   type="text"
                   name = "search"
                   id="Search bar"
-                  placeholder="e.g. Phone"
+                  placeholder="Keywords or productID"
                   class="search-page-textinput input"
                 />
               </div>
@@ -274,14 +268,19 @@ if (!isset($search) || $search == NULL) {
               <option value="4">Top Rated</option>
             </select>
             <span>Category:&nbsp;&nbsp;</span>
-            <select name = "category"class="search-page-select1">
-              <option value="0">None</option>
-              <option value="1">Computer</option>
-              <option value="2">Phone</option>
-              <option value="3">Laptop</option>
-              <option value="4">CPU</option>
-              <option value="5">GPU</option>
-              <option value="6">Other Devices</option>
+            <select name = "category" autocomplete="off" class="search-page-select1">
+            <option value="0" selected>None</option>
+            <?php
+            $getCat = $cat->getAllCat();
+            if ($getCat) {
+                while ($result = $getCat->fetch_assoc()) {?>
+                  <option 
+                  value="<?php echo $result['catId']; ?>">
+                  <?php echo $result['catName']; ?>
+                  </option>
+                  <?php
+                }
+              }?>
             </select>
             <span>Price Range:&nbsp;&nbsp;</span>
             <div class="search-page-container4">
@@ -290,14 +289,14 @@ if (!isset($search) || $search == NULL) {
                 name="min"
                 placeholder="Min"
                 class="search-page-textinput1 input"
-                
+                value = 0
               />
               <input
                 type="number"
                 name="max"
                 placeholder="Max"
                 class="search-page-textinput2 input"
-
+                value = 200000
               />
               <button type="submit" class="search-page-button1 button">
                 <span class="search-page-text03">
@@ -320,8 +319,67 @@ if (!isset($search) || $search == NULL) {
             </span>
           </div>
         </div>
+
+
+
+
+
+
+
+
+        <!-- This is the backend php code -->
+
+
+
+
         <?php
-        $query = "select * from tbl_product where productName like '%$search%' or body like '%$search%' ORDER BY productId DESC LIMIT 30";
+
+        $search = mysqli_real_escape_string($db->link,$_GET['search']);
+        $sort = mysqli_real_escape_string($db->link,$_GET['sort']);
+        $category = mysqli_real_escape_string($db->link,$_GET['category']);
+        $min = mysqli_real_escape_string($db->link,$_GET['min']);
+        $max = mysqli_real_escape_string($db->link,$_GET['max']);
+
+        if (!isset($search) || $search == NULL) {
+          $error_message="You should input the keyword or the ProductID";
+          echo "<script type='text/javascript'>alert('$error_message');</script>"; 
+        }
+        else{
+          $search = $search;
+        }
+
+        if (ctype_digit($search)) {
+          $query = "select * from tbl_product where productId = $search";
+        } else {
+          if ($category == 0) {
+            if ($sort == 1){
+              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY sales DESC";
+            }
+            if ($sort == 2){
+              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY price ASC";
+            }
+            if ($sort == 3){
+              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY price DESC";
+            }
+            if ($sort == 4){
+              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY rate DESC";
+            } 
+          }
+          else{
+            if ($sort == 1){
+              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY sales DESC";
+            } 
+            if ($sort == 2){
+              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price ASC";
+            }
+            if ($sort == 3){
+              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price DESC";
+            }
+            if ($sort == 4){
+              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY rate DESC";
+            }
+          }
+        }
 
         $post = $db->select($query);?>
         <div class="search-page-products max-width-container">
@@ -398,7 +456,9 @@ if (!isset($search) || $search == NULL) {
             
           <?php }
         }
-        ?>
+        else { ?>
+          <p style="width: 1600px;color: black;font-size: 35px;font-weight: bold;text-align: center;">Sorry for not finding your preferred products</p>
+        <?php }?>
         
       </div>
     </div>
