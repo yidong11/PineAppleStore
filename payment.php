@@ -18,7 +18,7 @@ $ct = new Cart();
 $cmr = new Customer();
 ?>
 
-/<?php 
+<?php 
 $login = Session::get("cuslogin");
 if ($login == false) {
     header("Location:login.php");
