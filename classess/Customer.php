@@ -10,8 +10,8 @@ include_once ($filepath.'/../helpers/Formate.php');
 
 class Customer{
 	
-private $db;
-private $fm;
+	private $db;
+	private $fm;
 
 	public function __construct()
 	{
@@ -67,7 +67,7 @@ private $fm;
 			Session::set("cuslogin",true);
 			Session::set("cmrId",$value['id']);
 			Session::set("cmrName",$value['name']);
-			header("Location:cart.php");
+			header("Location:index.php");
 		} else {
 			$msg = "<span class='error'>Email or Password not matched !</span>";
 			return $msg;
@@ -102,15 +102,17 @@ private $fm;
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
 		$city = mysqli_real_escape_string($this->db->link, $data['city']);
+		$zip = mysqli_real_escape_string($this->db->link, $data['zip']);
 		$country = mysqli_real_escape_string($this->db->link, $data['country']);
 		$phone = mysqli_real_escape_string($this->db->link, $data['phone']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
-		if ($name == "" || $address == "" || $city == "" || $country == "" || $phone == "" || $email == "") {
+
+		if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
-		} else {
-			$query = "INSERT INTO tbl_customer(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$phone','$email')";
+		}else{
+			$query = "INSERT INTO tbl_customer(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$zip','$phone','$email')";
 
 			$query = "UPDATE tbl_customer
 
@@ -119,6 +121,7 @@ private $fm;
 			address = '$address', 
 			city = '$city', 
 			country = '$country', 
+			zip = '$zip', 
 			phone = '$phone', 
 			email = '$email' 
 
@@ -127,13 +130,14 @@ private $fm;
 			$updated_row = $this->db->update($query);
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
-				return $msg;
-			} else {
-				$msg = "<span class='error'>Customer Data Not Updated !</span>";
-				return $msg;
+						return $msg;
+			} else{
+					$msg = "<span class='error'>Customer Data Not Updated !</span>";
+						return $msg;
 			}
 		}
 	}
+
 }
 
 
