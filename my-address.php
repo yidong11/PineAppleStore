@@ -255,6 +255,14 @@ if (isset($_GET['cid'])) {
             </div>
           </div>
         </header>
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
         <form action="" method="post">
         <span class="my-address-text"
           ><span>&gt;&nbsp; &nbsp; </span
@@ -314,7 +322,8 @@ if (isset($_GET['cid'])) {
                   class="my-address-textinput3 input" /></div></div></div></div
         ><a href="change-address1.html" class="my-address-navlink1 button"
           >Add New Address</a
-        ></div
+        >
+        <?php }} ?></div
       ></div
     >
     <script
