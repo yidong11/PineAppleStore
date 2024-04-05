@@ -1,3 +1,38 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+/<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+ <?php 
+if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
+ $cmrId = Session::get("cmrId");
+ $insertOrder = $ct->orderProduct($cmrId);
+ $delData = $ct->delCustomerCart();
+ header("Location:success.php");
+}
+  ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -63,22 +98,30 @@
       <div class="payment-container">
         <div class="payment-left">
           <div class="payment-address">
-            <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
-            <ul class="payment-ul list">
-              <li class="list-item"><span>Changwen LUAN</span></li>
-              <li class="list-item">
-                <span>CUHK, UC College, Chan Chun Ha Hostel 605</span>
-              </li>
-              <li class="list-item">
-                <span>Shatin,&nbsp;New Territories, HK</span>
-              </li>
-            </ul>
-            <a href="change-address.html" class="payment-change navbar-link">
-              change
-            </a>
-            <button type="button" class="payment-instruction navbar-link">
-              Add delivery instructions
-            </button>
+            <?php 
+              $id = Session::get("cmrId");
+              $getdata = $cmr->getCustomerData($id);
+              if ($getdata) {
+                while ($result = $getdata->fetch_assoc()) {
+
+            ?>
+                <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
+                <ul class="payment-ul list">
+                  <li class="list-item"><span><?php echo $result['name'];?></span></li>
+                  <li class="list-item">
+                    <span><?php echo $result['address'];?></span>
+                  </li>
+                  <li class="list-item">
+                    <span><?php echo $result['city'];?></span>
+                  </li>
+                </ul>
+                <a href="change-address.php" class="payment-change navbar-link">
+                  change
+                </a>
+                <button type="button" class="payment-instruction navbar-link">
+                  Add delivery instructions
+                </button>
+            <?php }} ?>
           </div>
           <div class="payment-paymentmethod">
             <h1 class="payment-text04">2&nbsp; &nbsp; Payment method</h1>
@@ -130,7 +173,7 @@
                 <option value="Option 3">Qty: 4</option>
               </select>
             </div>
-            <label class="payment-text08">Delivery:</label>
+            <label class="payment-text08">Delivery: <?php echo date('Y-m-d');?></label>
             <div class="payment-payment">
               <button type="button" class="payment-button button">
                 Place your order in HKD
@@ -151,12 +194,6 @@
                 </a>
               </span>
             </div>
-            <span class="payment-date-time">
-              <date-time-primitive
-                format="DD/MM/YYYY"
-                date="Wed Mar 20 2024 03:13:01 GMT+0800 (中国标准时间)"
-              ></date-time-primitive>
-            </span>
           </div>
         </div>
         <div class="payment-head">
