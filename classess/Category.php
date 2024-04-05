@@ -41,7 +41,7 @@ class Category
 	}
 
 	public function getAllCat(){
-		$query = "SELECT * FROM tbl_category ORDER BY catId DESC";
+		$query = "SELECT * FROM tbl_category ORDER BY catId ASC";
 		$result = $this->db->select($query);
 		return $result;
 
