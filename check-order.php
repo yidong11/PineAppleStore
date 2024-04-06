@@ -77,12 +77,12 @@
     
                 <thead>
                   <tr>
-                    <th>Product ID</th>
+                    <th>Order ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Image</th>
-                    <th>Total</th>
+                    <th>Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -99,36 +99,36 @@
                       while ($result = $getPd->fetch_assoc()) {
                         $i++;
                   ?>
-                  <?php 
-					          if (isset($updateCmr)) {
-					            return "<tr><td colspan='2'>".$updateCmr."</td></tr>";
-					          }
-					        ?>
                   <tr class="odd gradeX">
-                    <td><?php echo $result['productId'];?></td>
+                    <td><?php echo $result['id'];?></td>
                     <td><?php echo $result['productName'];?></td>
                     <td>HKD <?php echo $result['price'];?></td>
                     <td><?php echo $result['quantity'];?></td>
                     <td><img src="<?php echo $result['image'];?>" height="50px"></td>
-                    <td>HKD <?php
-                        $total = $result['price'] * $result['quantity'];
-                        echo $total;?>
+                    <td><?php echo $result['date'];?>
                     </td>
                     <td>
-                      <form action="" method="post">
-                        <div class = "group">
-                          <input type = "int" name = "id" value = <?php echo $result['id'];?>>
-                          <select name = "rate" size="1">
-                            <option type = "int" value= 5>5</option>
-                            <option type = "int" value= 4>4</option>
-                            <option type = "int" value= 3>3</option>
-                            <option type = "int" value= 2>2</option>
-                            <option type = "int" value= 1>1</option>
-                          </select>
-                          <img src="./images/star.png" height="20px">
-                          <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
-                        </div>
-                      </form>
+                      <?php 
+                        if($result['status'] == 3){?>
+                          <div> Rated </div>
+                        <?php }
+                        else{
+                        ?>
+                          <form action="" method="post">
+                            <div class = "group">
+                              <input type = "int" name = "id" value = <?php echo $result['id'];?>>
+                              <select name = "rate" size="1">
+                                <option type = "int" value= 5>5</option>
+                                <option type = "int" value= 4>4</option>
+                                <option type = "int" value= 3>3</option>
+                                <option type = "int" value= 2>2</option>
+                                <option type = "int" value= 1>1</option>
+                              </select>
+                              <img src="./images/star.png" height="20px">
+                              <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
+                            </div>
+                          </form>
+                      <?php }?>
                     </td>
                   </tr>
                   <?php } } ?>

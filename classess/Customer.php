@@ -119,7 +119,7 @@ class Customer{
 					$sales = $resultProduct['sales'] + 1;
 					$query = "UPDATE tbl_product 
 								SET
-								total_rate = '$totalRate'
+								total_rate = '$totalRate',
 								sales = '$sales'
 								WHERE productId = '$productId'";
 					$updated_row = $this->db->update($query);
