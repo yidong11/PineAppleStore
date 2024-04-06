@@ -711,3 +711,18 @@
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.group{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navlink {
+  color: var(--dl-color-gray-black);
+  border-radius: var(--dl-radius-radius-radius8);
+  text-decoration: none;
+  background-color: var(--dl-color-pallet-yellow);
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}

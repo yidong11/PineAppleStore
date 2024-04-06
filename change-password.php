@@ -18,6 +18,13 @@ $ct = new Cart();
 $cmr = new Customer();
 ?>
 
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
 <?php
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
@@ -28,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en"
   ><head
-    ><title>Edit-Name - PineApple</title
-    ><meta property="og:title" content="Edit-Name - PineApple" /><meta
+    ><title>Change-Password - PineApple</title
+    ><meta property="og:title" content="Change-Password - PineApple" /><meta
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     /><meta charset="utf-8" /><meta
@@ -76,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     </style></head
   ><body
     ><link rel="stylesheet" href="./style.css" /><div
-      ><link href="./edit-name.css" rel="stylesheet" /><div
-        class="edit-name-container"
+      ><link href="./change-password.css" rel="stylesheet" /><div
+        class="change-password-container"
         ><header
           data-role="Header"
           class="admin-page-header2-header max-width-container"
@@ -92,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="edit-name.php"
+              href="change-password.php"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Editname</span><br /></a
+              ><span>PineApple - ChangePassword</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -119,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   ><li
                     data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="login.php"
+                    ><a href="admin-page-login.html"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
@@ -127,24 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
         >
-
-        <span class="edit-name-text">New Name</span
-        ><span class="edit-name-text01"
-          ><span
-            >If you want to change the name associated with your Amazon customer
-            account, </span
-          ><br /><span
-            >you may do so below. Be sure to click the Save Changes button when
-            you are done.</span
-          ></span
-        >
-       
-          
-        <div class="edit-name-container1"
-          ><a href="login-and-security.php" class="edit-name-navlink button"
-            >Save</a
-          >
-          <?php 
+        <?php 
     		    $id = Session::get("cmrId");
     		    $getdata = $cmr->getCustomerData($id);
     		    if ($getdata) {
@@ -153,32 +143,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
     		 ?>
           <form action="" method="post">
+        <div class="change-password-container1"
+          >
           <?php 
 					      if (isset($updateCmr)) {
 					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
 					      }
 					    ?>
-          <input
-            name="name"
-            type="text"
-            placeholder="<?php echo $result['name'];?>"
-            value="<?php echo $result['name'];?>"
-            class="edit-name-textinput input" /></div
-        ><span class="edit-name-text05">Edit Name</span
-        ><span class="edit-name-text06">&gt; </span
-        ><span class="edit-name-text07">&gt; </span
-        ><a href="login-and-security.php" class="edit-name-navlink1"
-          ><span>&nbsp; &nbsp; </span
-          ><span class="edit-name-text09">Login &amp; Security</span></a
-        ><a href="personal-info.php" class="edit-name-navlink2"
-          >Your Account
-        </a></div
+          <span class="change-password-text">Change Password</span
+          ><span class="change-password-text1">&gt; </span
+          ><span class="change-password-text2">&gt; </span
+          ><a href="login-and-security.php" class="change-password-navlink"
+            ><span>&nbsp; &nbsp; </span
+            ><span class="change-password-text4">Login &amp; Security</span></a
+          ><a href="personal-info.php" class="change-password-navlink1"
+            >Your Account
+          </a></div
+        ><h1 class="change-password-text5">Change Password</h1
+        ><div class="change-password-container2"
+          ><span class="change-password-text6"
+            >To change the password for your PineApple account, use this
+            form.</span
+          ><span class="change-password-text7">New Password</span
+          ><input name="pass" type="text" class="change-password-textinput input" input" value="<?php echo $result['pass'];?>"/><a
+            href="login-and-security.php"
+            class="change-password-navlink2 button"
+            >Confirm</a
+          ></div
+        ></div
       ></div
     >
     </form>
-          <?php }} ?>
+    <?php }} ?>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script></body
-></html>
+    ></script>
+    </body></html>

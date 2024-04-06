@@ -1,3 +1,37 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en"
   ><head
@@ -55,7 +89,7 @@
           data-role="Header"
           class="admin-page-header2-header max-width-container"
           ><div class="admin-page-header2-navbar"
-            ><a href="admin-page-main.html" class="admin-page-header2-navlink"
+            ><a href="index.php" class="admin-page-header2-navlink"
               ><div
                 class="logo-container navbar-logo-title logo-root-class-name4"
                 ><span class="logo-logo-center Logo navbar-logo-title"
@@ -65,9 +99,9 @@
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="admin-page-main.html"
+              href="edit-email.php"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Administrator</span><br /></a
+              ><span>PineApple - Editemail</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -91,32 +125,30 @@
                   class="admin-page-header2-dropdown-list"
                   ><li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.html"
-                      ><div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                        ><span class="admin-page-header2-text2"
-                          ><span>Edit Info</span></span
-                        ></div
-                      ></a
-                    ></li
-                  ><li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="admin-page-login.html"
+                    ><a href="login.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
                         ><span class="admin-page-header2-text3"
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
-        ><div class="edit-email-container1"
-          ><input type="text" class="edit-email-textinput input" /></div
-        ><a href="login-and-security.html" class="edit-email-navlink button"
+        >
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+        <div class="edit-email-container1"
+          ><input name="email" type="text" class="edit-email-textinput input" value="<?php echo $result['email'];?>"/></div
+        ><a href="login-and-security.php" class="edit-email-navlink button"
           >Confirm</a
         ><span class="edit-email-text"
-          ><span>Current email address: lcw68886@gmail.com</span
+          ><span>Current email address: "<?php echo $result['email'];?>"</span
           ><br /><br /><span
             >Enter the new email address you would like to associate with your
             account below. </span
@@ -127,6 +159,8 @@
         ><span class="edit-email-text8">New Email Address</span></div
       ></div
     >
+    </form>
+    <?php }} ?>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
