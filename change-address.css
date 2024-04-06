@@ -329,6 +329,7 @@
   width: 120px;
   bottom: 327px;
   height: 62px;
+  align-items: center;
   position: absolute;
   border-radius: var(--dl-radius-radius-radius8);
   text-decoration: none;
