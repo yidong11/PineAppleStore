@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
           data-role="Header"
           class="admin-page-header2-header max-width-container"
           ><div class="admin-page-header2-navbar"
-            ><a href="admin-page-main.html" class="admin-page-header2-navlink"
+            ><a href="admin-page-main.php" class="admin-page-header2-navlink"
               ><div
                 class="logo-container navbar-logo-title logo-root-class-name4"
                 ><span class="logo-logo-center Logo navbar-logo-title"
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="admin-page-main.html"
+              href="admin-page-main.php"
               class="admin-page-header2-navlink1 navbar-link"
               ><span>PineApple - Administrator</span><br /></a
             ><div class="admin-page-header2-icons"
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   ><li
                     data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.html"
+                    ><a href="admin-page-edit-admin-info.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle1"
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   ><li
                     data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="admin-page-login.html"
+                    ><a href="admin-page-login.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
@@ -164,16 +164,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 					      }
 					    ?>
               <div class="edit-name-container1"
-          ><a href="login-and-security.html" class="edit-name-navlink button"
+          ><a href="login-and-security.php" class="edit-name-navlink button"
             >Save</a
          ><input name = "name" type="text" placeholder="LIANG Leyan" class="edit-name-textinput input" value="<?php echo $result['name'];?>"/></div
         ><span class="edit-name-text05">Edit Name</span
         ><span class="edit-name-text06">&gt; </span
         ><span class="edit-name-text07">&gt; </span
-        ><a href="login-and-security.html" class="edit-name-navlink1"
+        ><a href="login-and-security.php" class="edit-name-navlink1"
           ><span>&nbsp; &nbsp; </span
           ><span class="edit-name-text09">Login &amp; Security</span></a
-        ><a href="personal-info.html" class="edit-name-navlink2"
+        ><a href="personal-info.php" class="edit-name-navlink2"
           >Your Account
         </a></div
       ></div
