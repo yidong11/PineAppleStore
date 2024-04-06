@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             ><a
               href="admin-page-main.php"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Administrator</span><br /></a
+              ><span>PineApple - Editname</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -118,20 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   class="admin-page-header2-dropdown-list"
                   ><li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.php"
-                      ><div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                        ><span class="admin-page-header2-text2"
-                          ><span>Edit Info</span></span
-                        ></div
-                      ></a
-                    ></li
-                  ><li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="admin-page-login.php"
+                    ><a href="login.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
