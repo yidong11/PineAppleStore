@@ -1,3 +1,37 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en"
   ><head
@@ -55,7 +89,7 @@
           data-role="Header"
           class="admin-page-header2-header max-width-container"
           ><div class="admin-page-header2-navbar"
-            ><a href="admin-page-main.html" class="admin-page-header2-navlink"
+            ><a href="index.php" class="admin-page-header2-navlink"
               ><div
                 class="logo-container navbar-logo-title logo-root-class-name4"
                 ><span class="logo-logo-center Logo navbar-logo-title"
@@ -65,9 +99,9 @@
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="admin-page-main.html"
+              href="change-password.php"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Administrator</span><br /></a
+              ><span>PineApple - ChangePassword</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -91,18 +125,6 @@
                   class="admin-page-header2-dropdown-list"
                   ><li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.html"
-                      ><div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                        ><span class="admin-page-header2-text2"
-                          ><span>Edit Info</span></span
-                        ></div
-                      ></a
-                    ></li
-                  ><li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
                     ><a href="admin-page-login.html"
                       ><div
@@ -111,14 +133,30 @@
                         ><span class="admin-page-header2-text3"
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
-        ><div class="change-password-container1"
-          ><span class="change-password-text">Change Password</span
+        >
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+        <div class="change-password-container1"
+          >
+          <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
+          <span class="change-password-text">Change Password</span
           ><span class="change-password-text1">&gt; </span
           ><span class="change-password-text2">&gt; </span
-          ><a href="login-and-security.html" class="change-password-navlink"
+          ><a href="login-and-security.php" class="change-password-navlink"
             ><span>&nbsp; &nbsp; </span
             ><span class="change-password-text4">Login &amp; Security</span></a
-          ><a href="personal-info.html" class="change-password-navlink1"
+          ><a href="personal-info.php" class="change-password-navlink1"
             >Your Account
           </a></div
         ><h1 class="change-password-text5">Change Password</h1
@@ -127,16 +165,18 @@
             >To change the password for your PineApple account, use this
             form.</span
           ><span class="change-password-text7">New Password</span
-          ><input type="text" class="change-password-textinput input" /><a
-            href="login-and-security.html"
+          ><input name="pass" type="text" class="change-password-textinput input" input" value="<?php echo $result['pass'];?>"/><a
+            href="login-and-security.php"
             class="change-password-navlink2 button"
             >Confirm</a
           ></div
         ></div
       ></div
     >
+    </form>
+    <?php }} ?>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
-    ></script></body
-></html>
+    ></script>
+    </body></html>
