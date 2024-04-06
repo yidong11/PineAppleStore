@@ -1,3 +1,37 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
+
 <!DOCTYPE html>
 <html lang="en"
   ><head
@@ -67,7 +101,7 @@
             ><a
               href="admin-page-main.html"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Administrator</span><br /></a
+              ><span>PineApple - Editemail</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -111,12 +145,22 @@
                         ><span class="admin-page-header2-text3"
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
-        ><div class="edit-email-container1"
-          ><input type="text" class="edit-email-textinput input" /></div
+        >
+        <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+        <div class="edit-email-container1"
+          ><input name="email" type="text" class="edit-email-textinput input" value="<?php echo $result['email'];?>"/></div
         ><a href="login-and-security.html" class="edit-email-navlink button"
           >Confirm</a
         ><span class="edit-email-text"
-          ><span>Current email address: lcw68886@gmail.com</span
+          ><span>Current email address: "<?php echo $result['email'];?>"</span
           ><br /><br /><span
             >Enter the new email address you would like to associate with your
             account below. </span
@@ -127,6 +171,8 @@
         ><span class="edit-email-text8">New Email Address</span></div
       ></div
     >
+    </form>
+    <?php }} ?>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
