@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
           data-role="Header"
           class="admin-page-header2-header max-width-container"
           ><div class="admin-page-header2-navbar"
-            ><a href="admin-page-main.html" class="admin-page-header2-navlink"
+            ><a href="index.php" class="admin-page-header2-navlink"
               ><div
                 class="logo-container navbar-logo-title logo-root-class-name4"
                 ><span class="logo-logo-center Logo navbar-logo-title"
@@ -92,9 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="admin-page-main.html"
+              href="edit-name.php"
               class="admin-page-header2-navlink1 navbar-link"
-              ><span>PineApple - Administrator</span><br /></a
+              ><span>PineApple - Editname</span><br /></a
             ><div class="admin-page-header2-icons"
               ><div
                 data-thq="thq-dropdown"
@@ -118,20 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   class="admin-page-header2-dropdown-list"
                   ><li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.html"
-                      ><div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                        ><span class="admin-page-header2-text2"
-                          ><span>Edit Info</span></span
-                        ></div
-                      ></a
-                    ></li
-                  ><li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="admin-page-login.html"
+                    ><a href="login.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
@@ -139,15 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
         >
-        <?php 
-    		    $id = Session::get("cmrId");
-    		    $getdata = $cmr->getCustomerData($id);
-    		    if ($getdata) {
-    			    while ($result = $getdata->fetch_assoc()) {
-    		
 
-    		 ?>
-          <form action="" method="post">
         <span class="edit-name-text">New Name</span
         ><span class="edit-name-text01"
           ><span
@@ -158,27 +138,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             you are done.</span
           ></span
         >
-        <?php 
+       
+          
+        <div class="edit-name-container1"
+          ><a href="login-and-security.php" class="edit-name-navlink button"
+            >Save</a
+          >
+          <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+          <?php 
 					      if (isset($updateCmr)) {
 					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
 					      }
 					    ?>
-              <div class="edit-name-container1"
-          ><a href="login-and-security.html" class="edit-name-navlink button"
-            >Save</a
-         ><input name = "name" type="text" placeholder="LIANG Leyan" class="edit-name-textinput input" value="<?php echo $result['name'];?>"/></div
+          <input
+            name="name"
+            type="text"
+            placeholder="<?php echo $result['name'];?>"
+            value="<?php echo $result['name'];?>"
+            class="edit-name-textinput input" /></div
         ><span class="edit-name-text05">Edit Name</span
         ><span class="edit-name-text06">&gt; </span
         ><span class="edit-name-text07">&gt; </span
-        ><a href="login-and-security.html" class="edit-name-navlink1"
+        ><a href="login-and-security.php" class="edit-name-navlink1"
           ><span>&nbsp; &nbsp; </span
           ><span class="edit-name-text09">Login &amp; Security</span></a
-        ><a href="personal-info.html" class="edit-name-navlink2"
+        ><a href="personal-info.php" class="edit-name-navlink2"
           >Your Account
         </a></div
       ></div
-      <?php }} ?>
     >
+    </form>
+          <?php }} ?>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
