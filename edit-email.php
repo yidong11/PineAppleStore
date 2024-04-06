@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
           data-role="Header"
           class="admin-page-header2-header max-width-container"
           ><div class="admin-page-header2-navbar"
-            ><a href="admin-page-main.html" class="admin-page-header2-navlink"
+            ><a href="index.php" class="admin-page-header2-navlink"
               ><div
                 class="logo-container navbar-logo-title logo-root-class-name4"
                 ><span class="logo-logo-center Logo navbar-logo-title"
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   src="public/Pineapple Icons/logo_no_bg_2-200h.png"
                   class="logo-image" /></div></a
             ><a
-              href="admin-page-main.html"
+              href="edit-email.php"
               class="admin-page-header2-navlink1 navbar-link"
               ><span>PineApple - Editemail</span><br /></a
             ><div class="admin-page-header2-icons"
@@ -125,20 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   class="admin-page-header2-dropdown-list"
                   ><li
                     data-thq="thq-dropdown"
-                    class="admin-page-header2-dropdown list-item"
-                    ><a href="admin-page-edit-admin-info.html"
-                      ><div
-                        data-thq="thq-dropdown-toggle"
-                        class="admin-page-header2-dropdown-toggle1"
-                        ><span class="admin-page-header2-text2"
-                          ><span>Edit Info</span></span
-                        ></div
-                      ></a
-                    ></li
-                  ><li
-                    data-thq="thq-dropdown"
                     class="admin-page-header2-dropdown1 list-item"
-                    ><a href="admin-page-login.html"
+                    ><a href="login.php"
                       ><div
                         data-thq="thq-dropdown-toggle"
                         class="admin-page-header2-dropdown-toggle2"
