@@ -1,3 +1,36 @@
+<?php
+
+include 'lib/Session.php';
+Session::init();
+
+include 'lib/Database.php';
+include 'helpers/Formate.php';
+spl_autoload_register(function($class){
+include_once "classess/".$class.".php";
+
+});
+
+$db = new Database();
+$fm = new Format();
+$pd = new Product();
+$cat = new Category();
+$ct = new Cart();
+$cmr = new Customer();
+?>
+
+<?php 
+$login = Session::get("cuslogin");
+if ($login == false) {
+    header("Location:login.php");
+}
+ ?>
+
+<?php
+$cmrId = Session::get("cmrId");
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+}
+?> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,32 +106,43 @@
             </div>
             <h1>Add Address</h1>
           </div>
+          <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
           <div class="change-address1-container3">
             <h1 class="change-address1-text1">Add Address</h1>
+            <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
             <div class="change-address1-container4">
               <div class="change-address1-container5">
-                <input type="text" class="change-address1-textinput input" />
+                <input name="name" type="text" class="change-address1-textinput input" value="<?php echo $result['name'];?>" />
                 <h1 class="change-address1-text2">Full name</h1>
               </div>
               <div class="change-address1-ct1">
                 <h1 class="change-address1-text3">Country</h1>
                 <select size="1" class="change-address1-select">
-                  <option value="Option 1">Option 1</option>
                   <option value="Option 1">China</option>
                   <option value="Option 1">China HK</option>
-                  <option value="Option 2">Option 2</option>
-                  <option value="Option 3">Option 3</option>
                 </select>
               </div>
             </div>
             <div class="change-address1-container6">
-              <input type="text" class="change-address1-textinput1 input" />
+              <input name="phone" type="text" class="change-address1-textinput1 input" value="<?php echo $result['phone'];?>" />
               <h1 class="change-address1-text4">Phone number</h1>
             </div>
             <div class="change-address1-container7">
-              <input type="text" class="change-address1-textinput2 input" />
+              <input name="address" type="text" class="change-address1-textinput2 input" value="<?php echo $result['address'];?>"/>
               <h1 class="change-address1-text5">Address</h1>
-              <input type="text" class="change-address1-textinput3 input" />
+              <input name="city" type="text" class="change-address1-textinput3 input" value="<?php echo $result['city'];?>"/>
             </div>
             <a href="my-address.html" class="change-address1-navlink button">
               Use this address
@@ -110,6 +154,8 @@
               Return
             </a>
           </div>
+          </form>
+          <?php }} ?>
         </div>
       </div>
     </div>
