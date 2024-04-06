@@ -98,6 +98,48 @@ class Customer{
 		}	
 	}
 
+	public function rateUpdate($data,$cmrId){
+		$id = mysqli_real_escape_string($this->db->link, $data['id']);
+		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
+
+		$query = "SELECT * FROM tbl_order WHERE id = '$id'";
+		$getOrder = $this->db->select($query);
+		if ($getOrder) {
+			while ($resultOrder = $getOrder->fetch_assoc()) {
+				$productId = $resultOrder['productId'];
+				$status = $resultOrder['status'];
+		
+				if($status == 3){
+					$msg = "<span class='error'>Already rated!</span>";
+				}
+				else{
+					$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
+					$resultProduct = $this->db->select($query)->fetch_assoc();
+					$totalRate = $resultProduct['total_rate'] + $rate;
+					$sales = $resultProduct['sales'] + 1;
+					$query = "UPDATE tbl_product 
+								SET
+								total_rate = '$totalRate'
+								sales = '$sales'
+								WHERE productId = '$productId'";
+					$updated_row = $this->db->update($query);
+					if ($updated_row) {
+						$query = "UPDATE tbl_order 
+						SET
+						status = 3
+						WHERE id = '$id'";
+						$this->db->update($query);
+						$msg = "<span class='success'>Rate Successfully.</span>";
+						return $msg;
+					} else{
+						$msg = "<span class='error'>Fail to rate!</span>";
+						return $msg;
+					}
+				}
+			}
+		}	
+	}
+
 	public function customerUpdate($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
