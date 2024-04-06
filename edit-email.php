@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
           <form action="" method="post">
         <div class="edit-email-container1"
           ><input name="email" type="text" class="edit-email-textinput input" value="<?php echo $result['email'];?>"/></div
-        ><a href="login-and-security.html" class="edit-email-navlink button"
+        ><a href="login-and-security.php" class="edit-email-navlink button"
           >Confirm</a
         ><span class="edit-email-text"
           ><span>Current email address: "<?php echo $result['email'];?>"</span
