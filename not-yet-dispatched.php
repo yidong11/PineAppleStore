@@ -47,25 +47,16 @@
           </div>
           <div class="check-order-container03">
             <a href="check-order.php" class="check-order-text1 navbar-link">Orders</a>
-            <a href="delivery.php" class="check-order-text2 navbar-link">Delivery Order</a>
+            <a href="delivery.php"  class="check-order-navlink navbar-link">Delivery Order</a>
             <a
               href="not-yet-dispatched.php"
-              class="check-order-navlink navbar-link">
+              class="check-order-text2 navbar-link">
               Not yet dispatched
             </a>
+            <a href="delivered.php"  class="check-order-text9 navbar-link">Delivered Order</a>
           </div>
           <div class="check-order-container04">
             <div class="check-order-container05">
-              <label class="check-order-text3">1 order</label>
-              <span class="check-order-text4">placed in</span>
-              <select size="1" class="check-order-select">
-                <option value="Option 3">all the time</option>
-                <option value="Option 1">past a week</option>
-                <option value="Option 1">past a month</option>
-                <option value="Option 1">past three months</option>
-                <option value="Option 2">past six months</option>
-                <option value="Option 2">past a year</option>
-              </select>
             </div>
             <div class="check-order-container06">
               <table class="data display datatable" id="example" style="width: 1200px;">
@@ -78,21 +69,21 @@
                     <th>Quantity</th>
                     <th>Image</th>
                     <th>Date</th>
-                    <th>Action</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
 
                 <tbody>
 
                   <?php
+                    $qty = 0;
                     $cmrId = Session::get("cmrId");
                     $getPd = $ct->getNotDispatchedProduct($cmrId);
                     if ($getPd) {
                       $i = 0;
                       $sum = 0;
-                      $qty = 0;
                       while ($result = $getPd->fetch_assoc()) {
-                        $i++;
+                        $qty++;
                   ?>
                   <tr class="odd gradeX">
                     <td><div type = "int" name = "id" value = <?php echo $result['id'];?>></div><?php echo $result['id'];?></td>
@@ -104,30 +95,47 @@
                     </td>
                     <td>
                       <?php 
-                        if($result['status'] == 3){?>
-                          <div> Rated </div>
-                        <?php }
-                        else{
-                        ?>
-                          <form action="" method="post">
-                            <div class = "group">
-                              <select name = "rate" size="1">
-                                <option type = "int" value= 5>5</option>
-                                <option type = "int" value= 4>4</option>
-                                <option type = "int" value= 3>3</option>
-                                <option type = "int" value= 2>2</option>
-                                <option type = "int" value= 1>1</option>
-                              </select>
-                              <img src="./images/star.png" height="20px">
-                              <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
-                            </div>
-                          </form>
-                      <?php }?>
+                          if($result['status'] == 3){?>
+                            <div> Rated </div>
+                          <?php }
+                          else if($result['status'] == 0){?>
+                            <div> Pending </div>
+                          <?php }
+                          else if($result['status'] == 1){
+                            ?>
+                            <div> Delivery </div>
+                          <?php }
+                          else if($result['status'] == 2){
+                          ?>
+                              <div class = "group">
+                                <select name = "rate" size="1">
+                                  <option type = "int" value= 5>5</option>
+                                  <option type = "int" value= 4>4</option>
+                                  <option type = "int" value= 3>3</option>
+                                  <option type = "int" value= 2>2</option>
+                                  <option type = "int" value= 1>1</option>
+                                </select>
+                                <img src="./images/star.png" height="20px">
+                                <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
+                              </div>
+                        <?php }?>
                     </td>
                   </tr>
                   <?php } } ?>
                 </tbody>
 	            </table>
+            </div>
+            <div class="check-order-container05">
+              <label class="check-order-text3"><?php echo $qty;?> Order</label>
+              <!--<span class="check-order-text4">placed in</span>
+              <select size="1" class="check-order-select">
+                <option value="Option 3">all the time</option>
+                <option value="Option 1">past a week</option>
+                <option value="Option 1">past a month</option>
+                <option value="Option 1">past three months</option>
+                <option value="Option 2">past six months</option>
+                <option value="Option 2">past a year</option>
+              </select>-->
             </div>
 
     <script type="text/javascript">
