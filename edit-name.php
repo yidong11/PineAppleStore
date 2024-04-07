@@ -201,7 +201,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         ?>
               <?php
               if (isset($updateCmr)) {
-                echo "<tr><td colspan='2'>" . $updateCmr . "</td></tr>";
                 $url = "login-and-security.php";
                 echo "<SCRIPT LANGUAGE='javascript'>"; 
                 echo "location.href='$url'"; 
