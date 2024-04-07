@@ -197,11 +197,11 @@ $cmr = new Customer();
               <label class="payment-text10">Payment Total: HKD <?php echo $sum;?></label>
               <span class="payment-text11">
                 <span>By placing your order you agree to PineApple's</span>
-                <a href="template.html" class="payment-navlink">
+                <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ" class="payment-navlink">
                   privacy notice
                 </a>
                 <span>and</span>
-                <a href="template.html" class="payment-navlink1">
+                <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=GLSBYFE9MGKKQXXM" class="payment-navlink1">
                   conditions of use
                 </a>
               </span>
