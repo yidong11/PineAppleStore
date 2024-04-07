@@ -288,7 +288,7 @@
   background-color: #ffffff;
 }
 .change-address-navlink {
-  top: 1084px;
+  top: 1100px;
   left: 709px;
   color: rgb(0, 193, 255);
   position: absolute;
@@ -330,6 +330,8 @@
   bottom: 327px;
   height: 62px;
   align-items: center;
+  text-align: center;
+  font-size: 30px;
   position: absolute;
   border-radius: var(--dl-radius-radius-radius8);
   text-decoration: none;
@@ -346,4 +348,15 @@
   display: flex;
   position: absolute;
   align-items: flex-start;
+}
+.update-text{
+  top: 70px;
+  left: 400px;
+  width: 1200px;
+  position: absolute;
+}
+
+.navlink {
+  color: #00e6db;
+  text-decoration: underline;
 }

@@ -51,56 +51,55 @@ public function addToCart($quantity, $id){
 				header("Location:404.php");
 			}
 		}
-}
+	}
 
-public function getCartProduct(){
+	public function getCartProduct(){
 
-	$sId  = session_id();
-	$query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
-	$result = $this->db->select($query);
-	return $result;
-	
+		$sId  = session_id();
+		$query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
+		$result = $this->db->select($query);
+		return $result;
+		
 
-}
+	}
 
 	public function updateCartQuantity($cartId,$quantity){
 
 		$cartId = mysqli_real_escape_string($this->db->link, $cartId);
 		$quantity = mysqli_real_escape_string($this->db->link, $quantity);
 
-	$query = "UPDATE tbl_cart
+		$query = "UPDATE tbl_cart
 
-	SET
-	quantity = '$quantity' 
-	WHERE cartId = '$cartId'";
+		SET
+		quantity = '$quantity' 
+		WHERE cartId = '$cartId'";
 
-	$updated_row = $this->db->update($query);
-	if ($updated_row) {
-		echo "<script>window.location = 'shopping-cart-page.php';</script>";
-	} else{
+		$updated_row = $this->db->update($query);
+		if ($updated_row) {
+			echo "<script>window.location = 'shopping-cart-page.php';</script>";
+		} else{
 			$msg = "<span class='error'>Quantity Not Updated !</span>";
-				return $msg;
-	}
+			return $msg;
+		}
 	}
 
 
 	public function delProductByCart($delId){
 
-	$delId = mysqli_real_escape_string($this->db->link, $delId);
-	$query = "DELETE FROM tbl_cart WHERE cartId = '$delId'";
-	$deldata = $this->db->delete($query);
-	if ($deldata) {
-		echo "<script>window.location = 'shopping-cart-page.php';</script>";
-	}else{
-$msg = "<span class='error'>Product Not Deleted !</span>";
-				return $msg;
-
-	}
+		$delId = mysqli_real_escape_string($this->db->link, $delId);
+		$query = "DELETE FROM tbl_cart WHERE cartId = '$delId'";
+		$deldata = $this->db->delete($query);
+		if ($deldata) {
+			echo "<script>window.location = 'shopping-cart-page.php';</script>";
+		} else {
+			$msg = "<span class='error'>Product Not Deleted !</span>";
+			return $msg;
+		}
 	}
 
 	public function checkCartTable(){
-	$sId  = session_id();
-	$query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
+		$sId  = session_id();
+		$query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -150,9 +149,9 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 	}
 
 	public function payableAmount($cmrId){
-	$query = "SELECT price FROM tbl_order WHERE cmrId = '$cmrId' AND date = now()";
-	$result = $this->db->select($query);
-	return $result;
+		$query = "SELECT price FROM tbl_order WHERE cmrId = '$cmrId' AND date = now()";
+		$result = $this->db->select($query);
+		return $result;
 	}
 
 	public function getDeliveryProduct($cmrId){
@@ -168,10 +167,9 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 	}
 
 	public function getOrderedProduct($cmrId){
-    $query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
-	$result = $this->db->select($query);
-	return $result;
-
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
+		$result = $this->db->select($query);
+		return $result;
 	}
 	public function checkOrder($cmrId){
 	    $query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId'";
@@ -183,22 +181,55 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 		$result = $this->db->select($query);
 		return $result;
 	}
+	public function delOrderById($id){
+		$query = "DELETE FROM tbl_order WHERE id = '$id'";
+		$deldata = $this->db->delete($query);
+		if ($deldata) {
+			$msg = "<span class='success'>Order Deleted Successfully.</span>";
+			return $msg;
+		} else{
+			$msg = "<span class='error'>Order Not Deleted !</span>";
+			return $msg;
+		}
+	}
+	public function getOrderById($id){
+		$query = "SELECT * FROM tbl_order WHERE id = '$id'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function updateOrderStatus($id, $status){
+		$id = mysqli_real_escape_string($this->db->link, $id);
+		$status = mysqli_real_escape_string($this->db->link, $status);
+
+		$query = "UPDATE tbl_order
+		SET status ='$status'
+		WHERE id = '$id' ";
+
+		$updated_row = $this->db->update($query);
+		if ($updated_row) {
+			header("Location:order-list.php");
+		} else{
+			$msg = "<span class='error'>Not Updated !</span>";
+			return $msg;
+		}
+	}
 
 	public function productShifted($id){
 		$id = mysqli_real_escape_string($this->db->link, $id);
 
-	$query = "UPDATE tbl_order
-	SET status ='1'
-	WHERE id = '$id' ";
+		$query = "UPDATE tbl_order
+		SET status ='1'
+		WHERE id = '$id' ";
 
-	$updated_row = $this->db->update($query);
-	if ($updated_row) {
-		$msg = "<span class='success'>Updated Successfully.</span>";
-				return $msg;
-	} else{
+		$updated_row = $this->db->update($query);
+		if ($updated_row) {
+			$msg = "<span class='success'>Updated Successfully.</span>";
+			return $msg;
+		} else{
 			$msg = "<span class='error'>Not Updated !</span>";
-				return $msg;
-	}
+			return $msg;
+		}
 
 	}
 
@@ -208,30 +239,29 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 		$query = "DELETE FROM tbl_order WHERE id = '$id' ";
 	    $deldata = $this->db->delete($query);
 	    if ($deldata) {
-		$msg = "<span class='success'>Data Deleted Successfully.</span>";
-				return $msg;
-	}else{
-$msg = "<span class='error'>Data Not Deleted !</span>";
-				return $msg;
-
-	}
+			$msg = "<span class='success'>Data Deleted Successfully.</span>";
+			return $msg;	
+		}else{
+			$msg = "<span class='error'>Data Not Deleted !</span>";
+			return $msg;
+		}
 	}
 
 	public function productShiftConfirm($id){
-	$id = mysqli_real_escape_string($this->db->link, $id);
+		$id = mysqli_real_escape_string($this->db->link, $id);
 
-	$query = "UPDATE tbl_order
-	SET status ='2'
-	WHERE id = '$id' ";
+		$query = "UPDATE tbl_order
+		SET status ='2'
+		WHERE id = '$id' ";
 
-	$updated_row = $this->db->update($query);
-	if ($updated_row) {
-		$msg = "<span class='success'>Updated Successfully.</span>";
-				return $msg;
-	} else{
+		$updated_row = $this->db->update($query);
+		if ($updated_row) {
+			$msg = "<span class='success'>Updated Successfully.</span>";
+			return $msg;
+		} else{
 			$msg = "<span class='error'>Not Updated !</span>";
-				return $msg;
-	}
+			return $msg;
+		}
 	}
 }
 
