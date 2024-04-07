@@ -47,7 +47,7 @@
           </div>
           <div class="check-order-container03">
             <a href="check-order.php" class="check-order-text1 navbar-link">Orders</a>
-            <a href="delivery.php"  class="check-order-text2 navbar-link">Delivery Order</a>
+            <a href="delivery.php" class="check-order-text2 navbar-link">Delivery Order</a>
             <a
               href="not-yet-dispatched.php"
               class="check-order-navlink navbar-link">
@@ -86,7 +86,7 @@
 
                   <?php
                     $cmrId = Session::get("cmrId");
-                    $getPd = $ct->getOrderedProduct($cmrId);
+                    $getPd = $ct->getDeliveryProduct($cmrId);
                     if ($getPd) {
                       $i = 0;
                       $sum = 0;
@@ -95,35 +95,35 @@
                         $i++;
                   ?>
                   <tr class="odd gradeX">
-                    <form action="" method="post">
-                      <td><input type = "hidden" name = "id" value = <?php echo $result['id'];?>><?php echo $result['id'];?></td>
-                      <td><?php echo $result['productName'];?></td>
-                      <td>HKD <?php echo $result['price'];?></td>
-                      <td><?php echo $result['quantity'];?></td>
-                      <td><img src="admin/<?php echo $result['image'];?>" height="50px"></td>
-                      <td><?php echo $result['date'];?>
-                      </td>
-                      <td>
-                        <?php 
-                          if($result['status'] == 3){?>
-                            <div> Rated </div>
-                          <?php }
-                          else{
-                          ?>
-                              <div class = "group">
-                                <select name = "rate" size="1">
-                                  <option type = "int" value= 5>5</option>
-                                  <option type = "int" value= 4>4</option>
-                                  <option type = "int" value= 3>3</option>
-                                  <option type = "int" value= 2>2</option>
-                                  <option type = "int" value= 1>1</option>
-                                </select>
-                                <img src="./images/star.png" height="20px">
-                                <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
-                              </div>
-                        <?php }?>
-                      </td>
-                    </form>
+                    <td><div type = "int" name = "id" value = <?php echo $result['id'];?>></div><?php echo $result['id'];?></td>
+                    <td><?php echo $result['productName'];?></td>
+                    <td>HKD <?php echo $result['price'];?></td>
+                    <td><?php echo $result['quantity'];?></td>
+                    <td><img src="admin/<?php echo $result['image'];?>" height="50px"></td>
+                    <td><?php echo $result['date'];?>
+                    </td>
+                    <td>
+                      <?php 
+                        if($result['status'] == 3){?>
+                          <div> Rated </div>
+                        <?php }
+                        else{
+                        ?>
+                          <form action="" method="post">
+                            <div class = "group">
+                              <select name = "rate" size="1">
+                                <option type = "int" value= 5>5</option>
+                                <option type = "int" value= 4>4</option>
+                                <option type = "int" value= 3>3</option>
+                                <option type = "int" value= 2>2</option>
+                                <option type = "int" value= 1>1</option>
+                              </select>
+                              <img src="./images/star.png" height="20px">
+                              <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
+                            </div>
+                          </form>
+                      <?php }?>
+                    </td>
                   </tr>
                   <?php } } ?>
                 </tbody>
