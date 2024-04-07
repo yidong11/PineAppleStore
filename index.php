@@ -164,7 +164,7 @@
         ?>
         <div class="homepage-left">
           <div class="item-card-gallery-card item-card-root-class-name4">
-            <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
+            <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image-left-new" />
             <div class="item-card-container">
               <h3 class="item-card-text">
                 <span>
