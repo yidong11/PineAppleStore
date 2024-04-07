@@ -145,12 +145,11 @@ if (isset($_GET['cid'])) {
             <div class="homepage-icons">
               <?php
               $login = Session::get("cuslogin");
-              $cart_icon_link = $login ? "shopping-cart-page.php" : "login.php";
               ?>
 
               <!-- Shopping cart icon -->
               <a 
-                href="<?php echo $cart_icon_link; ?>" 
+                href="shopping-cart-page.php" 
                 class="homepage-navlink1 button"
               >
                 <svg viewBox="0 0 1024 1024" class="homepage-icon02">
@@ -164,18 +163,20 @@ if (isset($_GET['cid'])) {
               <!-- Show shopping cart info -->
               <span class="homepage-text" style="width: auto;">
                 <?php 
-                if ($login == false){
-                  echo "Need Login";
-                } else {
                   $cartData = $ct->checkCartTable();
                   if ($cartData){
-                    $sum = Session::get("sum");
-                    $qty = Session::get("qty");
-                    echo "Total: HKD".$sum." | Qty: ".$qty;
+                    $sum = 0;
+                    $qty = 0;
+                    while ($result = $cartData->fetch_assoc()){
+                      $sum += $result['price'] * $result['quantity'];
+                      $qty += $result['quantity'];
+                    }
+                    Session::set("sum", $sum);
+                    Session::set("qty", $qty);
+                    echo "Total: HKD: ".$sum." | Qty: ".$qty;
                   } else {
                     echo "Cart is empty";
                   }
-                }
                 ?>
               </span>
 

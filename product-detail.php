@@ -1,3 +1,8 @@
+<?php
+// start output buffering
+ob_start();
+?>
+
 <?php include 'inc/header.php'; ?>
 
 <?php
@@ -6,8 +11,16 @@ if (isset($_GET['proid'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-    $quantity = $_POST['quantity'];
-    $addCart = $ct->addToCart($quantity,$id);
+    $quantity = 0;
+    if (isset($_POST['quantity'])) {
+        $quantity = $_POST['quantity'];
+    }
+
+    $addCart = $ct->addToCart($quantity, $id);
+
+    if ($_POST['submit'] == 'buy_now' && $addCart == 'Product added to cart!') {
+        header("Location: shopping-cart-page.php");
+    }
 }
 ?>
 
@@ -74,34 +87,66 @@ if ($getPd) {
             </div>
         </div>
 
+
+        <div class="product-detail-container04">
+            <span class="product-detail-text01">Stock: </span>
+            <div class="product-detail-container05">
+                <span class="product-detail-text02"><?php echo $result['stock']; ?></span>
+            </div>
+        </div>
+            
+
         
         <form class="product-detail-form" action="" method="post">
 
             <div class="product-detail-container07">
                 <span class="product-detail-text04">Quantity:</span>
-                
-                <select autocomplete="off" class="product-detail-select1" name="quantity" style="max-lines: 10;">
-                    <option value="1">1</option>
-                    <?php
-                    for ($i=2; $i <= 10; $i++) { ?>
-                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                    <?php } ?> 
-                </select>
+
+                <!-- if the quantity is 0 -->
+                <?php
+                $quant = $result['stock'];
+                if ($quant == 0) { ?>
+                    <select class="product-detail-select1" name="quantity" disabled>
+                        <option value="0">Sold Out</option>
+                    </select>
+                <?php } else { ?>
+                    <select autocomplete="off" class="product-detail-select1" name="quantity">
+                        <option value="1">1</option>
+                        <?php
+                        $upper_bound = 10;
+                        if ($quant < 10) {
+                            $upper_bound = $quant;
+                        }
+                        for ($i=2; $i <= $upper_bound; $i++) { ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php } ?> 
+                    </select>
+                <?php } ?>
             </div>
 
-            <h1 class="product-detail-text05"><?php echo $result['price']; ?></h1>
+            <h1 class="product-detail-text05">HKD. <?php echo $result['price']; ?></h1>
+
+            <?php if (isset($addCart)) { ?>
+            <div class="product-detail-container04" style="margin-bottom: -50px; margin-top: 25px; height: 25px; margin-left: 150px">
+                <span class="product-detail-text01"><?php echo $addCart; ?></span>
+            </div>
+            <?php } ?>
 
             <div class="product-detail-container08">
-                <a href="payment.html" class="product-detail-navlink button">
+                <button type="submit" name="submit" value="buy_now" class="product-detail-navlink button">
                     <span>
                         <span>BUY NOW!</span><br />
-                    </span></a>
-                <a href="shopping-cart-page.html" class="product-detail-navlink1 button">
+                    </span>
+                </button>
+                <button type="submit" name="submit" value="add_cart" class="product-detail-navlink1 button">
                     <span>
                         <span>ADD TO CHART</span><br />
-                    </span></a>
-                </div>
+                    </span>
+                </button>
+            </div>
         </form>
+
+
     </div>
 </div>
 
@@ -128,3 +173,8 @@ if ($getPd) {
 
 
 <?php include 'inc/footer.php'; ?> 
+
+<?php
+// get the content of the buffer and put it in your file
+ob_end_flush();
+?>
