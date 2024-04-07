@@ -13,42 +13,48 @@ class Cart{
 private $db;
 private $fm;
 
-	public function __construct()
-	{
-		
+	public function __construct() {
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
-public function addToCart($quantity, $id){
-	$quantity = $this->fm->validation($quantity);
-    $quantity = mysqli_real_escape_string($this->db->link, $quantity);
-    $productId = mysqli_real_escape_string($this->db->link, $id);
+	public function addToCart($quantity, $id){
+		if ($quantity < 0) {
+			$msg = "Invalid Quantity!";
+			return $msg;
+		}
+		elseif ($quantity == 0) {
+			$msg = "The product is sold out!";
+			return $msg;
+		}
 
-    $sId  = session_id();
+		$quantity = $this->fm->validation($quantity);
+		$quantity = mysqli_real_escape_string($this->db->link, $quantity);
+		$productId = mysqli_real_escape_string($this->db->link, $id);
 
-    $squery = "SELECT * FROM tbl_product WHERE productId = '$productId'";
-    $result = $this->db->select($squery)->fetch_assoc();
+		$sId  = session_id();
 
-    $productName = $result['productName'];
-    $price = $result['price'];
-    $image = $result['image'];
+		$squery = "SELECT * FROM tbl_product WHERE productId = '$productId'";
+		$result = $this->db->select($squery)->fetch_assoc();
 
-
-    $chquery = "SELECT * FROM tbl_cart WHERE productId = '$productId' AND sId='$sId'";
-    $getPro = $this->db->select($chquery);
-    if ($getPro) {
-    	$msg = "Product already added!";
-    	return $msg;
-    }else{
+		$productName = $result['productName'];
+		$price = $result['price'];
+		$image = $result['image'];
 
 
-
-    $query = "INSERT INTO tbl_cart(sId,productId,productName,price,quantity,image) VALUES('$sId','$productId','$productName','$price','$quantity','$image') ";
+		$chquery = "SELECT * FROM tbl_cart WHERE productId = '$productId' AND sId='$sId'";
+		$getPro = $this->db->select($chquery);
+		if ($getPro) {
+			$msg = "Product already added!";
+			return $msg;
+		} else {
+    		$query = "INSERT INTO tbl_cart(sId,productId,productName,price,quantity,image) VALUES('$sId','$productId','$productName','$price','$quantity','$image') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
-				header("Location:cart.php");
+				$msg = "Product added to cart!";
+				return $msg;
 			} else{
-				header("Location:404.php");
+				$msg = "Product not added to cart!";
+				return $msg;
 			}
 		}
 	}

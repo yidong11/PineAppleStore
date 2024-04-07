@@ -47,6 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])) {
 					<div class="grid images_3_of_2">
 						<img src="admin/<?php echo $result['image']; ?>" alt="" />
 					</div>
+
+
 				<div class="desc span_3_of_2">
 					<h2><?php echo $result['productName']; ?> </h2>				
 					<div class="price">
@@ -54,12 +56,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])) {
 						<p>Category: <span><?php echo $result['catName']; ?></span></p>
 						<p>Brand:<span><?php echo $result['brandName']; ?></span></p>
 					</div>
+
+
 				<div class="add-cart">
 					<form action="" method="post">
 						<input type="number" class="buyfield" name="quantity" value="1"/>
 						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
 					</form>				
 				</div>
+				
 
 				<span style="color: red;font-size: 18px;">
 					<?php 

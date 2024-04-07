@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <h1 class="change-address-text6">Zipcode</h1>
               </div>
               <div class="change-address-ct1">
-                  <h1 class="change-address-text3">Country</h1>
+                  <h1 class="change-address-text3">Country/Area</h1>
                   <select name = "country" size="1" class="change-address-select">
                     <option type = "text" value="China">China</option>
                     <option type = "text" value="China HK">China HK</option>
