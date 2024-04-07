@@ -138,30 +138,25 @@
   </div>
 
   <!-- Trending items -->
+  <div class="section-heading-section-heading">
+    <h1 class="section-heading-text homepage-dytext01">
+      <span>TRENDING ITEMS</span>
+    </h1>
+    <span class="section-heading-text1">
+      <span>
+        Explore our monthly most trending products, new items and
+        the best PineApple offers you can buy
+      </span>
+    </span>
+  </div>
   <div class="homepage-trending-items section-container">
     <div class="max-width-container">
-      <div class="section-heading-section-heading">
-        <h1 class="section-heading-text Heading-2">
-          <span>TRENDING ITEMS</span>
-        </h1>
-        <span class="section-heading-text1">
-          <span>
-            Explore our monthly most trending products, new items and
-            the best PineApple offers you can buy
-          </span>
-        </span>
-      </div>
       <div class="homepage-gallery">
         <?php
         $getTpd = $pd->getTrendingProduct();
-        $counter1 = 1;
-        if ($getTpd) {
-          while ($result = $getTpd->fetch_assoc()) {
-
-        ?>
-
-            <?php
-            if ($counter1 == 1):
+      
+          $result = $getTpd->fetch_assoc()
+    
             ?>
               <div class="homepage-left">
                 <div class="item-card-gallery-card item-card-root-class-name4">
@@ -189,14 +184,14 @@
                     </div>
                     <div class="item-card-container2">
                       <span class="item-card-currency"><span>HKD</span></span>
-                      <span class="item-card-value"><span><?php echo $result['price']; ?></span></span></span></span>
+                      <span class="item-card-value"><span><?php echo $result['price']; ?></span></span>
                     </div>
                   </div>
                 </div>
               </div>
 
             <?php
-            elseif ($counter1 == 2):
+            $result = $getTpd->fetch_assoc()
             ?>
               <div class="homepage-right">
                 <div class="homepage-top">
@@ -237,7 +232,7 @@
                   </div>
 
                 <?php
-              elseif ($counter1 == 3):
+                $result = $getTpd->fetch_assoc()
                 ?>
                   <div class="homepage-right1">
                     <div class="item-card-gallery-card item-card-root-class-name3">
@@ -278,7 +273,7 @@
 
                 <div class="homepage-bottom">
                 <?php
-              elseif ($counter1 == 4):
+                $result = $getTpd->fetch_assoc()
                 ?>
                   <div class="homepage-left2">
                     <div class="item-card-gallery-card item-card-root-class-name1">
@@ -317,7 +312,7 @@
                   </div>
 
                 <?php
-              elseif ($counter1 == 5):
+                $result = $getTpd->fetch_assoc()
                 ?>
                   <div class="homepage-right2">
                     <div class="item-card-gallery-card item-card-root-class-name6">
@@ -354,16 +349,9 @@
                       </div>
                     </div>
                   </div>
-                <?php
-              endif;
-                ?>
+                
                 </div>
               </div>
-
-          <?php
-            $counter1++;
-          }
-        } ?>
       </div>
     </div>
   </div>
