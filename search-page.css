@@ -316,7 +316,7 @@
   display: flex;
   align-self: flex-start;
   align-items: flex-start;
-  margin-left: var(--dl-space-space-threeunits);
+  margin-left: var(--dl-space-space-sixunits);
   flex-direction: column;
 }
 .search-page-item-container3 {
@@ -558,7 +558,7 @@
 }
 .search-page-textinput1 {
   color: var(--dl-color-gray-black);
-  width: 90px;
+  width: 100px;
   height: 100%;
   transition: 0.3s;
   border-radius: 0px;
@@ -573,7 +573,7 @@
 }
 .search-page-textinput2 {
   color: var(--dl-color-gray-black);
-  width: 90px;
+  width: 100px;
   height: 100%;
   transition: 0.3s;
   border-radius: 0px;
