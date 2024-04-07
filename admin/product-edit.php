@@ -79,31 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
       <div class="add_product_entry_container">
-        <span class="add_product_entry_text">Brand</span>
-        <select name="brandId" id="select" class="add_product_select_box">
-          <option>Select Brand</option>
-          <?php
-            $brand = new Brand();
-            $getBrand = $brand->getAllBrand();
-            if ($getBrand) {
-                while ($result = $getBrand->fetch_assoc()) {
-          ?>
-          <option 
-            <?php if ($value['brandId'] == $result['brandId']) { ?>
-              selected="selected"
-            <?php } ?>
-            value="<?php echo $result['brandId']; ?>">
-            <?php echo $result['brandName']; ?>
-          </option>
-          <?php
-                }
-            }
-          ?>
-        </select>
-      </div>
-
-
-      <div class="add_product_entry_container">
         <span class="add_product_entry_text">Description</span>
         <textarea type="text" name="body" class="add_product_description"><?php echo $value['body'];?></textarea>
       </div>
@@ -122,22 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         <input type="file" name="image" />
       </div>
 
-
-      <div class="add_product_entry_container">
-        <span class="add_product_entry_text">Product Type</span>
-        <select name="type" id="select" class="add_product_select_box">
-          <option>Select Type</option>
-          <?php
-            if ($value['type'] == 0) {
-          ?>
-          <option selected="selected" value="0">Featured</option>
-          <option value="1">General</option>
-          <?php } else { ?>
-          <option value="0">Featured</option>
-          <option selected="selected" value="1">General</option>
-          <?php } ?>  
-        </select>
-      </div>
     </div>
 
     <div class="add_product_button_container">
