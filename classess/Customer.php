@@ -181,6 +181,87 @@ class Customer{
 		}
 	}
 
+	public function UpdateName($data,$cmrId) {
+		$name = mysqli_real_escape_string($this->db->link, $data['name']);
+
+
+		if ($name == "") {
+			$msg = "<span class='error'>Fields must not be empty !</span>";
+			return $msg;
+		}else{
+
+			$query = "UPDATE tbl_customer
+
+			SET
+			name = '$name'
+
+			WHERE id = '$cmrId'";
+
+			$updated_row = $this->db->update($query);
+			if ($updated_row) {
+				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
+						return $msg;
+			} else{
+					$msg = "<span class='error'>Customer Data Not Updated !</span>";
+						return $msg;
+			}
+		}
+	}
+
+	public function UpdateEmail($data,$cmrId) {
+		$email = mysqli_real_escape_string($this->db->link, $data['email']);
+
+
+		if ($email == "") {
+			$msg = "<span class='error'>Fields must not be empty !</span>";
+			return $msg;
+		}else{
+
+			$query = "UPDATE tbl_customer
+
+			SET
+			email = '$email'
+
+			WHERE id = '$cmrId'";
+
+			$updated_row = $this->db->update($query);
+			if ($updated_row) {
+				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
+						return $msg;
+			} else{
+					$msg = "<span class='error'>Customer Data Not Updated !</span>";
+						return $msg;
+			}
+		}
+	}
+
+	public function UpdatePassword($data,$cmrId) {
+		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
+
+
+		if ($pass == "") {
+			$msg = "<span class='error'>Fields must not be empty !</span>";
+			return $msg;
+		}else{
+
+			$query = "UPDATE tbl_customer
+
+			SET
+			pass = '$pass'
+
+			WHERE id = '$cmrId'";
+
+			$updated_row = $this->db->update($query);
+			if ($updated_row) {
+				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
+				return $msg;
+			} else{
+				$msg = "<span class='error'>Customer Data Not Updated !</span>";
+				return $msg;
+			}
+		}
+	}
+
 }
 
 

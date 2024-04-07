@@ -143,16 +143,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <h1 class="change-address-text6">Email</h1>
               </div>
               <div class="change-address-container7">
-                <input name = "address" type="text" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
+                <input name = "address" type="text" placeholder="address" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
                 <h1 class="change-address-text5">Address</h1>
-                <input name = "city" type="text" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
+                <input name = "city" type="text" placeholder="city" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
               </div>
               <div class="change-address-container9">
                 <input name = "zip" type="text" class="change-address-textinput4 input" value="<?php echo $result['zip'];?>"/>
                 <h1 class="change-address-text6">Zipcode</h1>
               </div>
               <div class="change-address-ct1">
-                  <h1 class="change-address-text3">Country</h1>
+                  <h1 class="change-address-text3">Country/Area</h1>
                   <select name = "country" size="1" class="change-address-select">
                     <option type = "text" value="China">China</option>
                     <option type = "text" value="China HK">China HK</option>

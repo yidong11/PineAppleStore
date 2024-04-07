@@ -31,11 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
 }
 ?> 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>change-address1 - PineApple</title>
-    <meta property="og:title" content="change-address1 - PineApple" />
+    <title>change-address - PineApple</title>
+    <meta property="og:title" content="change-address - PineApple" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -87,13 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   <body>
     <link rel="stylesheet" href="./style.css" />
     <div>
-      <link href="./change-address1.css" rel="stylesheet" />
+      <link href="./change-address.css" rel="stylesheet" />
 
-      <div class="change-address1-container">
-        <div class="change-address1-container1">
-          <div class="change-address1-container2">
+      <div class="change-address-container">
+        <div class="change-address-container1">
+          <div class="change-address-container2">
             <div
-              class="logo-container navbar-logo-title logo-root-class-name14"
+              class="logo-container navbar-logo-title logo-root-class-name13"
             >
               <span class="logo-logo-center Logo navbar-logo-title">
                 <span>PineApple</span>
@@ -104,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 class="logo-image"
               />
             </div>
-            <h1>Add Address</h1>
+            <h1>Edit Address</h1>
           </div>
           <?php 
     		    $id = Session::get("cmrId");
@@ -115,45 +116,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
     		 ?>
           <form action="" method="post">
-          <div class="change-address1-container3">
-            <h1 class="change-address1-text1">Add Address</h1>
-            <?php 
-					      if (isset($updateCmr)) {
-					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
-					      }
-					    ?>
-            <div class="change-address1-container4">
-              <div class="change-address1-container5">
-                <input name="name" type="text" class="change-address1-textinput input" value="<?php echo $result['name'];?>" />
-                <h1 class="change-address1-text2">Full name</h1>
+            <div class="change-address-container3">
+              <h1 class="change-address-text1">Edit Address
+                <div class = "update-text">
+                <?php 
+                  if (isset($updateCmr)) {
+                    /*echo "<tr><td colspan='2'>".$updateCmr."</td></tr> ";
+                    echo "<a href='my-address.php' class='navlink'> Click here to return</a>";*/
+                    header("Location:my-address.php");
+                  }
+                ?>
+                </div>
+              </h1>
+              <div class="change-address-container4">
+                <div class="change-address-container5">
+                  <input name = "name" type="text" class="change-address-textinput input" value="<?php echo $result['name'];?>"/>
+                  <h1 class="change-address-text2">Full name</h1>
+                </div>
               </div>
-              <div class="change-address1-ct1">
-                <h1 class="change-address1-text3">Country</h1>
-                <select size="1" class="change-address1-select">
-                  <option value="Option 1">China</option>
-                  <option value="Option 1">China HK</option>
-                </select>
+              <div class="change-address-container6">
+                <input name = "phone" type="text" class="change-address-textinput1 input" value="<?php echo $result['phone'];?>"/>
+                <h1 class="change-address-text4">Phone number</h1>
               </div>
+              <div class="change-address-container8">
+                <input name = "email" type="text" class="change-address-textinput4 input" value="<?php echo $result['email'];?>"/>
+                <h1 class="change-address-text6">Email</h1>
+              </div>
+              <div class="change-address-container7">
+                <input name = "address" type="text" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
+                <h1 class="change-address-text5">Address</h1>
+                <input name = "city" type="text" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
+              </div>
+              <div class="change-address-container9">
+                <input name = "zip" type="text" class="change-address-textinput4 input" value="<?php echo $result['zip'];?>"/>
+                <h1 class="change-address-text6">Zipcode</h1>
+              </div>
+              <div class="change-address-ct1">
+                  <h1 class="change-address-text3">Country</h1>
+                  <select name = "country" size="1" class="change-address-select">
+                    <option type = "text" value="China">China</option>
+                    <option type = "text" value="China HK">China HK</option>
+                  </select>
+                </div>
+              <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
+              <a href="my-address.php" class="change-address-navlink button">
+                Return
+              </a>
             </div>
-            <div class="change-address1-container6">
-              <input name="phone" type="text" class="change-address1-textinput1 input" value="<?php echo $result['phone'];?>" />
-              <h1 class="change-address1-text4">Phone number</h1>
-            </div>
-            <div class="change-address1-container7">
-              <input name="address" type="text" class="change-address1-textinput2 input" value="<?php echo $result['address'];?>"/>
-              <h1 class="change-address1-text5">Address</h1>
-              <input name="city" type="text" class="change-address1-textinput3 input" value="<?php echo $result['city'];?>"/>
-            </div>
-            <a href="my-address.html" class="change-address1-navlink button">
-              Use this address
-            </a>
-            <a
-              href="my-address.html"
-              class="change-address1-navlink1 navbar-link"
-            >
-              Return
-            </a>
-          </div>
           </form>
           <?php }} ?>
         </div>

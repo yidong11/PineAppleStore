@@ -69,7 +69,7 @@
                     <th>Quantity</th>
                     <th>Image</th>
                     <th>Date</th>
-                    <th>Action</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
 
@@ -83,7 +83,7 @@
                       $i = 0;
                       $sum = 0;
                       while ($result = $getPd->fetch_assoc()) {
-                        $i++;
+                        $qty++;
                   ?>
                   <tr class="odd gradeX">
                     <td><div type = "int" name = "id" value = <?php echo $result['id'];?>></div><?php echo $result['id'];?></td>

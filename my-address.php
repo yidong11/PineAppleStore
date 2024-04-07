@@ -5,12 +5,12 @@
         class="my-address-container"
         ><span class="my-address-text05"
           ><span>&gt;&nbsp; &nbsp; </span
-          ><span class="my-address-text07">Your Addresses</span></span
+          ><span class="my-address-text07">Your Address</span></span
         ><a href="personal-info.php" class="my-address-navlink3"
           >Your Account </a
-        ><h1 class="my-address-text08">Your Addresses</h1
+        ><h1 class="my-address-text08">Your Address</h1
         ><a href="change-address1.php" class="my-address-navlink4 button"
-          >Add New Address</a
+          >Edit Address</a
         >
         <?php 
     		    $id = Session::get("cmrId");
