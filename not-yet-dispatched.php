@@ -69,7 +69,7 @@
                     <th>Quantity</th>
                     <th>Image</th>
                     <th>Date</th>
-                    <th>Action</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
 
