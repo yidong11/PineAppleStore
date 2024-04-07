@@ -124,10 +124,23 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 				$image = $result['image'];
 
 				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
-			$inserted_row = $this->db->insert($query);
+				$inserted_row = $this->db->insert($query);
+				$query = "SELECT * FROM tbl_product WHERE sId = '$productId'";
+				$getPro = $this->db->select($query);
+				if ($getPro) {
+					while ($result = $getPro->fetch_assoc()) {
+						$stock = $result['stock'] - $quantity;
+						$query = "UPDATE tbl_product
+									SET	
+									stock = $stock
+									Where productId = $productId";
+						$inserted_row = $this->db->update($query);
+					}
+				}
 			}
 		}
 	}
+
 	public function payableAmount($cmrId){
 	$query = "SELECT price FROM tbl_order WHERE cmrId = '$cmrId' AND date = now()";
 	$result = $this->db->select($query);
