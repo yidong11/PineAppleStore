@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <?php if ($result['status'] == 1) { ?>
                             selected="selected"
                         <?php } ?>
-                    >Shifted</option>
+                    >Delivering</option>
                     <option 
                         value="2"
                         <?php if ($result['status'] == 2) { ?>
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <?php if ($result['status'] == 3) { ?>
                             selected="selected"
                         <?php } ?>
-                    >Canceled</option>
+                    >Rated</option>
                 </select>
             </div>
         </div>
