@@ -74,6 +74,7 @@
 
                   <?php
                     $cmrId = Session::get("cmrId");
+                    $qty = 0;
                     $getPd = $ct->getOrderedProduct($cmrId);
                     if ($getPd) {
                       $i = 0;
