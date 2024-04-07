@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 class="logo-image"
               />
             </div>
-            <h1>Checkout</h1>
+            <h1>Edit Address</h1>
           </div>
           <?php 
     		    $id = Session::get("cmrId");
@@ -122,8 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <?php 
                   if (isset($updateCmr)) {
                     /*echo "<tr><td colspan='2'>".$updateCmr."</td></tr> ";
-                    echo "<a href='payment.php' class='navlink'> Click here to return</a>";*/
-                    header("Location:payment.php");
+                    echo "<a href='my-address.php' class='navlink'> Click here to return</a>";*/
+                    header("Location:my-address.php");
                   }
                 ?>
                 </div>
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   </select>
                 </div>
               <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
-              <a href="payment.php" class="change-address-navlink button">
+              <a href="my-address.php" class="change-address-navlink button">
                 Return
               </a>
             </div>
