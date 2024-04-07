@@ -117,12 +117,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     		 ?>
           <form action="" method="post">
             <div class="change-address-container3">
-              <h1 class="change-address-text1">Change Address</h1>
-              <?php 
-					      if (isset($updateCmr)) {
-					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
-					      }
-					    ?>
+              <h1 class="change-address-text1">Change Address
+                <div class = "update-text">
+                <?php 
+                  if (isset($updateCmr)) {
+                    /*echo "<tr><td colspan='2'>".$updateCmr."</td></tr> ";
+                    echo "<a href='payment.php' class='navlink'> Click here to return</a>";*/
+                    header("Location:payment.php");
+                  }
+                ?>
+                </div>
+              </h1>
               <div class="change-address-container4">
                 <div class="change-address-container5">
                   <input name = "name" type="text" class="change-address-textinput input" value="<?php echo $result['name'];?>"/>

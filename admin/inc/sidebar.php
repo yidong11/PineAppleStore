@@ -48,6 +48,53 @@
     </div>
     <div
         data-thq="thq-dropdown"
+        class="admin-page-navbar-thq-dropdown1 list-item"
+    >
+        <div
+        data-thq="thq-dropdown-toggle"
+        class="admin-page-navbar-dropdown-toggle03"
+        >
+        <svg viewBox="0 0 1024 1024" class="admin-page-navbar-icon04">
+            <path
+            d="M512 0c-281.6 0-512 230.4-512 512s230.4 512 512 512 512-230.4 512-512-227.8-512-512-512zM747.6 739.8c-10.2 15.4-28.2 20.4-43.6 10.2-120.4-74.2-271.4-89.6-450.6-48.6-18 5.2-33.2-7.6-38.4-23-5.2-18 7.6-33.2 23-38.4 194.6-43.6 363.6-25.6 496.6 56.4 18 7.6 20.6 28 13 43.4zM809 599c-12.8 18-35.8 25.6-53.8 12.8-138.2-84.4-348.2-110-509.4-58.8-20.4 5.2-43.6-5.2-48.6-25.6-5.2-20.4 5.2-43.6 25.6-48.6 186.8-56.4 417.2-28.2 576 69.2 15.2 7.6 23 33.2 10.2 51zM814 455.6c-163.8-97.2-437.8-107.6-594-58.8-25.6 7.6-51.2-7.6-58.8-30.8-7.6-25.6 7.6-51.2 30.8-58.8 181.8-53.8 481.2-43.6 670.8 69.2 23 12.8 30.8 43.6 18 66.6-13 17.8-43.6 25.4-66.8 12.6z"
+            ></path>
+        </svg>
+        <span class="admin-page-navbar-text03">Order Information</span>
+        <div
+            data-thq="thq-dropdown-arrow"
+            class="admin-page-navbar-dropdown-arrow1"
+        >
+            <svg
+            viewBox="0 0 877.7142857142857 1024"
+            class="admin-page-navbar-icon06"
+            >
+            <path
+                d="M877.714 768v73.143c0 20-16.571 36.571-36.571 36.571h-804.571c-20 0-36.571-16.571-36.571-36.571v-73.143c0-20 16.571-36.571 36.571-36.571h804.571c20 0 36.571 16.571 36.571 36.571zM877.714 475.429v73.143c0 20-16.571 36.571-36.571 36.571h-804.571c-20 0-36.571-16.571-36.571-36.571v-73.143c0-20 16.571-36.571 36.571-36.571h804.571c20 0 36.571 16.571 36.571 36.571zM877.714 182.857v73.143c0 20-16.571 36.571-36.571 36.571h-804.571c-20 0-36.571-16.571-36.571-36.571v-73.143c0-20 16.571-36.571 36.571-36.571h804.571c20 0 36.571 16.571 36.571 36.571z"
+            ></path>
+            </svg>
+        </div>
+        </div>
+        <ul
+        data-thq="thq-dropdown-list"
+        class="admin-page-navbar-dropdown-list1"
+        >
+        <a href="order-list.php">
+            <li
+            data-thq="thq-dropdown"
+            class="admin-page-navbar-dropdown2 list-item"
+            >
+            <div
+                data-thq="thq-dropdown-toggle"
+                class="admin-page-navbar-dropdown-toggle04"
+            >
+                <span class="admin-page-navbar-text04">Order List</span>
+            </div>
+            </li>
+        </a>
+        </ul>
+    </div>
+    <div
+        data-thq="thq-dropdown"
         class="admin-page-navbar-thq-dropdown2 list-item"
     >
         <div

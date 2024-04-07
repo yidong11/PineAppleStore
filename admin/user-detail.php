@@ -106,9 +106,7 @@ $fm = new Format();
       <?php
       $getOrder = $ct->getOrderedProduct($_GET['cmrid']);
       if ($getOrder) {
-        $i = 0;
         while ($result = $getOrder->fetch_assoc()) {
-          $i++;
       ?>
       <tr class="odd gradeX">
         <td><?php echo $result['id'];?></td>
@@ -122,11 +120,11 @@ $fm = new Format();
           if ($result['status'] == 0) {
             echo "Pending";
           } elseif ($result['status'] == 1) {
-            echo "Shifted";
+            echo "Delivering";
           } elseif ($result['status'] == 2) {
             echo "Delivered";
           } elseif ($result['status'] == 3) {
-            echo "Canceled";
+            echo "Rated";
           }
           ?>
         </td>

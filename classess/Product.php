@@ -9,7 +9,6 @@ include_once($filepath . '/../helpers/Formate.php');
 
 class Product
 {
-
 	private $db;
 	private $fm;
 
@@ -25,17 +24,15 @@ class Product
 
 		$productName = $this->fm->validation($data['productName']);
 		$catId = $this->fm->validation($data['catId']);
-		$brandId = $this->fm->validation($data['brandId']);
 		$body = $this->fm->validation($data['body']);
 		$price = $this->fm->validation($data['price']);
-		$type = $this->fm->validation($data['type']);
+		$rate = 0.0;
+		$sales = 0;
 
 		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
 		$catId       = mysqli_real_escape_string($this->db->link, $data['catId']);
-		$brandId     = mysqli_real_escape_string($this->db->link, $data['brandId']);
 		$body        = mysqli_real_escape_string($this->db->link, $data['body']);
 		$price       = mysqli_real_escape_string($this->db->link, $data['price']);
-		$type        = mysqli_real_escape_string($this->db->link, $data['type']);
 
 
 
@@ -49,20 +46,18 @@ class Product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
-		if ($productName == "" || $catId == "" || $brandId == "" || $body == "" || $price == "" || $file_name == "" || $type == "") {
-
+		if ($productName == "" || $catId == ""  || $body == "" || $price == "" || $file_name == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} elseif ($file_size > 1048567) {
 			echo "<span class='error'>Image Size should be less then 1MB!
-     </span>";
+     		</span>";
 		} elseif (in_array($file_ext, $permited) === false) {
 			echo "<span class='error'>You can upload only:-" . implode(', ', $permited) . "</span>";
 		} else {
 
 			move_uploaded_file($file_temp, $uploaded_image);
-			$query = "INSERT INTO tbl_product(productName,catId,brandId,body,price,image,type) VALUES('$productName','$catId','$brandId','$body','$price','$uploaded_image','$type') ";
-
+			$query = "INSERT INTO tbl_product(productName,catId,body,price,image,rate,sales) VALUES('$productName','$catId','$body','$price','$uploaded_image', '$rate', '$sales') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				header("Location:product-list.php");
@@ -74,21 +69,10 @@ class Product
 	}
 
 	public function getAllProduct() {
-		$query = "SELECT p.*,c.catName,b.brandName
-		FROM tbl_product as p,tbl_category as c, tbl_brand as b
-		WHERE p.catId = c.catId AND p.brandId = b.brandId
+		$query = "SELECT p.*,c.catName
+		FROM tbl_product as p,tbl_category as c
+		WHERE p.catId = c.catId
 		ORDER BY p.productId DESC";
-				/*
-		$query = "SELECT tbl_product.*, tbl_category.catName,tbl_brand.brandName
-		FROM tbl_product
-
-		INNER JOIN tbl_category
-		ON tbl_product.catId = tbl_category.catId
-
-		INNER JOIN tbl_brand
-		ON tbl_product.brandId = tbl_brand.brandId
-		ORDER BY tbl_product.productId DESC";
-		*/
 
 		$result = $this->db->select($query);
 		return $result;
@@ -102,20 +86,20 @@ class Product
 		return $result;
 	}
 
-public function productUpdate($data, $file, $id){
-	$productName = $this->fm->validation($data['productName']);
-	$catId = $this->fm->validation($data['catId']);
-	$brandId = $this->fm->validation($data['brandId']);
-	$body = $this->fm->validation($data['body']);
-	$price = $this->fm->validation($data['price']);
-	$type = $this->fm->validation($data['type']);
+	public function productUpdate($data, $file, $id){
+		$productName = $this->fm->validation($data['productName']);
+		$catId = $this->fm->validation($data['catId']);
+		$body = $this->fm->validation($data['body']);
+		$price = $this->fm->validation($data['price']);
+		$rate = $this->fm->validation($data['rate']);
+		$sales = $this->fm->validation($data['sales']);
 
-	$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-	$catId       = mysqli_real_escape_string($this->db->link, $data['catId']);
-	$brandId     = mysqli_real_escape_string($this->db->link, $data['brandId']);
-	$body        = mysqli_real_escape_string($this->db->link, $data['body']);
-	$price       = mysqli_real_escape_string($this->db->link, $data['price']);
-	$type        = mysqli_real_escape_string($this->db->link, $data['type']);
+		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
+		$catId       = mysqli_real_escape_string($this->db->link, $data['catId']);
+		$body        = mysqli_real_escape_string($this->db->link, $data['body']);
+		$price       = mysqli_real_escape_string($this->db->link, $data['price']);
+		$rate        = mysqli_real_escape_string($this->db->link, $data['rate']);
+		$sales       = mysqli_real_escape_string($this->db->link, $data['sales']);
 
 		$permited  = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $file['image']['name'];
@@ -127,60 +111,60 @@ public function productUpdate($data, $file, $id){
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
-	if ($productName == "" || $catId == "" || $brandId == "" || $body == "" || $price == "" ||$type == "") {
-		$msg = "<span class='error'>Fields must not be empty !</span>";
-		return $msg;
-	} else {
-		if (!empty($file_name)) {
-			if ($file_size >1048567) {
-				$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
-				return $msg;
-			} elseif (in_array($file_ext, $permited) === false) {
-				$msg = "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
-				return $msg;
-			} else {
-				move_uploaded_file($file_temp, $uploaded_image);
+		if ($productName == "" || $catId == "" || $body == "" || $price == "" || $rate == "" || $sales == "") {
+			$msg = "<span class='error'>Fields must not be empty !</span>";
+			return $msg;
+		} else {
+			if (!empty($file_name)) {
+				if ($file_size >1048567) {
+					$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
+					return $msg;
+				} elseif (in_array($file_ext, $permited) === false) {
+					$msg = "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+					return $msg;
+				} else {
+					move_uploaded_file($file_temp, $uploaded_image);
 
+					$query = "UPDATE tbl_product 
+					SET
+					productName = '$productName',
+					catId       = '$catId',
+					body        = '$body',
+					price       = '$price',
+					image       = '$uploaded_image',
+					rate        = '$rate',
+					sales       = '$sales'
+					WHERE productId = '$id'";
+
+					$updatedted_row = $this->db->update($query);
+					if ($updatedted_row) {
+						header("Location:product-list.php");
+					} else {
+						$msg = "<span class='error'>Product Not Updated.</span>";
+						return $msg;
+					}
+				}
+			} else {
 				$query = "UPDATE tbl_product 
 				SET
 				productName = '$productName',
 				catId       = '$catId',
-				brandId     = '$brandId',
 				body        = '$body',
 				price       = '$price',
-				image       = '$uploaded_image',
-				type        = '$type'
+				rate        = '$rate',
+				sales       = '$sales'
 				WHERE productId = '$id'";
 
-	 			$updatedted_row = $this->db->update($query);
+				$updatedted_row = $this->db->update($query);
 				if ($updatedted_row) {
 					header("Location:product-list.php");
-				} else {
+				} else{
 					$msg = "<span class='error'>Product Not Updated.</span>";
 					return $msg;
 				}
 			}
-		} else {
-			$query = "UPDATE tbl_product 
-			SET
-			productName = '$productName',
-			catId       = '$catId',
-			brandId     = '$brandId',
-			body        = '$body',
-			price       = '$price',
-			type        = '$type'
-			WHERE productId = '$id'";
-
-			$updatedted_row = $this->db->update($query);
-			if ($updatedted_row) {
-				header("Location:product-list.php");
-			} else{
-				$msg = "<span class='error'>Product Not Updated.</span>";
-				return $msg;
-			}
 		}
 	}
-}
 
 	public function delProById($id)
 	{
@@ -207,50 +191,22 @@ public function productUpdate($data, $file, $id){
 	public function getSliderProduct()
 	{
 
-		$query = "SELECT * FROM tbl_product WHERE type = '0' ORDER BY productId DESC LIMIT 5";
+		$query = "SELECT * FROM tbl_product ORDER BY rate DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getTrendingProduct()
 	{
-		$query = "SELECT * FROM tbl_product ORDER BY productId DESC LIMIT 5";
+		$query = "SELECT * FROM tbl_product ORDER BY sales DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	public function getSingleProduct($id)
-	{
-
-		$query = "SELECT p.*,c.catName,b.brandName
-FROM tbl_product as p,tbl_category as c, tbl_brand as b
-WHERE p.catId = c.catId AND p.brandId = b.brandId AND p.productId = '$id'";
-		$result = $this->db->select($query);
-		return $result;
-	}
-
-
-	public function latestFromIphone()
-	{
-		$query = "SELECT * FROM tbl_product WHERE brandId = '4' ORDER BY productId DESC LIMIT 1";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function latestFromSamsung()
-	{
-		$query = "SELECT * FROM tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 1";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function latestFromAcer()
-	{
-		$query = "SELECT * FROM tbl_product WHERE brandId = '5' ORDER BY productId DESC LIMIT 1";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function latestFromCanon()
-	{
-		$query = "SELECT * FROM tbl_product WHERE brandId = '3' ORDER BY productId DESC LIMIT 1";
+	public function getSingleProduct($id){
+		$query = "SELECT p.*,c.catName
+		FROM tbl_product as p,tbl_category as c
+		WHERE p.catId = c.catId AND p.productId = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -352,38 +308,6 @@ WHERE p.catId = c.catId AND p.brandId = b.brandId AND p.productId = '$id'";
 	{
 		$query = "DELETE FROM tbl_wlist WHERE cmrId = '$cmrId' AND productId = '$productId'";
 		$delete = $this->db->delete($query);
-	}
-
-
-	public function getTopbrandAcer()
-	{
-
-		$query = "SELECT * FROM tbl_product WHERE brandId = '5' ORDER BY productId DESC LIMIT 4";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function getTopbrandSamsung()
-	{
-
-		$query = "SELECT * FROM tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 4";
-		$result = $this->db->select($query);
-		return $result;
-	}
-
-	public function getTopbrandCanon()
-	{
-
-		$query = "SELECT * FROM tbl_product WHERE brandId = '3' ORDER BY productId DESC LIMIT 4";
-		$result = $this->db->select($query);
-		return $result;
-	}
-
-	public function getTopbrandIphone()
-	{
-
-		$query = "SELECT * FROM tbl_product WHERE brandId = '4' ORDER BY productId DESC LIMIT 4";
-		$result = $this->db->select($query);
-		return $result;
 	}
 }
 
