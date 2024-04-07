@@ -1336,3 +1336,12 @@
     margin-bottom: var(--dl-space-space-unit);
   }
 }
+.search-page-item-ratetext {
+  font-size: 20px;
+}
+.search-page-item-container5 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: var(--dl-space-space-unit);
+}
