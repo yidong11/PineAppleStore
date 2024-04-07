@@ -76,7 +76,6 @@ if (isset($_GET['delpro'])) {
 </div>
 
 
-
 <script type="text/javascript">
     $(document).ready(function () {
         setupLeftMenu();
