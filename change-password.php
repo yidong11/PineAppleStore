@@ -28,7 +28,7 @@ if ($login == false) {
 <?php
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-    $updateCmr = $cmr->customerUpdate($_POST,$cmrId);
+    $updateCmr = $cmr->UpdatePassword($_POST,$cmrId);
 }
 ?> 
 
@@ -134,22 +134,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                           ><span>Log out</span
                           ><br /></span></div></a></li></ul></div></div></div></header
         >
-        <?php 
-    		    $id = Session::get("cmrId");
-    		    $getdata = $cmr->getCustomerData($id);
-    		    if ($getdata) {
-    			    while ($result = $getdata->fetch_assoc()) {
-    		
-
-    		 ?>
-          <form action="" method="post">
         <div class="change-password-container1"
           >
-          <?php 
-					      if (isset($updateCmr)) {
-					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
-					      }
-					    ?>
+          <?php
+        $id = Session::get("cmrId");
+        $getdata = $cmr->getCustomerData($id);
+        if ($getdata) {
+          while ($result = $getdata->fetch_assoc()) {
+
+
+        ?>
+          <?php
+              if (isset($updateCmr)) {
+                echo "<tr><td colspan='2'>" . $updateCmr . "</td></tr>";
+                $url = "login-and-security.php";
+                echo "<SCRIPT LANGUAGE='javascript'>"; 
+                echo "location.href='$url'"; 
+                echo "</SCRIPT>"; 
+              }?>
           <span class="change-password-text">Change Password</span
           ><span class="change-password-text1">&gt; </span
           ><span class="change-password-text2">&gt; </span
@@ -165,7 +167,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             >To change the password for your PineApple account, use this
             form.</span
           ><span class="change-password-text7">New Password</span
-          ><input name="pass" type="text" class="change-password-textinput input" input" value="<?php echo $result['pass'];?>"/><a
+          >
+          <form action=""  method="post">
+          <input name="pass" type="text" class="change-password-textinput input" />
+          <input type="submit" name="submit" value="Save" class="change-password-navlink2 button">
+          </form>
+          <?php }} ?>
+          <a
             href="login-and-security.php"
             class="change-password-navlink2 button"
             >Confirm</a
@@ -173,8 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         ></div
       ></div
     >
-    </form>
-    <?php }} ?>
+  
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
