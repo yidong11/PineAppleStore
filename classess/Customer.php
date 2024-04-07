@@ -220,7 +220,7 @@ class Customer{
 			$query = "UPDATE tbl_customer
 
 			SET
-			name = '$email'
+			email = '$email'
 
 			WHERE id = '$cmrId'";
 
@@ -247,7 +247,7 @@ class Customer{
 			$query = "UPDATE tbl_customer
 
 			SET
-			name = '$pass'
+			pass = '$pass'
 
 			WHERE id = '$cmrId'";
 
