@@ -155,13 +155,19 @@ public function addToCart($quantity, $id){
 	}
 
 	public function getDeliveryProduct($cmrId){
-		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 2 ORDER BY date DESC";
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getNotDispatchedProduct($cmrId){
-		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 0 ORDER BY date DESC";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getDeliveredProduct($cmrId){
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 2 or status = 3 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}

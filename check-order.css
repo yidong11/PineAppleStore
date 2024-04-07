@@ -446,7 +446,7 @@
 }
 .check-order-text1 {
   top: 25px;
-  left: 150px;
+  left: 100px;
   width: auto;
   height: var(--dl-size-size-small);
   position: absolute;
@@ -458,7 +458,7 @@
 }
 .check-order-text2 {
   top: 25px;
-  left: 650px;
+  left: 350px;
   width: auto;
   height: var(--dl-size-size-small);
   position: absolute;
@@ -470,7 +470,7 @@
 }
 .check-order-navlink {
   top: 25px;
-  left: 1200px;
+  left: 800px;
   width: var(--dl-size-size-xxlarge);
   height: var(--dl-size-size-small);
   position: absolute;
@@ -725,4 +725,17 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.check-order-text9 {
+  top: 25px;
+  left: 1300px;
+  width: auto;
+  height: var(--dl-size-size-small);
+  position: absolute;
+  font-size: 30px;
+  align-self: center;
+  font-style: normal;
+  text-align: center;
+  font-weight: 700;
 }
