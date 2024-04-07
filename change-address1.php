@@ -143,9 +143,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <h1 class="change-address-text6">Email</h1>
               </div>
               <div class="change-address-container7">
-                <input name = "address" type="text" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
+                <input name = "city" type="text" class="change-address-textinput3 input" placeholder="City" value="<?php echo $result['city'];?>"/>
                 <h1 class="change-address-text5">Address</h1>
-                <input name = "city" type="text" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
+                <input name = "address" type="text" class="change-address-textinput2 input" placeholder="Address" value="<?php echo $result['address'];?>"/>
               </div>
               <div class="change-address-container9">
                 <input name = "zip" type="text" class="change-address-textinput4 input" value="<?php echo $result['zip'];?>"/>
@@ -159,9 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   </select>
                 </div>
               <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
-              <a href="my-address.php" class="change-address-navlink button">
-                Return
-              </a>
             </div>
           </form>
           <?php }} ?>
