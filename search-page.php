@@ -294,7 +294,7 @@ if (isset($_GET['cid'])) {
                 name="max"
                 placeholder="Max"
                 class="search-page-textinput2 input"
-                value = 200000
+                value = 10000
               />
               <button type="submit" class="search-page-button1 button">
                 <span class="search-page-text03">
@@ -338,13 +338,10 @@ if (isset($_GET['cid'])) {
         $min = mysqli_real_escape_string($db->link,$_GET['min']);
         $max = mysqli_real_escape_string($db->link,$_GET['max']);
 
-        if (!isset($search) || $search == NULL) {
-          $error_message="You should input the keyword or the ProductID";
-          echo "<script type='text/javascript'>alert('$error_message');</script>"; 
-        }
-        else{
-          $search = $search;
-        }
+        // if (!isset($search) || $search == NULL) {
+        //   $error_message="You should input the keyword or the ProductID";
+        //   echo "<script type='text/javascript'>alert('$error_message');</script>"; 
+        // }
 
         if (ctype_digit($search)) {
           $query = "select * from tbl_product where productId = $search";
@@ -395,6 +392,7 @@ if (isset($_GET['cid'])) {
                     alt="image"
                     src="admin/<?php echo $result['image']; ?>"
                     class="search-page-item-image"
+                    
                   />
                 </div>
                 <div class="search-page-item-container2">
