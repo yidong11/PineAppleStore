@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               </div>
               <ul data-thq="thq-dropdown-list" class="admin-page-header2-dropdown-list">
                 <li data-thq="thq-dropdown" class="admin-page-header2-dropdown1 list-item"><a href="admin-page-login.html">
-                    <div data-thq="thq-dropdown-toggle" class="admin-page-header2-dropdown-toggle2"><span class="admin-page-header2-text3"><span>Log out</span><br /></span></div>
+                
                   </a></li>
               </ul>
             </div>
