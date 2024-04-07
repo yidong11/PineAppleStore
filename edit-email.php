@@ -27,7 +27,7 @@ if ($login == false) {
 <?php
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-  $updateCmr = $cmr->customerUpdate($_POST, $cmrId);
+  $updateCmr = $cmr->UpdateEmail($_POST, $cmrId);
 }
 ?>
 
@@ -184,13 +184,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               </div>
               <ul data-thq="thq-dropdown-list" class="admin-page-header2-dropdown-list">
                 <li data-thq="thq-dropdown" class="admin-page-header2-dropdown1 list-item"><a href="login.php">
-                    <div data-thq="thq-dropdown-toggle" class="admin-page-header2-dropdown-toggle2"><span class="admin-page-header2-text3"><span>Log out</span><br /></span></div>
+                    
                   </a></li>
               </ul>
             </div>
           </div>
         </div>
       </header>
+
       <?php
       $id = Session::get("cmrId");
       $getdata = $cmr->getCustomerData($id);
@@ -199,22 +200,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
       ?>
+          <?php
+          if (isset($updateCmr)) {
+            echo $updateCmr;
+            $url = "login-and-security.php";
+            echo "<SCRIPT LANGUAGE='javascript'>";
+            echo "location.href='$url'";
+            echo "</SCRIPT>";
+          } ?>
           <form action="" method="post">
             <div class="edit-email-container1">
               <input name="email" type="text" class="edit-email-textinput input" value="<?php echo $result['email']; ?>" />
             </div>
-            <a href="login-and-security.php" class="edit-email-navlink button">Confirm</a>
+              <input type="submit" class="edit-email-navlink button" name="submit" value="Save" />
           </form>
-            <span class="edit-email-text">
-              <span>Current email address: "<?php echo $result['email']; ?>"</span>
-              <br />
-              <br />
-              <span>Enter the new email address you would like to associate with your account below. </span>
-              <br />
-              <span>We will send a One Time Password (OTP) to that address.</span>
-            </span>
-            <h1 class="edit-email-text7">Change your email address</h1>
-            <span class="edit-email-text8">New Email Address</span>
+          <span class="edit-email-text">
+            <span>Current email address: "<?php echo $result['email']; ?>"</span>
+            <br />
+            <br />
+            <span>Enter the new email address you would like to associate with your account below. </span>
+            <br />
+            <span>We will send a One Time Password (OTP) to that address.</span>
+          </span>
+          <h1 class="edit-email-text7">Change your email address</h1>
+          <span class="edit-email-text8">New Email Address</span>
     </div>
   </div>
 <?php }
