@@ -236,7 +236,7 @@ class Customer{
 	}
 
 	public function UpdatePassword($data,$cmrId) {
-		$pass = mysqli_real_escape_string($this->db->link, $data['pass']);
+		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
 
 		if ($pass == "") {
