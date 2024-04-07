@@ -115,11 +115,12 @@ class Customer{
 				else{
 					$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
 					$resultProduct = $this->db->select($query)->fetch_assoc();
-					$totalRate = $resultProduct['total_rate'] + $rate;
+					$totalRate = $resultProduct['rate'] * $resultProduct['sales'] + $rate;
 					$sales = $resultProduct['sales'] + 1;
+					$rate = $totalRate/$sales;
 					$query = "UPDATE tbl_product 
 								SET
-								total_rate = '$totalRate',
+								rate = '$rate',
 								sales = '$sales'
 								WHERE productId = '$productId'";
 					$updated_row = $this->db->update($query);
