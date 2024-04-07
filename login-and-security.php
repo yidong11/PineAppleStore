@@ -37,7 +37,7 @@
               disabled="true"
               placeholder="<?php echo $result['name'];?>"
               class="app-component-textinput input" /></div
-          ><a href="login copy.php" class="app-component-navlink2 button"
+          ><a href="change-password.php" class="app-component-navlink2 button"
             ><span>Edit</span></a
           ><span class="app-component-text"
             ><span>&gt;&nbsp; &nbsp; </span
