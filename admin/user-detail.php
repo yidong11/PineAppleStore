@@ -120,11 +120,11 @@ $fm = new Format();
           if ($result['status'] == 0) {
             echo "Pending";
           } elseif ($result['status'] == 1) {
-            echo "Shifted";
+            echo "Delivering";
           } elseif ($result['status'] == 2) {
             echo "Delivered";
           } elseif ($result['status'] == 3) {
-            echo "Canceled";
+            echo "Rated";
           }
           ?>
         </td>
