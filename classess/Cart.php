@@ -134,6 +134,18 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 	return $result;
 	}
 
+	public function getDeliveryProduct($cmrId){
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 2 ORDER BY date DESC";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getNotDispatchedProduct($cmrId){
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getOrderedProduct($cmrId){
     $query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
 	$result = $this->db->select($query);

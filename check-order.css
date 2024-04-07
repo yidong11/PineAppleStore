@@ -380,7 +380,7 @@
 }
 .check-order-text {
   top: 0px;
-  left: 50px;
+  left: 150px;
   width: auto;
   bottom: 0px;
   height: var(--dl-size-size-small);
@@ -458,7 +458,7 @@
 }
 .check-order-text2 {
   top: 25px;
-  left: 450px;
+  left: 650px;
   width: auto;
   height: var(--dl-size-size-small);
   position: absolute;
@@ -470,7 +470,7 @@
 }
 .check-order-navlink {
   top: 25px;
-  left: 800px;
+  left: 1200px;
   width: var(--dl-size-size-xxlarge);
   height: var(--dl-size-size-small);
   position: absolute;

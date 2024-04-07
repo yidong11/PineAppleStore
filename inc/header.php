@@ -209,7 +209,7 @@ if (isset($_GET['cid'])) {
                       data-thq="thq-dropdown"
                       class="homepage-dropdown list-item"
                     >
-                      <a href="personal-info.html">
+                      <a href="personal-info.php">
                         <div
                           data-thq="thq-dropdown-toggle"
                           class="homepage-dropdown-toggle1"
