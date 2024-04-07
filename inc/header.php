@@ -94,24 +94,24 @@ if (isset($_GET['cid'])) {
       <div class="homepage-container">
 
 
-      <header data-role="Header" class="homepage-header max-width-container">
-          <div class="homepage-navbar">
+        <header data-role="Header" class="homepage-header max-width-container">
+            <div class="homepage-navbar">
 
-            <!-- For logo -->
-			<a href="index.php" class="homepage-navlink">
-				<div
-				class="logo-container navbar-logo-title logo-root-class-name16"
-				>
-					<span class="logo-logo-center Logo navbar-logo-title">
-					<span>PineApple</span>
-					</span>
-					<img
-					alt="image"
-					src="public/Pineapple Icons/logo_no_bg_2-200h.png"
-					class="logo-image"
-					/>
-				</div>
-			</a>
+              <!-- For logo -->
+          <a href="index.php" class="homepage-navlink">
+            <div
+            class="logo-container navbar-logo-title logo-root-class-name16"
+            >
+              <span class="logo-logo-center Logo navbar-logo-title">
+              <span>PineApple</span>
+              </span>
+              <img
+              alt="image"
+              src="public/Pineapple Icons/logo_no_bg_2-200h.png"
+              class="logo-image"
+              />
+            </div>
+          </a>
 
 
             <!-- For search bar -->
