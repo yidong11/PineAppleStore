@@ -340,7 +340,7 @@
 }
 .search-page-item-container5 {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
 }
 .search-page-item-icon {
@@ -370,13 +370,28 @@
 }
 .search-page-item-container6 {
   display: flex;
-  margin-top: 80px;
+  margin-top: 40px;
   align-items: flex-start;
   flex-direction: column;
 }
+
+.search-page-item-container7 {
+  display: flex;
+  margin-top: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .search-page-item-text1 {
   font-size: 25px;
 }
+.search-page-item-text2 {
+  font-size: 22px;
+}
+.search-page-item-ratetext {
+  font-size: 20px;
+}
+
 .search-page-item-root-class-name {
   margin-right: 190px;
 }
