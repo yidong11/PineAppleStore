@@ -111,6 +111,7 @@ public function addToCart($quantity, $id){
 	}
 
 	public function orderProduct($cmrId){
+		$result = True;
 		$sId  = session_id();
 	    $query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
 		$getPro = $this->db->select($query);
@@ -122,13 +123,15 @@ public function addToCart($quantity, $id){
 				$price = $result['price'] * $quantity;
 				$image = $result['image'];
 
-				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
-				$inserted_row = $this->db->insert($query);
-				$query = "SELECT * FROM tbl_product WHERE sId = '$productId'";
-				$getPro = $this->db->select($query);
-				if ($getPro) {
-					while ($result = $getPro->fetch_assoc()) {
+				$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
+				$getProd = $this->db->select($query);
+				if ($getProd) {
+					while ($result = $getProd->fetch_assoc()) {
 						$stock = $result['stock'] - $quantity;
+						if($stock < 0){
+							$result = False;
+							continue;
+						}
 						$query = "UPDATE tbl_product
 									SET	
 									stock = $stock
@@ -136,8 +139,13 @@ public function addToCart($quantity, $id){
 						$inserted_row = $this->db->update($query);
 					}
 				}
+				if(!$result)
+					continue;
+				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
+				$inserted_row = $this->db->insert($query);
 			}
 		}
+		return $result;
 	}
 
 	public function payableAmount($cmrId){

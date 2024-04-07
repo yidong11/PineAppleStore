@@ -242,7 +242,7 @@ if (isset($_GET['cid'])) {
                   type="text"
                   name = "search"
                   id="Search bar"
-                  placeholder="Keywords or productID"
+                  placeholder="Keywords or product ID"
                   class="search-page-textinput input"
                 />
               </div>
