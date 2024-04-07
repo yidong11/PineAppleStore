@@ -1,24 +1,47 @@
 <?php include 'inc/header.php'; ?>
+<?php
+if (isset($_GET['proid'])) {
+   
+
+    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['proid']);
+}
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $quantity = $_POST['quantity'];
+    $addCart = $ct->addToCart($quantity,$id);
+}
+?>
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare'])) {
+	$productId = $_POST['productId'];
+    $insertCom = $pd->insertCompareData($productId,$cmrId);
+}
+
+?> 
+
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])) {
+    $saveWlist = $pd->saveWishListData($id,$cmrId);
+}
+
+?> 
 <body
     ><div
       ><link href="./product-detail.css" rel="stylesheet" />
       <?php 
-    		    $id = Session::get("cmrId");
-    		    $getdata = $cmr->getCustomerData($id);
-    		    if ($getdata) {
-    			    while ($result = $getdata->fetch_assoc()) {
-    		
+				$getPd = $pd->getSingleProduct($id);
+				if ($getPd) {
+					while ($result = $getPd->fetch_assoc()) {
+						
+				
 
-    		 ?>
-          <form action="" method="post">
+				 ?>	
       <div
         class="product-detail-container"
         >
-        <?php 
-					      if (isset($updateCmr)) {
-					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
-					      }
-					    ?>
         <div class="product-detail-container01">
           <div class="product-detail-container02">
             <div
@@ -32,14 +55,17 @@
                   data-thq="slider-slide"
                   class="product-detail-slider-slide swiper-slide"
                 ></div>
+                <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide swiper-slide" />
                 <div
                   data-thq="slider-slide"
                   class="product-detail-slider-slide1 swiper-slide"
                 ></div>
+                <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide1 swiper-slide" />
                 <div
                   data-thq="slider-slide"
                   class="product-detail-slider-slide2 swiper-slide"
                 ></div>
+                <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide2 swiper-slide" />
               </div>
               <div
                 data-thq="slider-pagination"
@@ -70,9 +96,7 @@
           </div>
           <div class="product-detail-container03">
             <span class="product-detail-text">
-              Apple iPhone 15 Pro (128 GB) - Blue Titanium | [Locked] | Boost
-              Infinite plan required starting at $60/mo. | Unlimited Wireless |
-              No trade-in needed to start | Get the latest iPhone every year
+            <?php echo $result['productName'];?>
             </span>
             <div class="product-detail-container04">
               <span class="product-detail-text01">Ratings:</span>
@@ -142,16 +166,16 @@
                 <option value="5">10</option>
               </select>
             </div>
-            <h1>HKD 8599</h1>
+            <h1><p>Price: <span>HKD <?php echo $result['price']; ?></span></p></h1>
             <div class="product-detail-container08">
-              <a href="payment.html" class="product-detail-navlink button">
+              <a href="payment.php" class="product-detail-navlink button">
                 <span>
                   <span>BUY NOW!</span>
                   <br />
                 </span>
               </a>
               <a
-                href="shopping-cart-page.html"
+                href="shopping-cart-page.php"
                 class="product-detail-navlink1 button"
               >
                 <span>
@@ -161,53 +185,29 @@
               </a>
             </div>
           </div>
+          <?php 
+      }
+      }?>
         </div>
         <div class="product-detail-container09">
+        
           <span class="product-detail-text12">Related Products</span>
+
           <div class="product-detail-container10">
-            <a href="product-detail.html" class="product-detail-navlink2">
+          <?php
+        $getTpd = $pd->getTrendingProduct();
+        if ($getTpd) {
+          while ($result = $getTpd->fetch_assoc()) {
+        ?>
+            <a href="product-detail.php" class="product-detail-navlink2">
               <div class="product-detail-container11">
-                <img
-                  alt="image"
-                  src="public/external/15%20promax-200w-700h.jpg"
-                  class="product-detail-image"
-                />
-                <span>iPhone 15 Pro Max</span>
+              <img alt="image" src="admin/<?php echo $result['image']; ?>" class="product-detail-image" />
+                <span><?php echo $result['productName']; ?></span>
               </div>
             </a>
-            <a href="product-detail.html" class="product-detail-navlink3">
-              <div class="product-detail-container12">
-                <img
-                  alt="image"
-                  src="public/external/15%20promax-200w-700h.jpg"
-                  class="product-detail-image1"
-                />
-                <span>
-                  <span>iPhone 15 Pro</span>
-                  <br />
-                </span>
-              </div>
-            </a>
-            <a href="product-detail.html" class="product-detail-navlink4">
-              <div class="product-detail-container13">
-                <img
-                  alt="image"
-                  src="public/15plus-200w.jpg"
-                  class="product-detail-image2"
-                />
-                <span>iPhone 15 Plus</span>
-              </div>
-            </a>
-            <a href="product-detail.html" class="product-detail-navlink5">
-              <div class="product-detail-container14">
-                <img
-                  alt="image"
-                  src="public/15-200w.jpg"
-                  class="product-detail-image3"
-                />
-                <span>iPhone 15</span>
-              </div>
-            </a>
+            <?php 
+        }
+        } ?>
           </div>
           <img
             alt="image"
@@ -221,8 +221,7 @@
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
     ></script>
-    </form>
-    <?php }} ?>  
+
   </body>
 </html>
 <?php include 'inc/footer.php'; ?>   
