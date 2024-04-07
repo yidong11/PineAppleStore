@@ -51,20 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])) {
               class="product-detail-slider swiper"
             >
               <div data-thq="slider-wrapper" class="swiper-wrapper">
-                <div
-                  data-thq="slider-slide"
-                  class="product-detail-slider-slide swiper-slide"
-                ></div>
+                
                 <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide swiper-slide" />
-                <div
-                  data-thq="slider-slide"
-                  class="product-detail-slider-slide1 swiper-slide"
-                ></div>
+
                 <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide1 swiper-slide" />
-                <div
-                  data-thq="slider-slide"
-                  class="product-detail-slider-slide2 swiper-slide"
-                ></div>
+              
                 <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide2 swiper-slide" />
               </div>
               <div
