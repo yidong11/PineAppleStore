@@ -45,7 +45,9 @@
               <span class="homepage-text10">HKD<?php echo $result['price']; ?></span>
             </div>
             <div class="homepage-btn-group1">
-              <button class="button">Explore the collection</button>
+            <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                <button class="button">Explore the collection</button>
+            </a>
             </div>
           </div>
           <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="homepage-image1" />
@@ -64,7 +66,9 @@
               <span class="homepage-text13">HKD<?php echo $result['price']; ?></span>
             </div>
             <div class="homepage-btn-group2">
-              <button class="button">Explore the collection</button>
+            <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                <button class="button">Explore the collection</button>
+            </a>
             </div>
           </div>
           <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="homepage-image2" />
@@ -83,7 +87,9 @@
               <span class="homepage-text16">HKD<?php echo $result['price']; ?></span>
             </div>
             <div class="homepage-btn-group3">
-              <button class="button">Explore the collection</button>
+            <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                <button class="button">Explore the collection</button>
+            </a>
             </div>
           </div>
           <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="homepage-image3" />
@@ -102,7 +108,9 @@
               <span class="homepage-text19">HKD<?php echo $result['price']; ?></span>
             </div>
             <div class="homepage-btn-group4">
-              <button class="button">Explore the collection</button>
+            <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                <button class="button">Explore the collection</button>
+            </a>
             </div>
           </div>
           <img alt="image23271449" src="admin/<?php echo $result['image']; ?>" class="homepage-image4" />
@@ -159,7 +167,11 @@
             <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
             <div class="item-card-container">
               <h3 class="item-card-text">
-                <span><?php echo $result['productName']; ?></span>
+                <span>
+                <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                  <?php echo $result['productName']; ?>
+                </a>
+                </span>
               </h3>
               <div class="item-card-container1">
                 <svg viewBox="0 0 1024 1024" class="item-card-icon">
@@ -192,7 +204,11 @@
                 <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
                 <div class="item-card-container">
                   <h3 class="item-card-text">
-                    <span><?php echo $result['productName']; ?></span>
+                  <span>
+                  <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                    <?php echo $result['productName']; ?>
+                  </a>
+                  </span>
                   </h3>
                   <div class="item-card-container1">
                     <svg viewBox="0 0 1024 1024" class="item-card-icon">
@@ -227,7 +243,11 @@
                 <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
                 <div class="item-card-container">
                   <h3 class="item-card-text">
-                    <span><?php echo $result['productName']; ?></span>
+                  <span>
+                  <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                    <?php echo $result['productName']; ?>
+                  </a>
+                  </span>
                   </h3>
                   <div class="item-card-container1">
                     <svg viewBox="0 0 1024 1024" class="item-card-icon">
@@ -254,6 +274,7 @@
               </div>
             </div>
           </div>
+
           <div class="homepage-bottom">
             <?php
             }elseif($counter1 == 4){
@@ -262,7 +283,13 @@
               <div class="item-card-gallery-card item-card-root-class-name1">
                 <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
                 <div class="item-card-container">
-                  <h3 class="item-card-text"><span><?php echo $result['productName']; ?></span></h3>
+                  <h3 class="item-card-text">
+                  <span>
+                  <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                    <?php echo $result['productName']; ?>
+                  </a>
+                  </span>
+                  </h3>
                   <div class="item-card-container1">
                     <svg viewBox="0 0 1024 1024" class="item-card-icon">
                       <path d="M512 736l-264 160 70-300-232-202 306-26 120-282 120 282 306 26-232 202 70 300z"></path>
@@ -296,7 +323,11 @@
                 <img alt="image" src="admin/<?php echo $result['image']; ?>" class="item-card-image" />
                 <div class="item-card-container">
                   <h3 class="item-card-text">
-                    <span><?php echo $result['productName']; ?></span>
+                  <span>
+                  <a href="product-detail.php?proid=<?php echo $result['productId']; ?>">
+                    <?php echo $result['productName']; ?>
+                  </a>
+                  </span>
                   </h3>
                   <div class="item-card-container1">
                     <svg viewBox="0 0 1024 1024" class="item-card-icon">
