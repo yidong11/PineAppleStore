@@ -21,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     if ($_POST['submit'] == 'buy_now' && $addCart == 'Product added to cart!') {
         header("Location: shopping-cart-page.php");
     }
+    else {
+        echo "<meta http-equiv = 'refresh' content ='0;URL=?proid=$id' />";
+    }
 }
 ?>
 
@@ -140,7 +143,7 @@ if ($getPd) {
                 </button>
                 <button type="submit" name="submit" value="add_cart" class="product-detail-navlink1 button">
                     <span>
-                        <span>ADD TO CHART</span><br />
+                        <span>ADD TO CART</span><br />
                     </span>
                 </button>
             </div>
@@ -151,20 +154,38 @@ if ($getPd) {
 </div>
 
 
-<?php } } ?>
+
+
+<!-- Product Info -->
+<div class="product-detail-container09">
+    <span class="product-detail-text12">Product Details</span>
+
+    <div class="product-detail-container10" style="width: 80%;">
+        <span class="product-detail-text01"><?php echo $result['body']; ?></span>
+    </div>
+</div>
 
 
 <div class="product-detail-container09"><span class="product-detail-text12">Related Products</span>
-    <div class="product-detail-container10"><a href="product-detail.html" class="product-detail-navlink2">
+    <div class="product-detail-container10">
+        <a href="product-detail.html" class="product-detail-navlink2">
             <div class="product-detail-container11"><img alt="image" src="public/external/15%20promax-200w-700h.jpg" class="product-detail-image" /><span>iPhone 15 Pro Max </span></div>
-        </a><a href="product-detail.html" class="product-detail-navlink3">
+        </a>
+        <a href="product-detail.html" class="product-detail-navlink3">
             <div class="product-detail-container12"><img alt="image" src="public/external/15%20promax-200w-700h.jpg" class="product-detail-image1" /><span><span>iPhone 15 Pro</span><br /></span></div>
-        </a><a href="product-detail.html" class="product-detail-navlink4">
+        </a>
+        <a href="product-detail.html" class="product-detail-navlink4">
             <div class="product-detail-container13"><img alt="image" src="public/15plus-200w.jpg" class="product-detail-image2" /><span>iPhone 15 Plus</span></div>
-        </a><a href="product-detail.html" class="product-detail-navlink5">
+        </a>
+        <a href="product-detail.html" class="product-detail-navlink5">
             <div class="product-detail-container14"><img alt="image" src="public/15-200w.jpg" class="product-detail-image3" /><span>iPhone 15</span></div>
-        </a></div><img alt="image" src="public/Pineapple Icons/pro1._cb585551876_-1500w.jpg" class="product-detail-image4" />
+        </a>
+    
 </div>
+
+
+
+<?php } } ?>
 
 
 
