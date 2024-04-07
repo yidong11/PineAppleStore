@@ -115,6 +115,7 @@
   color: var(--dl-color-gray-black60);
   text-align: center;
   line-height: 24px;
+  font-size: 20px;
 }
 
 
@@ -553,6 +554,15 @@
 .homepage-text05 {
   max-width: 450px;
   margin-bottom: var(--dl-space-space-threeunits);
+}
+.homepage-dytext01 {
+  font-size: 40px;
+  font-family: Jost;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 .homepage-container04 {
   display: flex;

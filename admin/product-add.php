@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
       
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Price</span>
-        <input type="text" placeholder="Enter price" name="price" class="add_product_textinput" />
+        <input type="text" placeholder="Enter price" name="price" class="add_product_textinput" style="width: 200px;" />
       </div>
 
 

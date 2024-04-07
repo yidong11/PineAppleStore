@@ -85,7 +85,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
       <div class="add_product_entry_container">
         <span class="add_product_entry_text">Price</span>
-        <input type="text" value="<?php echo $value['price'];?>" name="price" class="add_product_textinput" />
+        <input type="text" value="<?php echo $value['price'];?>" name="price" class="add_product_textinput" style="width: 200px;" />
+      </div>
+
+
+      <div class="add_product_entry_container">
+        <span class="add_product_entry_text">Rate</span>
+        <input type="text" value="<?php echo $value['rate'];?>" name="rate" class="add_product_textinput" style="width: 200px;" />
+      </div>
+
+
+      <div class="add_product_entry_container">
+        <span class="add_product_entry_text">Sales</span>
+        <input type="text" value="<?php echo $value['sales'];?>" name="sales" class="add_product_textinput" style="width: 200px;"/>
       </div>
 
 

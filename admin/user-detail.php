@@ -106,9 +106,7 @@ $fm = new Format();
       <?php
       $getOrder = $ct->getOrderedProduct($_GET['cmrid']);
       if ($getOrder) {
-        $i = 0;
         while ($result = $getOrder->fetch_assoc()) {
-          $i++;
       ?>
       <tr class="odd gradeX">
         <td><?php echo $result['id'];?></td>
