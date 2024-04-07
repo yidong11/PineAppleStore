@@ -192,6 +192,28 @@ public function addToCart($quantity, $id){
 			return $msg;
 		}
 	}
+	public function getOrderById($id){
+		$query = "SELECT * FROM tbl_order WHERE id = '$id'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function updateOrderStatus($id, $status){
+		$id = mysqli_real_escape_string($this->db->link, $id);
+		$status = mysqli_real_escape_string($this->db->link, $status);
+
+		$query = "UPDATE tbl_order
+		SET status ='$status'
+		WHERE id = '$id' ";
+
+		$updated_row = $this->db->update($query);
+		if ($updated_row) {
+			header("Location:order-list.php");
+		} else{
+			$msg = "<span class='error'>Not Updated !</span>";
+			return $msg;
+		}
+	}
 
 	public function productShifted($id){
 		$id = mysqli_real_escape_string($this->db->link, $id);
