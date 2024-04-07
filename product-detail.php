@@ -1,4 +1,24 @@
 <?php include 'inc/header.php'; ?>
+<body
+    ><div
+      ><link href="./product-detail.css" rel="stylesheet" />
+      <?php 
+    		    $id = Session::get("cmrId");
+    		    $getdata = $cmr->getCustomerData($id);
+    		    if ($getdata) {
+    			    while ($result = $getdata->fetch_assoc()) {
+    		
+
+    		 ?>
+          <form action="" method="post">
+      <div
+        class="product-detail-container"
+        >
+        <?php 
+					      if (isset($updateCmr)) {
+					        echo "<tr><td colspan='2'>".$updateCmr."</td></tr>";
+					      }
+					    ?>
         <div class="product-detail-container01">
           <div class="product-detail-container02">
             <div
@@ -201,5 +221,8 @@
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
     ></script>
+    </form>
+    <?php }} ?>  
   </body>
 </html>
+<?php include 'inc/footer.php'; ?>   
