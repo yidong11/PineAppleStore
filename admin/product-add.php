@@ -7,7 +7,6 @@ ob_start();
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Product.php';?>
 <?php include '../classess/Category.php';?>
-<?php include '../classess/Brand.php';?>
 
 
 <?php
@@ -64,28 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
       <div class="add_product_entry_container">
-        <span class="add_product_entry_text">Brand</span>
-        <select name="brandId" id="select" class="add_product_select_box">
-          <option>Select Brand</option>
-          <?php
-            $brand = new Brand();
-            $getBrand = $brand->getAllBrand();
-            if ($getBrand) {
-                while ($result = $getBrand->fetch_assoc()) {
-          ?>
-          <option 
-            value="<?php echo $result['brandId']; ?>">
-            <?php echo $result['brandName']; ?>
-          </option>
-          <?php
-                }
-            }
-          ?>
-        </select>
-      </div>
-
-
-      <div class="add_product_entry_container">
         <span class="add_product_entry_text">Description</span>
         <textarea type="text" name="body" placeholder="Enter the text description" class="add_product_description"></textarea>
       </div>
@@ -102,15 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         <input type="file" name="image" />
       </div>
 
-
-      <div class="add_product_entry_container">
-        <span class="add_product_entry_text">Product Type</span>
-        <select name="type" id="select" class="add_product_select_box">
-          <option>Select Type</option>
-          <option value="0">Featured</option>
-          <option value="1">General</option>
-        </select>
-      </div>
     </div>
 
     <div class="add_product_button_container">

@@ -29,7 +29,12 @@ $cmr = new Customer();
     $cmrId = Session::get("cmrId");
     $insertOrder = $ct->orderProduct($cmrId);
     $delData = $ct->delCustomerCart();
-    header("Location:check-order.php");
+    if(!$insertOrder){
+      header("Location:storage.php");
+    }
+    else{
+      header("Location:check-order.php");
+    }
 }
   ?>
 <!DOCTYPE html>

@@ -112,6 +112,7 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 	}
 
 	public function orderProduct($cmrId){
+		$result = True;
 		$sId  = session_id();
 	    $query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
 		$getPro = $this->db->select($query);
@@ -123,13 +124,15 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 				$price = $result['price'] * $quantity;
 				$image = $result['image'];
 
-				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
-				$inserted_row = $this->db->insert($query);
-				$query = "SELECT * FROM tbl_product WHERE sId = '$productId'";
-				$getPro = $this->db->select($query);
-				if ($getPro) {
-					while ($result = $getPro->fetch_assoc()) {
+				$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
+				$getProd = $this->db->select($query);
+				if ($getProd) {
+					while ($result = $getProd->fetch_assoc()) {
 						$stock = $result['stock'] - $quantity;
+						if($stock < 0){
+							$result = False;
+							continue;
+						}
 						$query = "UPDATE tbl_product
 									SET	
 									stock = $stock
@@ -137,8 +140,13 @@ $msg = "<span class='error'>Product Not Deleted !</span>";
 						$inserted_row = $this->db->update($query);
 					}
 				}
+				if(!$result)
+					continue;
+				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
+				$inserted_row = $this->db->insert($query);
 			}
 		}
+		return $result;
 	}
 
 	public function payableAmount($cmrId){
