@@ -1,8 +1,8 @@
 <?php include 'inc/header.php';?>
 
 <script>
-function submitForm() {
-  document.getElementById("myForm").submit();
+function submitForm(formid) {
+  document.getElementById(formid).submit();
 }
 </script>
 
@@ -81,11 +81,10 @@ if (!isset($_GET['id'])) {
                     <div class="shopping-cart-item-container5">
                     <?php
                     $n = round($result['rate']);
-                    for ($i = 0; $i < $n; $i++) {
+                    for ($j = 0; $j < $n; $j++) {
                     ?>
                     
-                      <svg viewBox="0 0 950.8571428571428 1024"
-                        class="shopping-cart-item-icon">
+                      <svg viewBox="0 0 950.8571428571428 1024" class="shopping-cart-item-icon">
                         <path
                           d="M950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 14.857-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z">
                         </path>
@@ -95,7 +94,7 @@ if (!isset($_GET['id'])) {
                     ?>
                     <?php
                     $n = round($result['rate']);
-                    for ($i = 0; $i < (5 - $n); $i++) {
+                    for ($j = 0; $j < (5 - $n); $j++) {
                     ?>
                       <svg viewBox="0 0 950.8571428571428 1024" class="shopping-cart-item-icon08">
                         <path
@@ -105,19 +104,19 @@ if (!isset($_GET['id'])) {
                     <?php 
                       } 
                     ?>  
-          
+                  
                     </div>
                     <div class="shopping-cart-item-container6">
                       <div class="shopping-cart-item-container7"><span
                           class="shopping-cart-item-text1"><span>Quantity</span></span>
-                        <form id="myForm" class="shopping-cart-item-form" action="" method="post">
+                        <form id="myForm<?php echo $i;?>" class="shopping-cart-item-form" action="" method="post">
                           <input type="hidden" name="cartId" value="<?php echo $result['cartId']; ?>"/>
                           
                           <select 
                             autocomplete="off"
                             class="shopping-cart-item-select"
                             name="quantity"
-                            onchange="submitForm()"
+                            onchange="submitForm('myForm<?php echo $i;?>')"
                           >
                             <option value="1" <?php echo $result['quantity'] == 1 ? 'selected' : ''; ?>>1</option>
                             <option value="2" <?php echo $result['quantity'] == 2 ? 'selected' : ''; ?>>2</option>

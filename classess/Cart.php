@@ -39,7 +39,7 @@ private $fm;
 		$productName = $result['productName'];
 		$price = $result['price'];
 		$image = $result['image'];
-
+		$rate = $result['rate'];
 
 		$chquery = "SELECT * FROM tbl_cart WHERE productId = '$productId' AND sId='$sId'";
 		$getPro = $this->db->select($chquery);
@@ -47,7 +47,7 @@ private $fm;
 			$msg = "Product already added!";
 			return $msg;
 		} else {
-    		$query = "INSERT INTO tbl_cart(sId,productId,productName,price,quantity,image) VALUES('$sId','$productId','$productName','$price','$quantity','$image') ";
+    		$query = "INSERT INTO tbl_cart(sId,productId,productName,price,quantity,image,rate) VALUES('$sId','$productId','$productName','$price','$quantity','$image','$rate') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				$msg = "Product added to cart!";
