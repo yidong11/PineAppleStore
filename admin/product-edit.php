@@ -7,7 +7,6 @@ ob_start();
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Product.php';?>
 <?php include '../classess/Category.php';?>
-<?php include '../classess/Brand.php';?>
 
 
 <?php

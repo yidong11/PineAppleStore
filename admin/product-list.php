@@ -17,7 +17,6 @@ if (isset($_GET['delpro'])) {
 ?>
 
 
-
 <div
   id="user_info_content"
   class="admin-page-main-container2 column"
