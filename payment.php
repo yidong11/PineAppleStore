@@ -161,7 +161,7 @@ $cmr = new Customer();
                   <td><?php echo $result['productName'] ;?></td>
                   <td>HKD <?php echo $result['price'] ;?></td>
                   <td><?php echo $result['quantity'] ;?></td>
-                  <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
+                  <td><img src="admin/<?php echo $result['image'] ;?>" height="50px"></td>
                   <td>HKD <?php
                       $total = $result['price'] * $result['quantity'];
                       echo $total;?>
