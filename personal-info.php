@@ -38,7 +38,7 @@
                     <span>Login &amp; Security</span>
                   </span>
                   <span class="personal-info-options-text1">
-                    <span>Edit login, name, and mobile number</span>
+                    <span>Edit name, Email or password</span>
                   </span>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                     <span>Your Address</span>
                   </span>
                   <span class="personal-info-options-text1">
-                    <span>Edit, remove or set default address</span>
+                    <span>Edit or view your address</span>
                   </span>
                 </div>
               </div>
@@ -81,8 +81,7 @@
                   </span>
                   <span class="personal-info-options-text1">
                     <span>
-                      Track, return, cancel an order,download invoice or buy
-                      again
+                      Track your order and rate finished orders
                     </span>
                   </span>
                 </div>
