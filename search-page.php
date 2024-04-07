@@ -21,6 +21,14 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: max-age=2592000");
 ?>
 
+<?php 
+if (isset($_GET['cid'])) {
+  $cmrId = Session::get("cmrId");
+  $delData = $ct->delCustomerCart();
+  $delComp = $pd->delCompareData($cmrId);
+  Session::destroy();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,9 +118,9 @@ header("Cache-Control: max-age=2592000");
 
               <!-- Shopping cart icon -->
               <a 
-			  	href="<?php echo $cart_icon_link; ?>" 
-				class="homepage-navlink1 button"
-			  >
+                href="<?php echo $cart_icon_link; ?>" 
+                class="homepage-navlink1 button"
+			        >
                 <svg viewBox="0 0 1024 1024" class="homepage-icon02">
                   <path
                     d="M726 768q34 0 59 26t25 60-25 59-59 25-60-25-26-59 26-60 60-26zM42 86h140l40 84h632q18 0 30 13t12 31q0 2-6 20l-152 276q-24 44-74 44h-318l-38 70-2 6q0 10 10 10h494v86h-512q-34 0-59-26t-25-60q0-20 10-40l58-106-154-324h-86v-84zM298 768q34 0 60 26t26 60-26 59-60 25-59-25-25-59 25-60 59-26z"
@@ -122,7 +130,7 @@ header("Cache-Control: max-age=2592000");
 
 
               <!-- Show shopping cart info -->
-              <span class="homepage-text">
+              <span class="homepage-text" style="width: auto;">
                 <?php 
                 if ($login == false){
                   echo "Need Login";
@@ -138,17 +146,7 @@ header("Cache-Control: max-age=2592000");
                 }
                 ?>
               </span>
-              
-              <?php 
-              if (isset($_GET['cid'])) {
-                $cmrId = Session::get("cmrId");
-                $delData = $ct->delCustomerCart();
-                $delComp = $pd->delCompareData($cmrId);
-                Session::destroy();
-              }
-              ?>
-
-
+            
 
               <div
                 data-thq="thq-dropdown"
@@ -179,7 +177,7 @@ header("Cache-Control: max-age=2592000");
                       data-thq="thq-dropdown"
                       class="homepage-dropdown list-item"
                     >
-                      <a href="personal-info.html">
+                      <a href="personal-info.php">
                         <div
                           data-thq="thq-dropdown-toggle"
                           class="homepage-dropdown-toggle1"
@@ -211,7 +209,7 @@ header("Cache-Control: max-age=2592000");
                       data-thq="thq-dropdown"
                       class="homepage-dropdown1 list-item"
                     >
-                      <a href="login.html">
+                      <a href="login.php">
                         <div
                           data-thq="thq-dropdown-toggle"
                           class="homepage-dropdown-toggle2"
@@ -407,35 +405,27 @@ header("Cache-Control: max-age=2592000");
                   </div>
                   <div class="search-page-item-container4">
                     <div class="search-page-item-container5">
+                    <?php
+                    $n = round($result['rate']);
+                    for ($i = 0; $i < $n; $i++) {
+                    ?>
                       <svg
                         viewBox="0 0 950.8571428571428 1024"
                         class="search-page-item-icon"
                       >
                         <path
                           d="M950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 14.857-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z"
-                        ></path></svg
-                      ><svg
-                        viewBox="0 0 950.8571428571428 1024"
-                        class="search-page-item-icon02"
-                      >
-                        <path
-                          d="M950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 14.857-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z"
-                        ></path></svg
-                      ><svg
-                        viewBox="0 0 950.8571428571428 1024"
-                        class="search-page-item-icon04"
-                      >
-                        <path
-                          d="M950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 14.857-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z"
-                        ></path></svg
-                      ><svg
-                        viewBox="0 0 950.8571428571428 1024"
-                        class="search-page-item-icon06"
-                      >
-                        <path
-                          d="M950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 14.857-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z"
-                        ></path></svg
-                      ><svg
+                        ></path>
+                      </svg>
+                      
+                    <?php 
+                      } 
+                    ?>
+                    <?php
+                    $n = round($result['rate']);
+                    for ($i = 0; $i < (5 - $n); $i++) {
+                    ?>  
+                      <svg
                         viewBox="0 0 950.8571428571428 1024"
                         class="search-page-item-icon08"
                       >
@@ -443,8 +433,22 @@ header("Cache-Control: max-age=2592000");
                           d="M649.714 573.714l174.857-169.714-241.143-35.429-108-218.286-108 218.286-241.143 35.429 174.857 169.714-41.714 240.571 216-113.714 215.429 113.714zM950.857 369.714c0 10.286-7.429 20-14.857 27.429l-207.429 202.286 49.143 285.714c0.571 4 0.571 7.429 0.571 11.429 0 15.429-6.857 28.571-23.429 28.571-8 0-16-2.857-22.857-6.857l-256.571-134.857-256.571 134.857c-7.429 4-14.857 6.857-22.857 6.857-16.571 0-24-13.714-24-28.571 0-4 0.571-7.429 1.143-11.429l49.143-285.714-208-202.286c-6.857-7.429-14.286-17.143-14.286-27.429 0-17.143 17.714-24 32-26.286l286.857-41.714 128.571-260c5.143-10.857 14.857-23.429 28-23.429s22.857 12.571 28 23.429l128.571 260 286.857 41.714c13.714 2.286 32 9.143 32 26.286z"
                         ></path>
                       </svg>
+
+                    <?php 
+                      } 
+                    ?>
+                    <span class="search-page-item-ratetext">
+                      <span>(<?php echo round($result['rate'], 1); ?>)</span>
+                    </span>
+
                     </div>
                   </div>
+                  <div class="search-page-item-container7">
+                    <span class="search-page-item-text2">
+                      <span>Total sales: <?php echo $result['sales']; ?></span>
+                    </span>
+                  </div>
+
                   <div class="search-page-item-container6">
                     <span class="search-page-item-text1">
                       <span>HKD <?php echo $result['price']; ?></span>

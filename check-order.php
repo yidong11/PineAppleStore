@@ -55,18 +55,6 @@
             </a>
           </div>
           <div class="check-order-container04">
-            <div class="check-order-container05">
-              <label class="check-order-text3">1 order</label>
-              <span class="check-order-text4">placed in</span>
-              <select size="1" class="check-order-select">
-                <option value="Option 3">all the time</option>
-                <option value="Option 1">past a week</option>
-                <option value="Option 1">past a month</option>
-                <option value="Option 1">past three months</option>
-                <option value="Option 2">past six months</option>
-                <option value="Option 2">past a year</option>
-              </select>
-            </div>
             <div class="check-order-container06">
               <table class="data display datatable" id="example" style="width: 1200px;">
     
@@ -86,6 +74,7 @@
 
                   <?php
                     $cmrId = Session::get("cmrId");
+                    $qty = 0;
                     $getPd = $ct->getOrderedProduct($cmrId);
                     if ($getPd) {
                       $i = 0;
@@ -93,6 +82,7 @@
                       $qty = 0;
                       while ($result = $getPd->fetch_assoc()) {
                         $i++;
+                        $qty++;
                   ?>
                   <tr class="odd gradeX">
                     <form action="" method="post">
@@ -128,6 +118,18 @@
                   <?php } } ?>
                 </tbody>
 	            </table>
+            </div>
+            <div class="check-order-container05">
+              <label class="check-order-text3"><?php echo $qty;?> Order</label>
+              <!--<span class="check-order-text4">placed in</span>
+              <select size="1" class="check-order-select">
+                <option value="Option 3">all the time</option>
+                <option value="Option 1">past a week</option>
+                <option value="Option 1">past a month</option>
+                <option value="Option 1">past three months</option>
+                <option value="Option 2">past six months</option>
+                <option value="Option 2">past a year</option>
+              </select>-->
             </div>
 
     <script type="text/javascript">

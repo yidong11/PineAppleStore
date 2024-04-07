@@ -125,6 +125,10 @@ if (isset($_GET['cid'])) {
                   autocomplete="off"
                   class="homepage-textinput input"
                 />
+                <input type="hidden" name="sort" value="1"/>
+                <input type="hidden" name="category" value="0"/>
+                <input type="hidden" name="min" value="0"/>
+                <input type="hidden" name="max" value="200000"/>
                 <button type="submit" name="submit" class="homepage-button button">
                   <svg viewBox="0 0 1024 1024" class="homepage-icon">
                     <path
@@ -205,7 +209,7 @@ if (isset($_GET['cid'])) {
                       data-thq="thq-dropdown"
                       class="homepage-dropdown list-item"
                     >
-                      <a href="personal-info.html">
+                      <a href="personal-info.php">
                         <div
                           data-thq="thq-dropdown-toggle"
                           class="homepage-dropdown-toggle1"
