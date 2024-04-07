@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   <div>
     <link href="./edit-name.css" rel="stylesheet" />
     <div class="edit-name-container">
-      <header data-role="Header" class="admin-page-header2-header max-width-container">
+      <div data-role="Header" class="admin-page-header2-header max-width-container">
         <div class="admin-page-header2-navbar"><a href="index.php" class="admin-page-header2-navlink">
             <div class="logo-container navbar-logo-title logo-root-class-name4"><span class="logo-logo-center Logo navbar-logo-title"><span>PineApple</span></span><img alt="image" src="public/Pineapple Icons/logo_no_bg_2-200h.png" class="logo-image" /></div>
           </a><a href="edit-name.php" class="admin-page-header2-navlink1 navbar-link"><span>PineApple - Editname</span><br /></a>
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             </div>
           </div>
         </div>
-      </header>
+  </div>
 
       <span class="edit-name-text">New Name</span><span class="edit-name-text01"><span>If you want to change the name associated with your Amazon customer
           account, </span><br /><span>you may do so below. Be sure to click the Save Changes button when
@@ -202,9 +202,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               <?php
               if (isset($updateCmr)) {
                 echo "<tr><td colspan='2'>" . $updateCmr . "</td></tr>";
-                header("Location:login-security.php");
-              }
-              ?>
+                $url = "login-and-security.php";
+                echo "<SCRIPT LANGUAGE='javascript'>"; 
+                echo "location.href='$url'"; 
+                echo "</SCRIPT>"; 
+              }?>
               <form action=""  method="post">
               <input name="name" type="text" placeholder="<?php echo $result['name']; ?>" value="<?php echo $result['name']; ?>" class="edit-name-textinput input" />
               <input type="submit" name="submit" value="Save" class="edit-name-navlink button">
