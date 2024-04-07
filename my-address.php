@@ -6,10 +6,10 @@
         ><span class="my-address-text05"
           ><span>&gt;&nbsp; &nbsp; </span
           ><span class="my-address-text07">Your Addresses</span></span
-        ><a href="personal-info.html" class="my-address-navlink3"
+        ><a href="personal-info.php" class="my-address-navlink3"
           >Your Account </a
         ><h1 class="my-address-text08">Your Addresses</h1
-        ><a href="change-address1.html" class="my-address-navlink4 button"
+        ><a href="change-address1.php" class="my-address-navlink4 button"
           >Add New Address</a
         >
         <?php 
