@@ -158,7 +158,7 @@ if (isset($_GET['cid'])) {
 
 
               <!-- Show shopping cart info -->
-              <span class="homepage-text">
+              <span class="homepage-text" style="width: auto;">
                 <?php 
                 if ($login == false){
                   echo "Need Login";

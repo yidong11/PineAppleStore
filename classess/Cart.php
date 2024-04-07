@@ -76,7 +76,7 @@ public function getCartProduct(){
 
 	$updated_row = $this->db->update($query);
 	if ($updated_row) {
-		header("Location:cart.php");
+		echo "<script>window.location = 'shopping-cart-page.php';</script>";
 	} else{
 			$msg = "<span class='error'>Quantity Not Updated !</span>";
 				return $msg;
@@ -90,7 +90,7 @@ public function getCartProduct(){
 	$query = "DELETE FROM tbl_cart WHERE cartId = '$delId'";
 	$deldata = $this->db->delete($query);
 	if ($deldata) {
-		echo "<script>window.location = 'cart.php';</script>";
+		echo "<script>window.location = 'shopping-cart-page.php';</script>";
 	}else{
 $msg = "<span class='error'>Product Not Deleted !</span>";
 				return $msg;
