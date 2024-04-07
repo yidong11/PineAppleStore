@@ -20,8 +20,8 @@
     <script src="js/setup.js" type="text/javascript"></script>
 	  <script type="text/javascript">
         $(document).ready(function () {
-            setupLeftMenu();
-		    setSidebarHeight();
+          setupLeftMenu();
+		      setSidebarHeight();
         });
     </script>
 <?php include_once './helpers/Formate.php';?>
