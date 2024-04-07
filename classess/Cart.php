@@ -117,7 +117,7 @@ private $fm;
 	}
 
 	public function orderProduct($cmrId){
-		$result = True;
+		$bool = True;
 		$sId  = session_id();
 	    $query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
 		$getPro = $this->db->select($query);
@@ -135,7 +135,7 @@ private $fm;
 					while ($result = $getProd->fetch_assoc()) {
 						$stock = $result['stock'] - $quantity;
 						if($stock < 0){
-							$result = False;
+							$bool = False;
 							continue;
 						}
 						$query = "UPDATE tbl_product
@@ -145,13 +145,13 @@ private $fm;
 						$inserted_row = $this->db->update($query);
 					}
 				}
-				if(!$result)
+				if(!$bool)
 					continue;
 				$query = "INSERT INTO tbl_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
 				$inserted_row = $this->db->insert($query);
 			}
 		}
-		return $result;
+		return $bool;
 	}
 
 	public function payableAmount($cmrId){

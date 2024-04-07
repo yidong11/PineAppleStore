@@ -393,20 +393,17 @@
 .product-detail-slider-slide {
   display: flex;
   background-size: contain;
-  background-image: url("public/external/15%20promax-200w-700h.jpg");
   background-repeat: no-repeat;
   background-position: top left;
 }
 .product-detail-slider-slide1 {
   display: flex;
   background-size: contain;
-  background-image: url("public/Pineapple Icons/titanmin-blue-700h.jpg");
   background-repeat: no-repeat;
 }
 .product-detail-slider-slide2 {
   display: flex;
   background-size: contain;
-  background-image: url("public/Pineapple Icons/white-titamin-700h.jpg");
   background-repeat: no-repeat;
 }
 .product-detail-slider-pagination {
