@@ -161,7 +161,7 @@
         ?>
 
             <?php
-            if ($counter1 == 1) {
+            if ($counter1 == 1):
             ?>
               <div class="homepage-left">
                 <div class="item-card-gallery-card item-card-root-class-name4">
@@ -196,7 +196,7 @@
               </div>
 
             <?php
-            } elseif ($counter1 == 2) {
+            elseif ($counter1 == 2):
             ?>
               <div class="homepage-right">
                 <div class="homepage-top">
@@ -237,7 +237,7 @@
                   </div>
 
                 <?php
-              } elseif ($counter1 == 3) {
+              elseif ($counter1 == 3):
                 ?>
                   <div class="homepage-right1">
                     <div class="item-card-gallery-card item-card-root-class-name3">
@@ -278,7 +278,7 @@
 
                 <div class="homepage-bottom">
                 <?php
-              } elseif ($counter1 == 4) {
+              elseif ($counter1 == 4):
                 ?>
                   <div class="homepage-left2">
                     <div class="item-card-gallery-card item-card-root-class-name1">
@@ -317,7 +317,7 @@
                   </div>
 
                 <?php
-              } elseif ($counter1 == 5) {
+              elseif ($counter1 == 5):
                 ?>
                   <div class="homepage-right2">
                     <div class="item-card-gallery-card item-card-root-class-name6">
@@ -355,7 +355,7 @@
                     </div>
                   </div>
                 <?php
-              }
+              endif;
                 ?>
                 </div>
               </div>
