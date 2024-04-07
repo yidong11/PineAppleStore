@@ -181,6 +181,7 @@ if ($getPd) {
             <div class="product-detail-container14"><img alt="image" src="public/15-200w.jpg" class="product-detail-image3" /><span>iPhone 15</span></div>
         </a>
     
+    </div>
 </div>
 
 
