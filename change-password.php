@@ -172,12 +172,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
           <input name="pass" type="text" class="change-password-textinput input" />
           <input type="submit" name="submit" value="Save" class="change-password-navlink2 button">
           </form>
-          <?php }} ?>
+         
           <a
             href="login-and-security.php"
             class="change-password-navlink2 button"
             >Confirm</a
-          ></div
+          ></div>
+          <?php }} ?>
         ></div
       ></div
     >
