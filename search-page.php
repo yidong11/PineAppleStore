@@ -388,7 +388,7 @@ if (isset($_GET['cid'])) {
       
               <a
                 class="search-page-item-container"
-                href="details.php?proid=<?php echo $result['productId']; ?>"
+                href="product-detail.php?proid=<?php echo $result['productId']; ?>"
               >
                 <div class="search-page-item-container1">
                   <img
