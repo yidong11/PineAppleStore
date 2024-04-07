@@ -121,7 +121,7 @@ if (isset($_GET['cid'])) {
                   type="text"
                   id="Search bar"
                   name="search"
-                  placeholder="Search for products"
+                  placeholder="Keywords or Product ID"
                   autocomplete="off"
                   class="homepage-textinput input"
                 />
