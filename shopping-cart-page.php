@@ -160,7 +160,7 @@ if (!isset($_GET['id'])) {
         ?>
         <div class="shopping-cart-page-container4">
           <div class="shopping-cart-page-container5"><span class="shopping-cart-page-text6">Subtotal (<?php echo $qty; ?> items): HKD
-          <?php echo $sum; ?>&nbsp;</span><a href="payment.html" class="shopping-cart-page-navlink4 button">Proceed to
+          <?php echo $sum; ?>&nbsp;</span><a href="payment.php" class="shopping-cart-page-navlink4 button">Proceed to
               Checkout</a></div>
         </div>
         <?php }else{
