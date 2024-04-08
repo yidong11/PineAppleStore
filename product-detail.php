@@ -42,12 +42,17 @@ if ($getPd) {
 
     <!-- sliders -->
     <div class="product-detail-container02">
-        <div data-thq="slider" data-navigation="true" data-pagination="true" class="product-detail-slider swiper">
-            
+        <div data-thq="slider" data-navigation="true" data-pagination="true" class="product-detail-slider swiper" style="height: auto;">
             <div data-thq="slider-wrapper" class="swiper-wrapper">
-                <img src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide swiper-slide" />
-                <img src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide1 swiper-slide" />
-                <img src="admin/<?php echo $result['image']; ?>" class="product-detail-slider-slide2 swiper-slide" />
+                <div data-thq="slider-slide" class="product-detail-slider-slide swiper-slide">
+                    <img src="admin/<?php echo $result['image']; ?>" width="100%" />
+                </div>
+                <div data-thq="slider-slide" class="product-detail-slider-slide swiper-slide">
+                    <img src="admin/<?php echo $result['image']; ?>" width="100%" />
+                </div>
+                <div data-thq="slider-slide" class="product-detail-slider-slide swiper-slide">
+                    <img src="admin/<?php echo $result['image']; ?>" width="100%" />
+                </div>
             </div>
 
             <div data-thq="slider-pagination" class="product-detail-slider-pagination swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal">
@@ -66,6 +71,15 @@ if ($getPd) {
     <div class="product-detail-container03">
 
         <span class="product-detail-text"><?php echo $result['productName'];?> </span>
+
+
+        <div class="product-detail-container04">
+            <span class="product-detail-text01">Product ID: </span>
+            <div class="product-detail-container05">
+                <span class="product-detail-text02"><?php echo $result['productId']; ?></span>
+            </div>
+        </div>
+
 
         <div class="product-detail-container04">
             <span class="product-detail-text01">Ratings: </span>
@@ -168,19 +182,19 @@ if ($getPd) {
 
 <div class="product-detail-container09"><span class="product-detail-text12">Related Products</span>
     <div class="product-detail-container10">
-        <a href="product-detail.html" class="product-detail-navlink2">
-            <div class="product-detail-container11"><img alt="image" src="public/external/15%20promax-200w-700h.jpg" class="product-detail-image" /><span>iPhone 15 Pro Max </span></div>
+
+        <?php
+        $getRelated = $pd->getRelatedProduct($id, $result['catId']);
+        if ($getRelated) {
+            while ($relatedItem = $getRelated->fetch_assoc()) {
+        ?>
+        <a href="?proid=<?php echo $relatedItem['productId']; ?>" class="product-detail-navlink2">
+            <div class="product-detail-container11">
+                <img alt="image" src="admin/<?php echo $relatedItem['image']; ?>" class="product-detail-image" />
+                <span><?php echo $relatedItem['productName']; ?></span>
+            </div>
         </a>
-        <a href="product-detail.html" class="product-detail-navlink3">
-            <div class="product-detail-container12"><img alt="image" src="public/external/15%20promax-200w-700h.jpg" class="product-detail-image1" /><span><span>iPhone 15 Pro</span><br /></span></div>
-        </a>
-        <a href="product-detail.html" class="product-detail-navlink4">
-            <div class="product-detail-container13"><img alt="image" src="public/15plus-200w.jpg" class="product-detail-image2" /><span>iPhone 15 Plus</span></div>
-        </a>
-        <a href="product-detail.html" class="product-detail-navlink5">
-            <div class="product-detail-container14"><img alt="image" src="public/15-200w.jpg" class="product-detail-image3" /><span>iPhone 15</span></div>
-        </a>
-    
+        <?php } } ?>
     </div>
 </div>
 

@@ -34,15 +34,16 @@ if (isset($_GET['delpro'])) {
     
     <thead>
       <tr>
-        <th>Product ID</th>
+        <th style="width: 8%;">Product ID</th>
         <th>Product Name</th>
         <th>Category</th>
         <th>Description</th>
-        <th>Price</th>
+        <th style="width: 10%;">Price</th>
         <th>Image</th>
         <th>Rate</th>
         <th>Sales</th>
-        <th>Action</th>
+        <th>Stock</th>
+        <th style="width: 8%;">Action</th>
       </tr>
     </thead>
 
@@ -59,14 +60,14 @@ if (isset($_GET['delpro'])) {
         <td><?php echo $result['productId'];?></td>
         <td><?php echo $result['productName'] ;?></td>
         <td><?php echo $result['catName'] ;?></td>
-        <td><?php echo $fm->textShorten($result['body'],50) ;?></td>
+        <td><?php echo $fm->textShorten($result['body'],40) ;?></td>
         <td>HKD <?php echo $result['price'] ;?></td>
         <td><img src="<?php echo $result['image'] ;?>" height="50px"></td>
         <td><?php echo $result['rate'] ;?></td>
         <td><?php echo $result['sales'] ;?></td>
+        <td><?php echo $result['stock'] ;?></td>
         <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
       </tr>
-
       <?php } } ?>
       
     </tbody>
