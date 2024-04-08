@@ -117,7 +117,7 @@
                                   <option type = "int" value= 1>1</option>
                                 </select>
                                 <img src="./images/star.png" height="20px">
-                                <input type="submit" name="submit" value="&nbsp; Rate" class="navlink navbar-link">
+                                <input type="submit" name="submit" value="Rate" class="navlink navbar-link">
                               </div>
                         <?php }?>
                       </td>
