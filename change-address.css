@@ -360,3 +360,21 @@
   color: #00e6db;
   text-decoration: underline;
 }
+
+.change-address-navlink9 {
+  left: 400px;
+  color: var(--dl-color-gray-black);
+  width: 120px;
+  bottom: 327px;
+  height: 62px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around; 
+  font-size: 30px;
+  position: absolute;
+  border-radius: var(--dl-radius-radius-radius8);
+  text-decoration: none;
+  background-color: var(--dl-color-pallet-yellow);
+}
