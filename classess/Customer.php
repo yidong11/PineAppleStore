@@ -80,6 +80,7 @@ class Customer{
 		return $result;
 	}
 
+
 	public function getAllCustomer() {
 		$query = "SELECT * FROM tbl_customer ORDER BY id ASC";
 		$result = $this->db->select($query);
