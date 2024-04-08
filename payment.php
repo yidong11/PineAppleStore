@@ -107,7 +107,16 @@ $cmr = new Customer();
               $getdata = $cmr->getCustomerData($id);
               if ($getdata) {
                 while ($result = $getdata->fetch_assoc()) {
-
+                  $name = $result['name'];
+                  $address = $result['address'];
+                  $city = $result['city'];
+                  $zip = $result['zip'];
+                  $country = $result['country'];
+                  $phone = $result['phone'];
+                  $email = $result['email'];
+                  if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == ""){
+                    header("Location:add-address.php");
+                  }
             ?>
                 <h1 class="payment-text">1&nbsp; &nbsp; Shipping address</h1>
                 <ul class="payment-ul list">

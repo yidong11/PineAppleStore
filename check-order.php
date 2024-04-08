@@ -46,14 +46,14 @@
             <h1 class="check-order-text">Your orders</h1>
           </div>
           <div class="check-order-container03">
-            <a href="check-order.php" class="check-order-text1 navbar-link">Orders</a>
-            <a href="delivery.php"  class="check-order-navlink navbar-link">Delivery Order</a>
+            <a href="check-order.php" class="check-order-text1 navbar-link">All Orders</a>
+            <a href="delivery.php"  class="check-order-navlink navbar-link">Delivering Order</a>
             <a
               href="not-yet-dispatched.php"
               class="check-order-text2 navbar-link">
               Not yet dispatched
             </a>
-            <a href="delivered.php"  class="check-order-text9 navbar-link">Delivered Order</a>
+            <a href="delivered.php"  class="check-order-text9 navbar-link">Completed Order</a>
           </div>
           <div class="check-order-container04">
             <div class="check-order-container06">

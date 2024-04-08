@@ -26,6 +26,7 @@ class Product
 		$catId = $this->fm->validation($data['catId']);
 		$body = $this->fm->validation($data['body']);
 		$price = $this->fm->validation($data['price']);
+		$stock = $this->fm->validation($data['stock']);
 		$rate = 0.0;
 		$sales = 0;
 
@@ -33,8 +34,7 @@ class Product
 		$catId       = mysqli_real_escape_string($this->db->link, $data['catId']);
 		$body        = mysqli_real_escape_string($this->db->link, $data['body']);
 		$price       = mysqli_real_escape_string($this->db->link, $data['price']);
-
-
+		$stock       = mysqli_real_escape_string($this->db->link, $data['stock']);
 
 		$permited  = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $file['image']['name'];
@@ -46,18 +46,21 @@ class Product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
-		if ($productName == "" || $catId == ""  || $body == "" || $price == "" || $file_name == "") {
+		if ($productName == "" || $catId == ""  || $body == "" || $price == "" || $file_name == "" || $stock == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} elseif ($file_size > 1048567) {
-			echo "<span class='error'>Image Size should be less then 1MB!
-     		</span>";
+			$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
+			return $msg;
 		} elseif (in_array($file_ext, $permited) === false) {
-			echo "<span class='error'>You can upload only:-" . implode(', ', $permited) . "</span>";
+			$msg = "<span class='error'>You can upload only:-" . implode(', ', $permited) . "</span>";
+			return $msg;
+		} elseif ($stock <= 0){
+			$msg = "<span class='error'>Stock must be greater than 0</span>";
+			return $msg;
 		} else {
-
 			move_uploaded_file($file_temp, $uploaded_image);
-			$query = "INSERT INTO tbl_product(productName,catId,body,price,image,rate,sales) VALUES('$productName','$catId','$body','$price','$uploaded_image', '$rate', '$sales') ";
+			$query = "INSERT INTO tbl_product(productName,catId,body,price,image,rate,sales,stock) VALUES('$productName','$catId','$body','$price','$uploaded_image', '$rate', '$sales', '$stock') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				header("Location:product-list.php");
@@ -93,6 +96,7 @@ class Product
 		$price = $this->fm->validation($data['price']);
 		$rate = $this->fm->validation($data['rate']);
 		$sales = $this->fm->validation($data['sales']);
+		$stock = $this->fm->validation($data['stock']);
 
 		$productName = mysqli_real_escape_string($this->db->link, $data['productName']);
 		$catId       = mysqli_real_escape_string($this->db->link, $data['catId']);
@@ -100,6 +104,7 @@ class Product
 		$price       = mysqli_real_escape_string($this->db->link, $data['price']);
 		$rate        = mysqli_real_escape_string($this->db->link, $data['rate']);
 		$sales       = mysqli_real_escape_string($this->db->link, $data['sales']);
+		$stock       = mysqli_real_escape_string($this->db->link, $data['stock']);
 
 		$permited  = array('jpg', 'jpeg', 'png', 'gif');
 		$file_name = $file['image']['name'];
@@ -111,8 +116,11 @@ class Product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
-		if ($productName == "" || $catId == "" || $body == "" || $price == "" || $rate == "" || $sales == "") {
+		if ($productName == "" || $catId == "" || $body == "" || $price == "" || $rate == "" || $sales == "" || $stock == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
+			return $msg;
+		} elseif ($stock <=0) {
+			$msg = "<span class='error'>Stock must be greater than 0</span>";
 			return $msg;
 		} else {
 			if (!empty($file_name)) {
@@ -133,7 +141,8 @@ class Product
 					price       = '$price',
 					image       = '$uploaded_image',
 					rate        = '$rate',
-					sales       = '$sales'
+					sales       = '$sales',
+					stock       = '$stock'
 					WHERE productId = '$id'";
 
 					$updatedted_row = $this->db->update($query);
@@ -152,7 +161,8 @@ class Product
 				body        = '$body',
 				price       = '$price',
 				rate        = '$rate',
-				sales       = '$sales'
+				sales       = '$sales',
+				stock       = '$stock'
 				WHERE productId = '$id'";
 
 				$updatedted_row = $this->db->update($query);
@@ -299,7 +309,7 @@ class Product
 	}
 
 	public function getRelatedProduct($prodId, $catId) {
-		$query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY productId DESC LIMIT 4";
+		$query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
 		$result = $this->db->select($query);
 		return $result;
 	}

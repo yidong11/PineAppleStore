@@ -75,6 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
       <div class="add_product_entry_container">
+        <span class="add_product_entry_text">Stock</span>
+        <input type="text" placeholder="Enter stock" name="stock" class="add_product_textinput" style="width: 200px;" />
+      </div>
+
+
+      <div class="add_product_entry_container">
         <span class="add_product_entry_text">Upload Image</span>
         <input type="file" name="image" />
       </div>
