@@ -309,7 +309,7 @@ class Product
 	}
 
 	public function getRelatedProduct($prodId, $catId) {
-		$query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY productId DESC LIMIT 4";
+		$query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
 		$result = $this->db->select($query);
 		return $result;
 	}

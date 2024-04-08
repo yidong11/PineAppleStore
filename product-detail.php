@@ -116,29 +116,33 @@ if ($getPd) {
         
         <form class="product-detail-form" action="" method="post">
 
-            <div class="product-detail-container07">
+            <div class="product-detail-container04">
                 <span class="product-detail-text04">Quantity:</span>
-
-                <!-- if the quantity is 0 -->
-                <?php
-                $quant = $result['stock'];
-                if ($quant == 0) { ?>
-                    <select class="product-detail-select1" name="quantity" disabled>
-                        <option value="0">Sold Out</option>
-                    </select>
-                <?php } else { ?>
-                    <select autocomplete="off" class="product-detail-select1" name="quantity">
-                        <option value="1">1</option>
-                        <?php
-                        $upper_bound = 10;
-                        if ($quant < 10) {
-                            $upper_bound = $quant;
-                        }
-                        for ($i=2; $i <= $upper_bound; $i++) { ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                        <?php } ?> 
-                    </select>
-                <?php } ?>
+                
+                <div class="product-detail-container05">
+                    
+                    <!-- if the quantity is 0 -->
+                    <?php
+                    $quant = $result['stock'];
+                    if ($quant == 0) { ?>
+                        <select class="product-detail-select1" name="quantity" disabled>
+                            <option value="0">Sold Out</option>
+                        </select>
+                    <?php } else { ?>
+                        <select autocomplete="off" class="product-detail-select1" name="quantity">
+                            <option value="1">1</option>
+                            <?php
+                            $upper_bound = 10;
+                            if ($quant < 10) {
+                                $upper_bound = $quant;
+                            }
+                            for ($i=2; $i <= $upper_bound; $i++) { ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php } ?> 
+                        </select>
+                    <?php } ?>
+                    
+                </div>
             </div>
 
             <h1 class="product-detail-text05">HKD. <?php echo $result['price']; ?></h1>
