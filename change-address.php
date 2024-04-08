@@ -93,18 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
       <div class="change-address-container">
         <div class="change-address-container1">
           <div class="change-address-container2">
-            <div
-              class="logo-container navbar-logo-title logo-root-class-name13"
-            >
-              <span class="logo-logo-center Logo navbar-logo-title">
-                <span>PineApple</span>
-              </span>
-              <img
-                alt="image"
-                src="public/Pineapple Icons/logo_no_bg_2-200h.png"
-                class="logo-image"
-              />
-            </div>
+            <a href="index.php">
+              <div
+                class="logo-container navbar-logo-title logo-root-class-name13">
+                <span class="logo-logo-center Logo navbar-logo-title">
+                  <span>PineApple</span>
+                </span>
+                <img
+                  alt="image"
+                  src="public/Pineapple Icons/logo_no_bg_2-200h.png"
+                  class="logo-image"
+                />
+              </div>
+            </a>
             <h1>Checkout</h1>
           </div>
           <?php 
