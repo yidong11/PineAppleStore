@@ -34,7 +34,7 @@ if (isset($_GET['cid'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
   if ($_POST['pass'] != $_POST['confirm_pass']) {
-      echo "<span class='error'>Password and Confirm Password do not match!</span>";
+      $customerReg = "<span class='error'>Password and Confirm Password do not match!</span>";
   } else {
       $customerReg = $cmr->customerRegistration($_POST);
   }
@@ -183,13 +183,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 
     <div class="register-container">
       <div class="register-container1">
-      <?php
-      if (isset($customerReg)) {
-        echo $customerReg;
-      }
-      ?>
         <div class="register-container2">
           <span class="register-text">Registration</span>
+          <span>
+          <?php
+            if (isset($customerReg) && $customerReg == "<span class='success'>Customer Data inserted Successfully.</span>"){
+              header("Location:login.php");
+            }
+          ?>
+          <?php
+            if (isset($customerReg)) {
+              echo $customerReg;
+          }
+          ?>
+          </span>
           <form action="" method="post">
           <div class="register-container3">
             <input name="name" type="text" placeholder="Name" class="register-textinput input" />

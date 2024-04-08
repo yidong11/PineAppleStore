@@ -188,14 +188,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 
     <div class="login-container">
       <div class="login-container1">
-        <?php
-        if (isset($custLogin)) {
-          echo $custLogin;
-        }
-        ?>
-
         <div class="login-container2">
           <span class="login-text">Login</span>
+          <?php
+          if (isset($custLogin)) {
+            echo $custLogin;
+          }
+          ?>
           <form action="" method="post">
             <div class="login-container3">
               <input name="email" type="text" placeholder="Email" class="login-textinput input" />
