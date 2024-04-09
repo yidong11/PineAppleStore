@@ -143,7 +143,7 @@ if (!isset($_GET['id'])) {
 						                  ?>
                     </span>
                   </span>
-                    <a onclick="return confirm('Are you Sure to Delete!')" href="?delpro=<?php echo $result['cartId']; ?>">
+                    <a onclick="return confirm('Are You Sure to Delete?')" href="?delpro=<?php echo $result['cartId']; ?>">
                       <button type="button" class="shopping-cart-item-button button">
                         <span class="shopping-cart-item-text3"><span>Delete</span><br /></span>
                       </button>
@@ -169,9 +169,12 @@ if (!isset($_GET['id'])) {
           <?php echo $sum; ?>&nbsp;</span><a href="payment.php" class="shopping-cart-page-navlink4 button">Proceed to
               Checkout</a></div>
         </div>
-        <?php }else{
-          echo "Cart Empty ! Please Shop Now...";
-        } ?>
+
+        <?php }else{ ?>
+          <span style="font-size: 40px;">
+            Cart is Empty. Feel free to shop now
+          </span>
+        <?php } ?>
       </div>
     </div>
   </div>
