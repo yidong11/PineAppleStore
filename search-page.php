@@ -34,7 +34,7 @@ if (isset($_GET['cid'])) {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Homepage - PineApple</title>
+    <title>PineApple</title>
     <meta property="og:title" content="Homepage - PineApple" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
