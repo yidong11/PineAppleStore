@@ -146,7 +146,7 @@ $cmr = new Customer();
               3&nbsp; &nbsp; Review items and shipping
             </h1>
             <div class="payment-item">
-            <table class="data display datatable" id="example" style="width: 1200px;">
+            <table class="data display datatable" id="example" style="width: 1200px">
     
               <thead>
                 <tr>
@@ -170,7 +170,7 @@ $cmr = new Customer();
                     while ($result = $getPd->fetch_assoc()) {
                       $i++;
                 ?>
-                <tr class="odd gradeX">
+                <tr class="odd gradeX" style="margin:auto;text-align:center">
                   <td><?php echo $result['productId'];?></td>
                   <td><?php echo $result['productName'] ;?></td>
                   <td>HKD <?php echo $result['price'] ;?></td>

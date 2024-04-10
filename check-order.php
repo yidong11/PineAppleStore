@@ -1,4 +1,5 @@
 <?php include 'inc/header.php';?>
+
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->
     <!-- <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" /> -->
     <!-- <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" /> -->
@@ -57,7 +58,7 @@
           </div>
           <div class="check-order-container04">
             <div class="check-order-container06">
-              <table class="data display datatable" id="example" style="width: 1200px;">
+              <table class="data display datatable" id="example" style="width: 1200px">
     
                 <thead>
                   <tr>
@@ -85,7 +86,7 @@
                         $i++;
                         $qty++;
                   ?>
-                  <tr class="odd gradeX">
+                  <tr class="odd gradeX" style="margin:auto;text-align:center">
                     <form action="" method="post">
                       <td><input type = "hidden" name = "id" value = <?php echo $result['id'];?>><?php echo $result['id'];?></td>
                       <td><?php echo $result['productName'];?></td>
@@ -97,10 +98,10 @@
                       <td>
                         <?php 
                           if($result['status'] == 3){?>
-                            <div> Rated </div>
+                            <div>&nbsp;&nbsp;&nbsp; Rated </div>
                           <?php }
                           else if($result['status'] == 0){?>
-                            <div> Pending </div>
+                            <div>&nbsp;&nbsp;&nbsp; Pending </div>
                           <?php }
                           else if($result['status'] == 1){
                             ?>
