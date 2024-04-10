@@ -106,6 +106,14 @@ if ($getPd) {
 
 
         <div class="product-detail-container04">
+            <span class="product-detail-text01">Sales: </span>
+            <div class="product-detail-container05">
+                <span class="product-detail-text02"><?php echo $result['sales']; ?></span>
+            </div>
+        </div>
+
+
+        <div class="product-detail-container04">
             <span class="product-detail-text01">Stock: </span>
             <div class="product-detail-container05">
                 <span class="product-detail-text02"><?php echo $result['stock']; ?></span>
@@ -147,7 +155,7 @@ if ($getPd) {
 
             <h1 class="product-detail-text05">HKD. <?php echo $result['price']; ?></h1>
 
-            <?php if (isset($addCart)) { ?>
+            <?php if (isset($addCart) && $addCart != "Product added to cart!") { ?>
             <div class="product-detail-container04" style="margin-bottom: -40px; margin-top: 15px; height: 25px; margin-left: 150px">
                 <span class="product-detail-text01"><?php echo $addCart; ?></span>
             </div>

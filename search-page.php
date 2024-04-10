@@ -34,7 +34,7 @@ if (isset($_GET['cid'])) {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Homepage - PineApple</title>
+    <title>PineApple</title>
     <meta property="og:title" content="Homepage - PineApple" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
@@ -303,7 +303,7 @@ if (isset($_GET['cid'])) {
                 name="max"
                 placeholder="Max"
                 class="search-page-textinput2 input"
-                value = 10000
+                value = 1000000
               />
               <button type="submit" class="search-page-button1 button">
                 <span class="search-page-text03">
