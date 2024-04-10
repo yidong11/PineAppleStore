@@ -105,7 +105,7 @@
                           <?php }
                           else if($result['status'] == 1){
                             ?>
-                            <div> Delivery </div>
+                            <div> Delivering </div>
                           <?php }
                           else if($result['status'] == 2){
                           ?>
