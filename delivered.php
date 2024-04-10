@@ -85,7 +85,7 @@
                         $i++;
                         $qty++;
                   ?>
-                  <tr class="odd gradeX">
+                  <tr class="odd gradeX" style="margin:auto;text-align:center">
                     <form action="" method="post">
                       <td><input type = "hidden" name = "id" value = <?php echo $result['id'];?>><?php echo $result['id'];?></td>
                       <td><?php echo $result['productName'];?></td>
@@ -104,11 +104,12 @@
                           <?php }
                           else if($result['status'] == 1){
                             ?>
-                            <div> Delivery </div>
+                            <div> Delivering </div>
                           <?php }
                           else if($result['status'] == 2){
                           ?>
-                              <div class = "group">
+                              <div class = "group" >
+                                <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                 <select name = "rate" size="1">
                                   <option type = "int" value= 5>5</option>
                                   <option type = "int" value= 4>4</option>

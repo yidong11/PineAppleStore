@@ -84,7 +84,7 @@
                       while ($result = $getPd->fetch_assoc()) {
                         $qty++;
                   ?>
-                  <tr class="odd gradeX">
+                  <tr class="odd gradeX" style="margin:auto;text-align:center">
                     <td><div type = "int" name = "id" value = <?php echo $result['id'];?>></div><?php echo $result['id'];?></td>
                     <td><?php echo $result['productName'];?></td>
                     <td>HKD <?php echo $result['price'];?></td>
@@ -102,7 +102,7 @@
                           <?php }
                           else if($result['status'] == 1){
                             ?>
-                            <div> Delivery </div>
+                            <div> Delivering </div>
                           <?php }
                           else if($result['status'] == 2){
                           ?>

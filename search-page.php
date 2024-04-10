@@ -303,7 +303,7 @@ if (isset($_GET['cid'])) {
                 name="max"
                 placeholder="Max"
                 class="search-page-textinput2 input"
-                value = 10000
+                value = 1000000
               />
               <button type="submit" class="search-page-button1 button">
                 <span class="search-page-text03">

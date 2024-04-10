@@ -98,18 +98,18 @@
                       <td>
                         <?php 
                           if($result['status'] == 3){?>
-                            <div>&nbsp;&nbsp;&nbsp; Rated </div>
+                            <div>Rated </div>
                           <?php }
                           else if($result['status'] == 0){?>
-                            <div>&nbsp;&nbsp;&nbsp; Pending </div>
+                            <div>Pending </div>
                           <?php }
                           else if($result['status'] == 1){
                             ?>
-                            <div> Delivery </div>
+                            <div> Delivering </div>
                           <?php }
                           else if($result['status'] == 2){
                           ?>
-                              <div class = "group">
+                              <div class = "group" style="text-align:center;margin:auto">
                                 <select name = "rate" size="1">
                                   <option type = "int" value= 5>5</option>
                                   <option type = "int" value= 4>4</option>
