@@ -173,7 +173,7 @@ private $fm;
 	}
 
 	public function getDeliveredProduct($cmrId){
-		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and status = 2 or status = 3 ORDER BY date DESC";
+		$query = "SELECT * FROM tbl_order WHERE cmrId = '$cmrId' and (status = 2 or status = 3) ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}

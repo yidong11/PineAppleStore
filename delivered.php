@@ -85,7 +85,7 @@
                         $i++;
                         $qty++;
                   ?>
-                  <tr class="odd gradeX">
+                  <tr class="odd gradeX" style="margin:auto;text-align:center">
                     <form action="" method="post">
                       <td><input type = "hidden" name = "id" value = <?php echo $result['id'];?>><?php echo $result['id'];?></td>
                       <td><?php echo $result['productName'];?></td>
