@@ -155,9 +155,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               <div class="change-address-ct1">
                   <h1 class="change-address-text3">Country/Area</h1>
                   <select name="country" size="1" class="change-address-select"> <?php $countries = [ "China", "China HK", "United States", "Canada", "United Kingdom", "Australia", "Germany", "France", "Italy", "Spain", "Brazil", "India", "Japan", "South Korea", "South Africa", "Mexico", "Russia", "Argentina", "Belgium", "Chile", "Denmark", "Egypt", "Finland", "Greece", "Hungary", "Indonesia", "Jamaica", "Kenya", "Luxembourg", "Malaysia", "Netherlands", "Oman", "Portugal", "Qatar", "Romania", "Sweden", "Thailand", "Ukraine", "Vietnam", "Yemen", "Zimbabwe" ]; 
-                  foreach ($countries as $country) {
-                    echo '<option value="'.$country.'"'.($country == $result['country'] ? ' selected="selected"' : '').'>'.$country.'</option>'; 
-                  } ?>
+                    foreach ($countries as $country) {
+                      echo '<option value="'.$country.'"'.($country == $result['country'] ? ' selected="selected"' : '').'>'.$country.'</option>'; 
+                    } ?>
                   </select>
                 </div>
               <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
