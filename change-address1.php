@@ -93,18 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
       <div class="change-address-container">
         <div class="change-address-container1">
           <div class="change-address-container2">
-            <div
-              class="logo-container navbar-logo-title logo-root-class-name13"
-            >
-              <span class="logo-logo-center Logo navbar-logo-title">
-                <span>PineApple</span>
-              </span>
-              <img
-                alt="image"
-                src="public/Pineapple Icons/logo_no_bg_2-200h.png"
-                class="logo-image"
-              />
-            </div>
+            <a href="index.php">
+              <div
+                class="logo-container navbar-logo-title logo-root-class-name13">
+                <span class="logo-logo-center Logo navbar-logo-title">
+                  <span>PineApple</span>
+                </span>
+                <img
+                  alt="image"
+                  src="public/Pineapple Icons/logo_no_bg_2-200h.png"
+                  class="logo-image"
+                />
+              </div>
+            </a>
             <h1>Edit Address</h1>
           </div>
           <?php 
@@ -122,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <?php 
                   if (isset($updateCmr)) {
                     /*echo "<tr><td colspan='2'>".$updateCmr."</td></tr> ";
-                    echo "<a href='my-address.php' class='navlink'> Click here to return</a>";*/
+                    echo "<a href='payment.php' class='navlink'> Click here to return</a>";*/
                     header("Location:my-address.php");
                   }
                 ?>
@@ -143,16 +144,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                 <h1 class="change-address-text6">Email</h1>
               </div>
               <div class="change-address-container7">
-                <input name = "city" type="text" class="change-address-textinput3 input" placeholder="City" value="<?php echo $result['city'];?>"/>
+                <input name = "address" type="text" placeholder="address" class="change-address-textinput2 input" value="<?php echo $result['address'];?>"/>
                 <h1 class="change-address-text5">Address</h1>
-                <input name = "address" type="text" class="change-address-textinput2 input" placeholder="Address" value="<?php echo $result['address'];?>"/>
+                <input name = "city" type="text" placeholder="city" class="change-address-textinput3 input" value="<?php echo $result['city'];?>"/>
               </div>
               <div class="change-address-container9">
                 <input name = "zip" type="text" class="change-address-textinput4 input" value="<?php echo $result['zip'];?>"/>
                 <h1 class="change-address-text6">Zipcode</h1>
               </div>
               <div class="change-address-ct1">
-                  <h1 class="change-address-text3">Country</h1>
+                  <h1 class="change-address-text3">Country/Area</h1>
                   <select name = "country" size="1" class="change-address-select">
                     <option type = "text" value="China">China</option>
                     <option type = "text" value="China HK">China HK</option>
@@ -198,6 +199,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
                   </select>
                 </div>
               <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
+              <a type="button" href="my-address.php" class="change-address-navlink9 navbar-link">
+                Return
+              </a>
             </div>
           </form>
           <?php }} ?>
