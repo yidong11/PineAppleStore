@@ -57,7 +57,7 @@
                   name="address"
                   type="text"
                   disabled="true"
-                  value="<?php echo $result['address'];?>, <?php echo $result['city'];?>"
+                  value="<?php echo $result['address'];?>, <?php echo $result['city'];?>, <?php echo $result['country'];?>"
                   class="my-address-textinput3 input" /></div></div
             ><div class="my-address-container14"
               ><div class="my-address-container15"
