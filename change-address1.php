@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     		 ?>
           <form action="" method="post">
             <div class="change-address-container3">
-              <h1 class="change-address-text1">Change Address
+              <h1 class="change-address-text1">Edit Address
                 <div class = "update-text">
                 <?php 
                   if (isset($updateCmr)) {
