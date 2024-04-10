@@ -106,6 +106,14 @@ if ($getPd) {
 
 
         <div class="product-detail-container04">
+            <span class="product-detail-text01">Sales: </span>
+            <div class="product-detail-container05">
+                <span class="product-detail-text02"><?php echo $result['sales']; ?></span>
+            </div>
+        </div>
+
+
+        <div class="product-detail-container04">
             <span class="product-detail-text01">Stock: </span>
             <div class="product-detail-container05">
                 <span class="product-detail-text02"><?php echo $result['stock']; ?></span>

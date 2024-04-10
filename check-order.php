@@ -98,14 +98,14 @@
                       <td>
                         <?php 
                           if($result['status'] == 3){?>
-                            <div>Rated </div>
+                            <div>Rated</div>
                           <?php }
                           else if($result['status'] == 0){?>
-                            <div>Pending </div>
+                            <div>Pending</div>
                           <?php }
                           else if($result['status'] == 1){
                             ?>
-                            <div> Delivering </div>
+                            <div>Delivering</div>
                           <?php }
                           else if($result['status'] == 2){
                           ?>
