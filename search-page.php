@@ -25,7 +25,6 @@ header("Cache-Control: max-age=2592000");
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();
-  $delComp = $pd->delCompareData($cmrId);
   Session::destroy();
 }
 ?>
@@ -353,34 +352,34 @@ if (isset($_GET['cid'])) {
         // }
 
         if (ctype_digit($search)) {
-          $query = "select * from tbl_product where productId = $search";
+          $query = "select * from table_product where productId = $search";
         } else {
           if ($category == 0) {
             if ($sort == 1){
-              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY sales DESC";
+              $query = "select * from table_product where productName like '%$search%' and price between $min and $max ORDER BY sales DESC";
             }
             if ($sort == 2){
-              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY price ASC";
+              $query = "select * from table_product where productName like '%$search%' and price between $min and $max ORDER BY price ASC";
             }
             if ($sort == 3){
-              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY price DESC";
+              $query = "select * from table_product where productName like '%$search%' and price between $min and $max ORDER BY price DESC";
             }
             if ($sort == 4){
-              $query = "select * from tbl_product where productName like '%$search%' and price between $min and $max ORDER BY rate DESC";
+              $query = "select * from table_product where productName like '%$search%' and price between $min and $max ORDER BY rate DESC";
             } 
           }
           else{
             if ($sort == 1){
-              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY sales DESC";
+              $query = "select * from table_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY sales DESC";
             } 
             if ($sort == 2){
-              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price ASC";
+              $query = "select * from table_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price ASC";
             }
             if ($sort == 3){
-              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price DESC";
+              $query = "select * from table_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY price DESC";
             }
             if ($sort == 4){
-              $query = "select * from tbl_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY rate DESC";
+              $query = "select * from table_product where productName like '%$search%' and catId = $category and price between $min and $max ORDER BY rate DESC";
             }
           }
         }

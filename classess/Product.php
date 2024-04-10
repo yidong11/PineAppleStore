@@ -60,7 +60,7 @@ class Product
 			return $msg;
 		} else {
 			move_uploaded_file($file_temp, $uploaded_image);
-			$query = "INSERT INTO tbl_product(productName,catId,body,price,image,rate,sales,stock) VALUES('$productName','$catId','$body','$price','$uploaded_image', '$rate', '$sales', '$stock') ";
+			$query = "INSERT INTO table_product(productName,catId,body,price,image,rate,sales,stock) VALUES('$productName','$catId','$body','$price','$uploaded_image', '$rate', '$sales', '$stock') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				header("Location:product-list.php");
@@ -73,7 +73,7 @@ class Product
 
 	public function getAllProduct() {
 		$query = "SELECT p.*,c.catName
-		FROM tbl_product as p,tbl_category as c
+		FROM table_product as p,table_category as c
 		WHERE p.catId = c.catId
 		ORDER BY p.productId DESC";
 
@@ -84,7 +84,7 @@ class Product
 	public function getProById($id)
 	{
 
-		$query = "SELECT * FROM tbl_product WHERE productId = '$id'";
+		$query = "SELECT * FROM table_product WHERE productId = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -133,7 +133,7 @@ class Product
 				} else {
 					move_uploaded_file($file_temp, $uploaded_image);
 
-					$query = "UPDATE tbl_product 
+					$query = "UPDATE table_product 
 					SET
 					productName = '$productName',
 					catId       = '$catId',
@@ -154,7 +154,7 @@ class Product
 					}
 				}
 			} else {
-				$query = "UPDATE tbl_product 
+				$query = "UPDATE table_product 
 				SET
 				productName = '$productName',
 				catId       = '$catId',
@@ -178,7 +178,7 @@ class Product
 
 	public function delProById($id)
 	{
-		$query = "SELECT * FROM tbl_product WHERE productId = '$id'";
+		$query = "SELECT * FROM table_product WHERE productId = '$id'";
 		$getData = $this->db->select($query);
 		if ($getData) {
 			while ($delImg = $getData->fetch_assoc()) {
@@ -187,7 +187,7 @@ class Product
 			}
 		}
 
-		$delquery = "DELETE FROM tbl_product where productId = '$id'";
+		$delquery = "DELETE FROM table_product where productId = '$id'";
 		$deldata = $this->db->delete($delquery);
 		if ($deldata) {
 			$msg = "<span class='success'>Product Deleted Successfully.</span>";
@@ -201,21 +201,21 @@ class Product
 	public function getSliderProduct()
 	{
 
-		$query = "SELECT * FROM tbl_product ORDER BY rate DESC LIMIT 5";
+		$query = "SELECT * FROM table_product ORDER BY rate DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getTrendingProduct()
 	{
-		$query = "SELECT * FROM tbl_product ORDER BY sales DESC LIMIT 5";
+		$query = "SELECT * FROM table_product ORDER BY sales DESC LIMIT 5";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function getSingleProduct($id){
 		$query = "SELECT p.*,c.catName
-		FROM tbl_product as p,tbl_category as c
+		FROM table_product as p,table_category as c
 		WHERE p.catId = c.catId AND p.productId = '$id'";
 		$result = $this->db->select($query);
 		return $result;
@@ -224,106 +224,16 @@ class Product
 	public function productByCat($id)
 	{
 		$catId       = mysqli_real_escape_string($this->db->link, $id);
-		$query       = "SELECT * FROM tbl_product WHERE catId = '$catId'";
+		$query       = "SELECT * FROM table_product WHERE catId = '$catId'";
 		$result      = $this->db->select($query);
 		return $result;
 	}
 
-	public function insertCompareData($cmprid, $cmrId)
-	{
-		$cmrId     = mysqli_real_escape_string($this->db->link, $cmrId);
-		$productId = mysqli_real_escape_string($this->db->link, $cmprid);
-
-		$cquery = "SELECT * FROM tbl_compare WHERE cmrId = '$cmrId' AND productId = '$productId'";
-		$check = $this->db->select($cquery);
-		if ($check) {
-			$msg = "<span class='error'>Already Added !</span>";
-			return $msg;
-		}
-		$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
-		$result = $this->db->select($query)->fetch_assoc();
-		if ($result) {
-			$productId = $result['productId'];
-			$productName = $result['productName'];
-			$price = $result['price'];
-			$image = $result['image'];
-
-			$query = "INSERT INTO tbl_compare(cmrId,productId,productName,price,image)VALUES
-			('$cmrId','$productId','$productName','$price','$image')";
-			$inserted_row = $this->db->insert($query);
-
-			if ($inserted_row) {
-
-				$msg = "<span class='success'>Added ! Check Compare Page</span>";
-				return $msg;
-			} else {
-				$msg = "<span class='error'>Not Added !</span>";
-				return $msg;
-			}
-		}
-	}
-
-	public function getCompareData($cmrId)
-	{
-		$query = "SELECT * FROM tbl_compare WHERE cmrId = '$cmrId' ORDER BY id desc";
-		$result = $this->db->select($query);
-		return $result;
-	}
-
-	public function delCompareData($cmrId)
-	{
-		$query = "DELETE FROM tbl_compare WHERE cmrId = '$cmrId'";
-		$deldata = $this->db->delete($query);
-	}
-
-	public function saveWishListData($id, $cmrId)
-	{
-
-
-		$cquery = "SELECT * FROM tbl_wlist WHERE cmrId = '$cmrId' AND productId = '$id'";
-		$check = $this->db->select($cquery);
-		if ($check) {
-			$msg = "<span class='error'>Already Added !</span>";
-			return $msg;
-		}
-		$pquery = "SELECT * FROM tbl_product WHERE productId = '$id'";
-		$result = $this->db->select($pquery)->fetch_assoc();
-		if ($result) {
-			$productId = $result['productId'];
-			$productName = $result['productName'];
-			$price = $result['price'];
-			$image = $result['image'];
-
-			$query = "INSERT INTO tbl_wlist(cmrId,productId,productName,price,image) VALUES('$cmrId','$productId','$productName','$price','$image') ";
-			$inserted_row = $this->db->insert($query);
-
-			if ($inserted_row) {
-
-				$msg = "<span class='success'>Added ! Check wishlist Page</span>";
-				return $msg;
-			} else {
-				$msg = "<span class='error'>Not Added !</span>";
-				return $msg;
-			}
-		}
-	}
 
 	public function getRelatedProduct($prodId, $catId) {
-		$query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
+		$query = "SELECT * FROM table_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
 		$result = $this->db->select($query);
 		return $result;
-	}
-
-	public function checkWlistData($cmrId)
-	{
-		$query = "SELECT * FROM tbl_wlist WHERE cmrId = '$cmrId' ORDER BY id desc";
-		$result = $this->db->select($query);
-		return $result;
-	}
-	public function delWlistData($cmrId, $productId)
-	{
-		$query = "DELETE FROM tbl_wlist WHERE cmrId = '$cmrId' AND productId = '$productId'";
-		$delete = $this->db->delete($query);
 	}
 }
 

@@ -42,7 +42,7 @@ if (empty($adminUser) ||empty($adminPassword) ) {
 		} else{
 
 
-			$query = "SELECT * FROM tbl_admin WHERE adminUser = '$adminUser'
+			$query = "SELECT * FROM table_admin WHERE adminUser = '$adminUser'
 			AND adminPassword = '$adminPassword'";
 
 			$result = $this->db->select($query);

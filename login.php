@@ -25,7 +25,6 @@ header("Cache-Control: max-age=2592000");
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();
-  $delComp = $pd->delCompareData($cmrId);
   Session::destroy();
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1:3306
--- 生成日期： 2024-04-10 14:53:30
+-- 生成日期： 2024-04-10 15:45:28
 -- 服务器版本： 8.2.0
 -- PHP 版本： 8.2.13
 
@@ -18,17 +18,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `db_shop`
+-- 数据库： `pineapple_database`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_admin`
+-- 表的结构 `table_admin`
 --
 
-DROP TABLE IF EXISTS `tbl_admin`;
-CREATE TABLE IF NOT EXISTS `tbl_admin` (
+DROP TABLE IF EXISTS `table_admin`;
+CREATE TABLE IF NOT EXISTS `table_admin` (
   `adminId` int NOT NULL AUTO_INCREMENT,
   `adminName` varchar(255) NOT NULL,
   `adminUser` varchar(255) NOT NULL,
@@ -39,49 +39,30 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `tbl_admin`
+-- 转存表中的数据 `table_admin`
 --
 
-INSERT INTO `tbl_admin` (`adminId`, `adminName`, `adminUser`, `adminEmail`, `adminPassword`, `level`) VALUES
+INSERT INTO `table_admin` (`adminId`, `adminName`, `adminUser`, `adminEmail`, `adminPassword`, `level`) VALUES
 (1, 'administrater', 'admin', 'admin@gmail.com', '850721dea834fe36b29083291509c7ad', 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_cart`
+-- 表的结构 `table_category`
 --
 
-DROP TABLE IF EXISTS `tbl_cart`;
-CREATE TABLE IF NOT EXISTS `tbl_cart` (
-  `cartId` int NOT NULL AUTO_INCREMENT,
-  `sId` varchar(255) NOT NULL,
-  `productId` int NOT NULL,
-  `productName` varchar(255) NOT NULL,
-  `price` float(10,2) NOT NULL,
-  `quantity` int NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `rate` float NOT NULL,
-  PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `tbl_category`
---
-
-DROP TABLE IF EXISTS `tbl_category`;
-CREATE TABLE IF NOT EXISTS `tbl_category` (
+DROP TABLE IF EXISTS `table_category`;
+CREATE TABLE IF NOT EXISTS `table_category` (
   `catId` int NOT NULL AUTO_INCREMENT,
   `catName` varchar(255) NOT NULL,
   PRIMARY KEY (`catId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `tbl_category`
+-- 转存表中的数据 `table_category`
 --
 
-INSERT INTO `tbl_category` (`catId`, `catName`) VALUES
+INSERT INTO `table_category` (`catId`, `catName`) VALUES
 (1, 'Desktop'),
 (2, 'Laptop'),
 (3, 'Mobile Phones'),
@@ -95,82 +76,11 @@ INSERT INTO `tbl_category` (`catId`, `catName`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_compare`
+-- 表的结构 `table_order`
 --
 
-DROP TABLE IF EXISTS `tbl_compare`;
-CREATE TABLE IF NOT EXISTS `tbl_compare` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cmrId` int NOT NULL,
-  `productId` int NOT NULL,
-  `productName` varchar(255) NOT NULL,
-  `price` float(10,2) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `tbl_contact`
---
-
-DROP TABLE IF EXISTS `tbl_contact`;
-CREATE TABLE IF NOT EXISTS `tbl_contact` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `contact` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `status` int NOT NULL DEFAULT '0',
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- 转存表中的数据 `tbl_contact`
---
-
-INSERT INTO `tbl_contact` (`id`, `name`, `email`, `contact`, `message`, `status`, `date`) VALUES
-(2, 'md.alvi islam', 'customer@gmail.com', '1622425286', 'szzss', 1, '2018-08-05 23:23:25');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `tbl_customer`
---
-
-DROP TABLE IF EXISTS `tbl_customer`;
-CREATE TABLE IF NOT EXISTS `tbl_customer` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `address` text NOT NULL,
-  `city` varchar(30) NOT NULL,
-  `country` varchar(30) NOT NULL,
-  `zip` varchar(30) NOT NULL,
-  `phone` varchar(30) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `pass` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- 转存表中的数据 `tbl_customer`
---
-
-INSERT INTO `tbl_customer` (`id`, `name`, `address`, `city`, `country`, `zip`, `phone`, `email`, `pass`) VALUES
-(3, 'Han Yang', '3817 Spruce Street,, 714 Mayer Residence Hall (Stouffer College House)', 'Philadelphia', 'Mexico', '19104', '55164512', 'mahlerrrr76@gmail.com', '202cb962ac59075b964b07152d234b70'),
-(4, '1', '1', '1', '1', '1', '1', '111', '698d51a19d8a121ce581499d7b701668'),
-(5, 'Han Yang', '3817 Spruce Street,', 'Philadelphia', 'United States', '999077', '12345', '123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `tbl_order`
---
-
-DROP TABLE IF EXISTS `tbl_order`;
-CREATE TABLE IF NOT EXISTS `tbl_order` (
+DROP TABLE IF EXISTS `table_order`;
+CREATE TABLE IF NOT EXISTS `table_order` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cmrId` int NOT NULL,
   `productId` int NOT NULL,
@@ -184,10 +94,10 @@ CREATE TABLE IF NOT EXISTS `tbl_order` (
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `tbl_order`
+-- 转存表中的数据 `table_order`
 --
 
-INSERT INTO `tbl_order` (`id`, `cmrId`, `productId`, `productName`, `quantity`, `price`, `image`, `date`, `status`) VALUES
+INSERT INTO `table_order` (`id`, `cmrId`, `productId`, `productName`, `quantity`, `price`, `image`, `date`, `status`) VALUES
 (33, 2, 21, 'EOS 77D DSLR Camera', 1, 58160.00, 'uploads/6521499b3d.jpg', '2024-03-30 19:06:56', 0),
 (34, 2, 18, 'iPhone 8 Plus', 1, 109999.00, 'uploads/33ce6b99f4.jpg', '2024-03-30 19:06:56', 0),
 (35, 3, 15, 'Laundry machine ', 1, 3200.00, 'uploads/d712a37947.png', '2024-04-05 21:25:18', 0),
@@ -202,11 +112,11 @@ INSERT INTO `tbl_order` (`id`, `cmrId`, `productId`, `productName`, `quantity`, 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_product`
+-- 表的结构 `table_product`
 --
 
-DROP TABLE IF EXISTS `tbl_product`;
-CREATE TABLE IF NOT EXISTS `tbl_product` (
+DROP TABLE IF EXISTS `table_product`;
+CREATE TABLE IF NOT EXISTS `table_product` (
   `productId` int NOT NULL AUTO_INCREMENT,
   `productName` varchar(255) NOT NULL,
   `catId` int NOT NULL,
@@ -222,10 +132,10 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `tbl_product`
+-- 转存表中的数据 `table_product`
 --
 
-INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `body`, `price`, `image`, `type`, `stock`, `rate`, `sales`) VALUES
+INSERT INTO `table_product` (`productId`, `productName`, `catId`, `brandId`, `body`, `price`, `image`, `type`, `stock`, `rate`, `sales`) VALUES
 (1, 'Lenovo Legion Pro 7i Gaming Laptop', 2, 3, 'Memory & Storage :The PC memory has been upgraded to 64GB DDR5 SDRAM for enhanced high bandwidth to easily switch back and forth between open applications; the Hard drive has been upgraded to 2TB + 2TB PCIe NVMe M.2 SSD for fast boot-up and speedy data transfer\r\nProcessor: 13th Gen Intel Core i9-13900HX Processor (24 Cores, 32 threads, 36MB Cache, base at 2.20GHz, up to 5.40GHz), with NVIDIA GeForce RTX 4080 (12GB GDDR6)\r\nScreen: 240Hz 16-inch WQHD IPS Display (2560 x 1600)\r\nTech Specs: 1 x USB 3.2 Gen 2 Type-C, 4 x USB 3.2 Gen 1 Type-A, 1 x Thunderbolt 4, 1 x HDMI, 1 x RJ-45, 1 x Headphone/microphone combo; Wi-Fi 6E and Bluetooth Combo; Per-key RGB Backlit Keyboard\r\nAuthorized KKE Bundle: Bundled with KKE Mousepad', 16999.00, 'uploads/da4299f223.jpg', 0, 4, 4.8, 998),
 (2, 'ASUS ROG Strix G16 Laptop', 2, 5, 'POWER UP YOUR PLAY - Win more games with Windows 11, a 14th Gen Intel Core i9-14900HX processor, and an NVIDIA GeForce RTX 4060 Laptop GPU at 140W Max TGP.\r\nBLAZING FAST MEMORY AND STORAGE – Multitask swiftly with 16GB of DDR5-5600MHz memory and 1TB of PCIe 4x4.\r\nROG INTELLIGENT COOLING – The Strix G16 features Thermal Grizzly’s Conductonaut Extreme liquid metal on the CPU, and a third intake fan among other premium features, to allow for sustained performance over long gaming sessions.', 13999.00, 'uploads/5030c05f99.jpg', 0, 7, 4.75, 4800),
 (3, 'LG Gram 16', 2, 2, '<p>Press the power button for 2 seconds, then the light will vibrate for a few seconds. Once the vibration stop, the BLUE led indicator to stay on and it is in ready mode. To make a video, simply press the power button one time, the lighter will vibrate 2 times and the blue LED indicator goes off, then the video recording begins. To stop filming, press the power again, then the light will vibrate 3 times. Now your file is saved and in ready mode again. To turn off, hold the power button for 2 seconds, and the lighter will vibrate 2 times.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>', 9899.00, 'uploads/708e680c6f.jpg', 1, 4, 4.7, 435),
@@ -272,26 +182,58 @@ INSERT INTO `tbl_product` (`productId`, `productName`, `catId`, `brandId`, `body
 -- --------------------------------------------------------
 
 --
--- 表的结构 `tbl_wlist`
+-- 表的结构 `table_shoppingcart`
 --
 
-DROP TABLE IF EXISTS `tbl_wlist`;
-CREATE TABLE IF NOT EXISTS `tbl_wlist` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `cmrId` int NOT NULL,
+DROP TABLE IF EXISTS `table_shoppingcart`;
+CREATE TABLE IF NOT EXISTS `table_shoppingcart` (
+  `cartId` int NOT NULL AUTO_INCREMENT,
+  `sId` varchar(255) NOT NULL,
   `productId` int NOT NULL,
   `productName` varchar(255) NOT NULL,
   `price` float(10,2) NOT NULL,
+  `quantity` int NOT NULL,
   `image` varchar(255) NOT NULL,
+  `rate` float NOT NULL,
+  PRIMARY KEY (`cartId`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+
+--
+-- 转存表中的数据 `table_shoppingcart`
+--
+
+INSERT INTO `table_shoppingcart` (`cartId`, `sId`, `productId`, `productName`, `price`, `quantity`, `image`, `rate`) VALUES
+(46, 'gadtdvnkuhi430u3g2c75o4fp4', 4, 'Lakers 24 Kobe', 399.00, 1, 'uploads/83102d32c9.jpg', 5),
+(47, 'gadtdvnkuhi430u3g2c75o4fp4', 37, 'Spalding React TF-250', 329.00, 5, 'uploads/21c7305a3c.jpg', 4.1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `table_user`
+--
+
+DROP TABLE IF EXISTS `table_user`;
+CREATE TABLE IF NOT EXISTS `table_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `country` varchar(30) NOT NULL,
+  `zip` varchar(30) NOT NULL,
+  `phone` varchar(30) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `pass` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `tbl_wlist`
+-- 转存表中的数据 `table_user`
 --
 
-INSERT INTO `tbl_wlist` (`id`, `cmrId`, `productId`, `productName`, `price`, `image`) VALUES
-(6, 1, 15, 'Laundry machine ', 3200.00, 'uploads/d712a37947.png');
+INSERT INTO `table_user` (`id`, `name`, `address`, `city`, `country`, `zip`, `phone`, `email`, `pass`) VALUES
+(3, 'Han Yang', '3817 Spruce Street,, 714 Mayer Residence Hall (Stouffer College House)', 'Philadelphia', 'Mexico', '19104', '55164512', 'mahlerrrr76@gmail.com', '202cb962ac59075b964b07152d234b70'),
+(4, '1', '1', '1', '1', '1', '1', '111', '698d51a19d8a121ce581499d7b701668'),
+(5, 'Han Yang', '3817 Spruce Street,', 'Philadelphia', 'United States', '999077', '12345', '123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
