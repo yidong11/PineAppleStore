@@ -108,7 +108,8 @@
                           <?php }
                           else if($result['status'] == 2){
                           ?>
-                              <div class = "group">
+                              <div class = "group" >
+                                <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
                                 <select name = "rate" size="1">
                                   <option type = "int" value= 5>5</option>
                                   <option type = "int" value= 4>4</option>
