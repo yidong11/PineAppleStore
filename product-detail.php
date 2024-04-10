@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     if ($_POST['submit'] == 'buy_now' && $addCart == 'Product added to cart!') {
         header("Location: shopping-cart-page.php");
     }
-    else {
+    else if ($_POST['submit'] == "add_cart" && $addCart == "Product added to cart!") {
         echo "<meta http-equiv = 'refresh' content ='0;URL=?proid=$id' />";
     }
 }
@@ -148,7 +148,7 @@ if ($getPd) {
             <h1 class="product-detail-text05">HKD. <?php echo $result['price']; ?></h1>
 
             <?php if (isset($addCart)) { ?>
-            <div class="product-detail-container04" style="margin-bottom: -50px; margin-top: 25px; height: 25px; margin-left: 150px">
+            <div class="product-detail-container04" style="margin-bottom: -40px; margin-top: 15px; height: 25px; margin-left: 150px">
                 <span class="product-detail-text01"><?php echo $addCart; ?></span>
             </div>
             <?php } ?>
