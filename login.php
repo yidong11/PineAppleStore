@@ -25,7 +25,6 @@ header("Cache-Control: max-age=2592000");
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();
-  $delComp = $pd->delCompareData($cmrId);
   Session::destroy();
 }
 ?>
@@ -207,6 +206,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
           <div class="login-container4">
             <span>Do not have an account?&nbsp;</span>
             <a href="register.php" class="login-navlink1">Register</a>
+          </div>
+          <div class="login-container4" style="margin-top: -10px;">
+            <span>You are admin user?&nbsp;</span>
+            <a href="admin/login.php" class="login-navlink1">Go to admin login</a>
           </div>
         </div>
       </div>

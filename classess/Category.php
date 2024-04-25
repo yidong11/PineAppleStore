@@ -29,7 +29,7 @@ class Category
 			$msg = "<span class='error'>Category field must not be empty !</span>";
 			return $msg;
 		} else {
-			$query = "INSERT INTO tbl_category(catName) VALUES('$catName') ";
+			$query = "INSERT INTO table_category(catName) VALUES('$catName') ";
 			$catinsert = $this->db->insert($query);
 			if ($catinsert) {
 				header("Location:category-list.php");
@@ -41,14 +41,14 @@ class Category
 	}
 
 	public function getAllCat(){
-		$query = "SELECT * FROM tbl_category ORDER BY catId ASC";
+		$query = "SELECT * FROM table_category ORDER BY catId ASC";
 		$result = $this->db->select($query);
 		return $result;
 
 	}
 
 	public function getCatById($id){
-		$query = "SELECT * FROM tbl_category WHERE catId = '$id'";
+		$query = "SELECT * FROM table_category WHERE catId = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
@@ -62,7 +62,7 @@ class Category
 			$msg = "<span class='error'>Category field must not be empty !</span>";
 			return $msg;
 		} else {
-			$query = "UPDATE tbl_category
+			$query = "UPDATE table_category
 
 			SET
 			catName = '$catName' 
@@ -80,7 +80,7 @@ class Category
 
 	public function delcatById($id){
 
-		$query = "DELETE FROM tbl_category WHERE catId = '$id'";
+		$query = "DELETE FROM table_category WHERE catId = '$id'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
 			$msg = "<span class='success'>Category Deleted Successfully.</span>";

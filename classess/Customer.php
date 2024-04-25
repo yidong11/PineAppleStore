@@ -35,13 +35,13 @@ class Customer{
 			return $msg;
 		}
 
-		$mailquery = "SELECT * FROM tbl_customer WHERE email = '$email' LIMIT 1";
+		$mailquery = "SELECT * FROM table_user WHERE email = '$email' LIMIT 1";
 		$mailchk = $this->db->select($mailquery);
 		if ($mailchk != false) {
 			$msg = "<span class='error'>Email already exist !</span>";
 			return $msg;
 		} else {
-			$query = "INSERT INTO tbl_customer(name,email,pass) VALUES('$name','$email','$pass')";
+			$query = "INSERT INTO table_user(name,email,pass) VALUES('$name','$email','$pass')";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				$msg = "<span class='success'>Customer Data inserted Successfully.</span>";
@@ -60,7 +60,7 @@ class Customer{
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		}
-		$query = "SELECT * FROM tbl_customer WHERE email = '$email' AND pass = '$pass'";
+		$query = "SELECT * FROM table_user WHERE email = '$email' AND pass = '$pass'";
 		$result = $this->db->select($query);
 		if ($result != false) {
 			$value = $result->fetch_assoc();
@@ -75,20 +75,20 @@ class Customer{
 	}
 
 	public function getCustomerData($id){
-		$query = "SELECT * FROM tbl_customer WHERE id = '$id'";
+		$query = "SELECT * FROM table_user WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 
 	public function getAllCustomer() {
-		$query = "SELECT * FROM tbl_customer ORDER BY id ASC";
+		$query = "SELECT * FROM table_user ORDER BY id ASC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	public function delCustomerById($id) {
-		$query = "DELETE FROM tbl_customer WHERE id = '$id'";
+		$query = "DELETE FROM table_user WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
 			$msg = "<span class='success'>User Data Deleted Successfully.</span>";
@@ -103,7 +103,7 @@ class Customer{
 		$id = mysqli_real_escape_string($this->db->link, $data['id']);
 		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
 
-		$query = "SELECT * FROM tbl_order WHERE id = '$id'";
+		$query = "SELECT * FROM table_order WHERE id = '$id'";
 		$getOrder = $this->db->select($query);
 		if ($getOrder) {
 			while ($resultOrder = $getOrder->fetch_assoc()) {
@@ -114,19 +114,19 @@ class Customer{
 					$msg = "<span class='error'>Already rated!</span>";
 				}
 				else{
-					$query = "SELECT * FROM tbl_product WHERE productId = '$productId'";
+					$query = "SELECT * FROM table_product WHERE productId = '$productId'";
 					$resultProduct = $this->db->select($query)->fetch_assoc();
 					$totalRate = $resultProduct['rate'] * $resultProduct['sales'] + $rate;
 					$sales = $resultProduct['sales'] + 1;
 					$rate = $totalRate/$sales;
-					$query = "UPDATE tbl_product 
+					$query = "UPDATE table_product 
 								SET
 								rate = '$rate',
 								sales = '$sales'
 								WHERE productId = '$productId'";
 					$updated_row = $this->db->update($query);
 					if ($updated_row) {
-						$query = "UPDATE tbl_order 
+						$query = "UPDATE table_order 
 						SET
 						status = 3
 						WHERE id = '$id'";
@@ -156,9 +156,9 @@ class Customer{
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		}else{
-			$query = "INSERT INTO tbl_customer(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$zip','$phone','$email')";
+			$query = "INSERT INTO table_user(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$zip','$phone','$email')";
 
-			$query = "UPDATE tbl_customer
+			$query = "UPDATE table_user
 
 			SET
 			name = '$name',
@@ -191,7 +191,7 @@ class Customer{
 			return $msg;
 		}else{
 
-			$query = "UPDATE tbl_customer
+			$query = "UPDATE table_user
 
 			SET
 			name = '$name'
@@ -218,7 +218,7 @@ class Customer{
 			return $msg;
 		}else{
 
-			$query = "UPDATE tbl_customer
+			$query = "UPDATE table_user
 
 			SET
 			email = '$email'
@@ -245,7 +245,7 @@ class Customer{
 			return $msg;
 		}else{
 
-			$query = "UPDATE tbl_customer
+			$query = "UPDATE table_user
 
 			SET
 			pass = '$pass'

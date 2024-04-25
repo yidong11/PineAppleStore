@@ -25,7 +25,6 @@ header("Cache-Control: max-age=2592000");
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();
-  $delComp = $pd->delCompareData($cmrId);
   Session::destroy();
 }
 ?>
@@ -127,7 +126,7 @@ if (isset($_GET['cid'])) {
                 <input type="hidden" name="sort" value="1"/>
                 <input type="hidden" name="category" value="0"/>
                 <input type="hidden" name="min" value="0"/>
-                <input type="hidden" name="max" value="10000"/>
+                <input type="hidden" name="max" value="1000000"/>
                 <button type="submit" name="submit" class="homepage-button button">
                   <svg viewBox="0 0 1024 1024" class="homepage-icon">
                     <path

@@ -153,48 +153,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
               </div>
               <div class="change-address-ct1">
                   <h1 class="change-address-text3">Country/Area</h1>
-                  <select name = "country" size="1" class="change-address-select">
-                    <option type = "text" value="China">China</option>
-                    <option type = "text" value="China HK">China HK</option>
-                    <option type="text" value="United States">United States</option>
-                    <option type="text" value="Canada">Canada</option>
-                    <option type="text" value="United Kingdom">United Kingdom</option>
-                    <option type="text" value="Australia">Australia</option>
-                    <option type="text" value="Germany">Germany</option>
-                    <option type="text" value="France">France</option>
-                    <option type="text" value="Italy">Italy</option>
-                    <option type="text" value="Spain">Spain</option>
-                    <option type="text" value="Brazil">Brazil</option>
-                    <option type="text" value="India">India</option>
-                    <option type="text" value="Japan">Japan</option>
-                    <option type="text" value="South Korea">South Korea</option>
-                    <option type="text" value="South Africa">South Africa</option>
-                    <option type="text" value="Mexico">Mexico</option>
-                    <option type="text" value="Russia">Russia</option>
-                    <option type="text" value="Argentina">Argentina</option>
-                    <option type="text" value="Belgium">Belgium</option>
-                    <option type="text" value="Chile">Chile</option>
-                    <option type="text" value="Denmark">Denmark</option>
-                    <option type="text" value="Egypt">Egypt</option>
-                    <option type="text" value="Finland">Finland</option>
-                    <option type="text" value="Greece">Greece</option>
-                    <option type="text" value="Hungary">Hungary</option>
-                    <option type="text" value="Indonesia">Indonesia</option>
-                    <option type="text" value="Jamaica">Jamaica</option>
-                    <option type="text" value="Kenya">Kenya</option>
-                    <option type="text" value="Luxembourg">Luxembourg</option>
-                    <option type="text" value="Malaysia">Malaysia</option>
-                    <option type="text" value="Netherlands">Netherlands</option>
-                    <option type="text" value="Oman">Oman</option>
-                    <option type="text" value="Portugal">Portugal</option>
-                    <option type="text" value="Qatar">Qatar</option>
-                    <option type="text" value="Romania">Romania</option>
-                    <option type="text" value="Sweden">Sweden</option>
-                    <option type="text" value="Thailand">Thailand</option>
-                    <option type="text" value="Ukraine">Ukraine</option>
-                    <option type="text" value="Vietnam">Vietnam</option>
-                    <option type="text" value="Yemen">Yemen</option>
-                    <option type="text" value="Zimbabwe">Zimbabwe</option>
+                  <select name="country" size="1" class="change-address-select"> <?php $countries = [ "China", "China HK", "United States", "Canada", "United Kingdom", "Australia", "Germany", "France", "Italy", "Spain", "Brazil", "India", "Japan", "South Korea", "South Africa", "Mexico", "Russia", "Argentina", "Belgium", "Chile", "Denmark", "Egypt", "Finland", "Greece", "Hungary", "Indonesia", "Jamaica", "Kenya", "Luxembourg", "Malaysia", "Netherlands", "Oman", "Portugal", "Qatar", "Romania", "Sweden", "Thailand", "Ukraine", "Vietnam", "Yemen", "Zimbabwe" ]; 
+                    foreach ($countries as $country) {
+                      echo '<option value="'.$country.'"'.($country == $result['country'] ? ' selected="selected"' : '').'>'.$country.'</option>'; 
+                    } ?>
                   </select>
                 </div>
               <input type="submit" name="submit" value="Save" class="change-address-navlink1 navbar-link">
