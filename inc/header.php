@@ -88,7 +88,7 @@ if (isset($_GET['cid'])) {
   <body>
     <link rel="stylesheet" href="./style.css" />
     <div>
-      <link href="./css/homepage.css" rel="stylesheet" />
+      <link href="./homepage.css" rel="stylesheet" />
 
       <div class="homepage-container">
 
