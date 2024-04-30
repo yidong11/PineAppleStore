@@ -21,11 +21,6 @@ class Customer{
 	}
 	public function customerRegistration($data) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
-		# $address = mysqli_real_escape_string($this->db->link, $data['address']);
-		# $city = mysqli_real_escape_string($this->db->link, $data['city']);
-		# $country = mysqli_real_escape_string($this->db->link, $data['country']);
-		# $zip = mysqli_real_escape_string($this->db->link, $data['zip']);
-		# $phone = mysqli_real_escape_string($this->db->link, $data['phone']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
