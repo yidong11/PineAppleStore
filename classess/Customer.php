@@ -1,25 +1,27 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include_once ($filepath.'/../lib/Database.php');
-include_once ($filepath.'/../helpers/Formate.php');
+include_once($filepath . '/../lib/Database.php');
+include_once($filepath . '/../helpers/Formate.php');
 
 ?>
 
 
 <?php
 
-class Customer{
-	
+class Customer
+{
+
 	private $db;
 	private $fm;
 
 	public function __construct()
 	{
-		
+
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
-	public function customerRegistration($data) {
+	public function customerRegistration($data)
+	{
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
@@ -41,14 +43,15 @@ class Customer{
 			if ($inserted_row) {
 				$msg = "<span class='success'>Customer Data inserted Successfully.</span>";
 				return $msg;
-			} else{
+			} else {
 				$msg = "<span class='error'>Customer Data Not inserted.</span>";
 				return $msg;
 			}
 		}
 	}
 
-	public function customerLogin($data) {
+	public function customerLogin($data)
+	{
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 		if (empty($email) || empty($pass)) {
@@ -59,9 +62,9 @@ class Customer{
 		$result = $this->db->select($query);
 		if ($result != false) {
 			$value = $result->fetch_assoc();
-			Session::set("cuslogin",true);
-			Session::set("cmrId",$value['id']);
-			Session::set("cmrName",$value['name']);
+			Session::set("cuslogin", true);
+			Session::set("cmrId", $value['id']);
+			Session::set("cmrName", $value['name']);
 			header("Location:index.php");
 		} else {
 			$msg = "<span class='error'>Email or Password not matched !</span>";
@@ -69,20 +72,23 @@ class Customer{
 		}
 	}
 
-	public function getCustomerData($id){
+	public function getCustomerData($id)
+	{
 		$query = "SELECT * FROM table_user WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 
-	public function getAllCustomer() {
+	public function getAllCustomer()
+	{
 		$query = "SELECT * FROM table_user ORDER BY id ASC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	public function delCustomerById($id) {
+	public function delCustomerById($id)
+	{
 		$query = "DELETE FROM table_user WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
@@ -91,10 +97,11 @@ class Customer{
 		} else {
 			$msg = "<span class='error'>User Data Not Deleted !</span>";
 			return $msg;
-		}	
+		}
 	}
 
-	public function rateUpdate($data,$cmrId){
+	public function rateUpdate($data, $cmrId)
+	{
 		$id = mysqli_real_escape_string($this->db->link, $data['id']);
 		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
 
@@ -104,16 +111,15 @@ class Customer{
 			while ($resultOrder = $getOrder->fetch_assoc()) {
 				$productId = $resultOrder['productId'];
 				$status = $resultOrder['status'];
-		
-				if($status == 3){
+
+				if ($status == 3) {
 					$msg = "<span class='error'>Already rated!</span>";
-				}
-				else{
+				} else {
 					$query = "SELECT * FROM table_product WHERE productId = '$productId'";
 					$resultProduct = $this->db->select($query)->fetch_assoc();
 					$totalRate = $resultProduct['rate'] * $resultProduct['sales'] + $rate;
 					$sales = $resultProduct['sales'] + 1;
-					$rate = $totalRate/$sales;
+					$rate = $totalRate / $sales;
 					$query = "UPDATE table_product 
 								SET
 								rate = '$rate',
@@ -128,16 +134,17 @@ class Customer{
 						$this->db->update($query);
 						$msg = "<span class='success'>Rate Successfully.</span>";
 						return $msg;
-					} else{
+					} else {
 						$msg = "<span class='error'>Fail to rate!</span>";
 						return $msg;
 					}
 				}
 			}
-		}	
+		}
 	}
 
-	public function customerUpdate($data,$cmrId) {
+	public function customerUpdate($data, $cmrId)
+	{
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
 		$city = mysqli_real_escape_string($this->db->link, $data['city']);
@@ -150,7 +157,7 @@ class Customer{
 		if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
-		}else{
+		} else {
 			$query = "INSERT INTO table_user(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$zip','$phone','$email')";
 
 			$query = "UPDATE table_user
@@ -169,22 +176,23 @@ class Customer{
 			$updated_row = $this->db->update($query);
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
-						return $msg;
-			} else{
-					$msg = "<span class='error'>Customer Data Not Updated !</span>";
-						return $msg;
+				return $msg;
+			} else {
+				$msg = "<span class='error'>Customer Data Not Updated !</span>";
+				return $msg;
 			}
 		}
 	}
 
-	public function UpdateName($data,$cmrId) {
+	public function UpdateName($data, $cmrId)
+	{
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 
 
 		if ($name == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
-		}else{
+		} else {
 
 			$query = "UPDATE table_user
 
@@ -196,22 +204,23 @@ class Customer{
 			$updated_row = $this->db->update($query);
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
-						return $msg;
-			} else{
-					$msg = "<span class='error'>Customer Data Not Updated !</span>";
-						return $msg;
+				return $msg;
+			} else {
+				$msg = "<span class='error'>Customer Data Not Updated !</span>";
+				return $msg;
 			}
 		}
 	}
 
-	public function UpdateEmail($data,$cmrId) {
+	public function UpdateEmail($data, $cmrId)
+	{
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
 
 		if ($email == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
-		}else{
+		} else {
 
 			$query = "UPDATE table_user
 
@@ -223,22 +232,23 @@ class Customer{
 			$updated_row = $this->db->update($query);
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
-						return $msg;
-			} else{
-					$msg = "<span class='error'>Customer Data Not Updated !</span>";
-						return $msg;
+				return $msg;
+			} else {
+				$msg = "<span class='error'>Customer Data Not Updated !</span>";
+				return $msg;
 			}
 		}
 	}
 
-	public function UpdatePassword($data,$cmrId) {
+	public function UpdatePassword($data, $cmrId)
+	{
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
 
 		if ($pass == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
-		}else{
+		} else {
 
 			$query = "UPDATE table_user
 
@@ -251,13 +261,12 @@ class Customer{
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
 				return $msg;
-			} else{
+			} else {
 				$msg = "<span class='error'>Customer Data Not Updated !</span>";
 				return $msg;
 			}
 		}
 	}
-
 }
 
 
