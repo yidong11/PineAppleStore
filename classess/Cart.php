@@ -154,12 +154,6 @@ private $fm;
 		return $bool;
 	}
 
-	public function payableAmount($cmrId){
-		$query = "SELECT price FROM table_order WHERE cmrId = '$cmrId' AND date = now()";
-		$result = $this->db->select($query);
-		return $result;
-	}
-
 	public function getDeliveryProduct($cmrId){
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
 		$result = $this->db->select($query);
@@ -183,16 +177,13 @@ private $fm;
 		$result = $this->db->select($query);
 		return $result;
 	}
-	public function checkOrder($cmrId){
-	    $query = "SELECT * FROM table_order WHERE cmrId = '$cmrId'";
-		$result = $this->db->select($query);
-		return $result;
-	}
+
 	public function getAllOrderProduct(){
 		$query = "SELECT * FROM table_order ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
+
 	public function delOrderById($id){
 		$query = "DELETE FROM table_order WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
@@ -243,20 +234,6 @@ private $fm;
 			return $msg;
 		}
 
-	}
-
-	public function delProductShifted($id){
-		$id = mysqli_real_escape_string($this->db->link, $id);
-
-		$query = "DELETE FROM table_order WHERE id = '$id' ";
-	    $deldata = $this->db->delete($query);
-	    if ($deldata) {
-			$msg = "<span class='success'>Data Deleted Successfully.</span>";
-			return $msg;	
-		}else{
-			$msg = "<span class='error'>Data Not Deleted !</span>";
-			return $msg;
-		}
 	}
 
 	public function productShiftConfirm($id){
