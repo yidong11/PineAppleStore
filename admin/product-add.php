@@ -1,3 +1,10 @@
+<!-- 
+  This file is used to add a new product to the database.
+  The admin can add a new product by entering the product details and uploading an image.
+  The product details include the product name, category, description, price, and stock.
+  The product is then added to the database and displayed in the product list.
+ -->
+
 <?php
 // start output buffering
 ob_start();
@@ -13,6 +20,7 @@ ob_start();
 $pd = new Product();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+  // Call the productInsert method of the Product class to insert the product into the database
     $insertProduct = $pd->productInsert($_POST, $_FILES);
 }
 ?>
@@ -26,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
   <?php
     if (isset($insertProduct)) {
+      // Display the product insertion error message
         echo $insertProduct;
     }
   ?>  
@@ -45,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         <select name="catId" id="select" class="add_product_select_box">
           <option>Select Category</option>
           <?php
+            // Retrieve all categories from the database as options in the select box
             $cat = new Category();
             $getCat = $cat->getAllCat();
             if ($getCat) {

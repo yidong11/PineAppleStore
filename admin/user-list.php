@@ -1,3 +1,9 @@
+<!-- 
+  This page is for admin to list all the users in the database.
+  The admin can view the user details and delete the user.
+  The users are displayed in a tabular format using a datatable.
+ -->
+
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Customer.php';?>
@@ -11,25 +17,20 @@ $fm = new Format();
 
 <?php
 if (isset($_GET['delcmr'])) {
+  // Sanitize the input by removing any characters that are not alphanumeric or underscore
   $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delcmr']);
   $delcmr = $cmr->delCustomerById($id);
 }
 ?>
 
 
-
-
-
-
-<div
-  id="user_info_content"
-  class="admin-page-main-container2 column"
->
+<div id="user_info_content" class="admin-page-main-container2 column">
   <span class="admin-page-main-text">User List</span>
 
 
   <?php
   if (isset($delcmr)) {
+    // Display the error or success message
     echo $delcmr;
   }
   ?>
@@ -56,9 +57,8 @@ if (isset($_GET['delcmr'])) {
       <?php
       $getCmr = $cmr->getAllCustomer();
       if ($getCmr) {
-        $i = 0;
         while ($result = $getCmr->fetch_assoc()) {
-          $i++;
+          // for each user, display the user details in a table row
       ?>
       <tr class="odd gradeX">
         <td><?php echo $result['id'];?></td>
@@ -84,7 +84,7 @@ if (isset($_GET['delcmr'])) {
 </div>
 
 
-
+<!-- Include necessary script for datatable -->
 <script type="text/javascript">
     $(document).ready(function () {
         setupLeftMenu();

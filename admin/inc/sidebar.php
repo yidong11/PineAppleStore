@@ -1,3 +1,10 @@
+<!-- 
+ * This file contains the HTML markup for the sidebar navigation in the admin panel.
+ * It includes dropdown menus for user information, order information, category information, and product information.
+ * Each dropdown menu has a toggle button and a list of links.
+ * The links point to different pages for managing users, orders, categories, and products.
+-->
+
 <div class="admin-page-navbar-container column">
     <div
         data-thq="thq-dropdown"

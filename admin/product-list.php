@@ -1,3 +1,9 @@
+<!-- 
+  This file is used to display the list of products in the admin panel.
+  This file uses a datatable to display the products in a tabular format.
+  The admin can view all the products and can also edit or delete them.
+ -->
+
 <?php include 'inc/header.php'; ?>
 <?php include 'inc/sidebar.php'; ?>
 <?php include '../classess/Product.php';?>
@@ -8,30 +14,26 @@ $pd = new Product();
 $fm = new Format();
 ?>
 
-
 <?php
 if (isset($_GET['delpro'])) {
-	$id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delpro']);
-	$delpro = $pd->delProById($id);
+  // Sanitize the input by removing any characters that are not alphanumeric or underscore
+  $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delpro']);
+  // Call the delProById method of the Product class to delete the product by ID
+  $delpro = $pd->delProById($id);
 }
 ?>
 
-
-<div
-  id="user_info_content"
-  class="admin-page-main-container2 column"
->
+<div id="user_info_content" class="admin-page-main-container2 column">
   <span class="admin-page-main-text">Product List</span>
 
   <?php 
   if (isset($delpro)) {
+    // Display the error message
     echo $delpro;
   }
   ?> 
 
-
   <table class="data display datatable" id="example" style="width: 1300px;">
-    
     <thead>
       <tr>
         <th style="width: 8%;">Product ID</th>
@@ -46,15 +48,12 @@ if (isset($_GET['delpro'])) {
         <th style="width: 8%;">Action</th>
       </tr>
     </thead>
-
     <tbody>
-
       <?php
       $getPd = $pd->getAllProduct();
       if ($getPd) {
-        $i = 0;
         while ($result = $getPd->fetch_assoc()) {
-          $i++;
+          // for each product, display the product details in a table row
       ?>
       <tr class="odd gradeX">
         <td><?php echo $result['productId'];?></td>
@@ -69,22 +68,17 @@ if (isset($_GET['delpro'])) {
         <td><a href="product-edit.php?proid=<?php echo $result['productId'];?>">Edit</a> || <a onclick="return confirm('Are you sure to delete?')" href="?delpro=<?php echo $result['productId'];?>">Delete</a></td>
       </tr>
       <?php } } ?>
-      
     </tbody>
-	</table>
-
-
+  </table>
 </div>
 
-
+<!-- Include necessary scripts for the datatable. -->
 <script type="text/javascript">
-    $(document).ready(function () {
-        setupLeftMenu();
-        $('.datatable').dataTable();
-		setSidebarHeight();
-    });
+  $(document).ready(function () {
+    setupLeftMenu();
+    $('.datatable').dataTable();
+    setSidebarHeight();
+  });
 </script>
 
-
-          
 <?php include 'inc/footer.php'; ?>

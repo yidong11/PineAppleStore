@@ -1,32 +1,43 @@
+<!-- 
+ * This file is the header section of the admin page of the PineApple Store.
+ * It includes necessary dependencies, sets cache control headers, and handles logout action.
+ * The header contains the HTML structure, meta tags, stylesheets, and JavaScript files required for the admin page.
+ * It also includes the logo, navigation links, and logout functionality. 
+-->
+ 
 <?php
+// Include the Session class file
 include '../lib/Session.php';
+
+// Check if a session is active
 Session::checkSession();
 
+// Include the Database class file
 include '../lib/Database.php';
+
+// Include the Formate helper file
 include '../helpers/Formate.php';
+
+// Register an autoloader function to load classes dynamically
 spl_autoload_register(function($class){
-    include_once "classess/".$class.".php";
+  include_once "classess/".$class.".php";
 });
-?>
 
 
-<?php  
-$db = new Database();
-$fm = new Format();
-?>
+$db = new Database(); // Create a new instance of the Database class
+$fm = new Format(); // Create a new instance of the Format class
 
+// Set the necessary headers for caching
+header("Cache-Control: no-cache, must-revalidate");
+header("Pragma: no-cache"); 
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
+header("Cache-Control: max-age=2592000");
 
-<?php
-  header("Cache-Control: no-cache, must-revalidate");
-  header("Pragma: no-cache"); 
-  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
-  header("Cache-Control: max-age=2592000");
-?>
+// Check if the 'action' parameter is set in the URL and if it is equal to 'logout'
+if (isset($_GET['action']) && $_GET['action'] == "logout") {
+  Session::destroy_admin(); // Call the destroy_admin method of the Session class to logout the admin user
+}
 
-<?php
-  if (isset($_GET['action']) && $_GET['action'] == "logout") {
-      Session::destroy_admin();
-  }
 ?>
 
 
