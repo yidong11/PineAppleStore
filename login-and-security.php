@@ -1,3 +1,7 @@
+<!-- 
+  File name: login-and-security.php
+  File description: This file allows the user to view and edit their login and security information
+ -->
 <?php include 'inc/header.php'; ?>
 
 

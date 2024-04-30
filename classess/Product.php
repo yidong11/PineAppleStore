@@ -6,12 +6,13 @@ include_once($filepath . '/../helpers/Formate.php');
 ?>
 
 <?php
-
+// Product class
 class Product
 {
 	private $db;
 	private $fm;
 
+	// Product constructor
 	public function __construct()
 	{
 
@@ -19,6 +20,7 @@ class Product
 		$this->fm = new Format();
 	}
 
+	// productInsert function
 	public function productInsert($data, $file)
 	{
 
@@ -71,6 +73,7 @@ class Product
 		}
 	}
 
+	// getAllProduct function
 	public function getAllProduct() {
 		$query = "SELECT p.*,c.catName
 		FROM table_product as p,table_category as c
@@ -81,6 +84,7 @@ class Product
 		return $result;
 	}
 
+	// productUpdate function
 	public function getProById($id)
 	{
 
@@ -89,6 +93,7 @@ class Product
 		return $result;
 	}
 
+	// productUpdate function
 	public function productUpdate($data, $file, $id){
 		$productName = $this->fm->validation($data['productName']);
 		$catId = $this->fm->validation($data['catId']);
@@ -176,6 +181,7 @@ class Product
 		}
 	}
 
+	// delProById function
 	public function delProById($id)
 	{
 		$query = "SELECT * FROM table_product WHERE productId = '$id'";
@@ -198,6 +204,7 @@ class Product
 		}
 	}
 
+	// getSingleProduct function
 	public function getSliderProduct()
 	{
 
@@ -206,6 +213,7 @@ class Product
 		return $result;
 	}
 
+	// getSingleProduct function
 	public function getTrendingProduct()
 	{
 		$query = "SELECT * FROM table_product ORDER BY sales DESC LIMIT 5";
@@ -213,6 +221,7 @@ class Product
 		return $result;
 	}
 
+	// getSingleProduct function
 	public function getSingleProduct($id){
 		$query = "SELECT p.*,c.catName
 		FROM table_product as p,table_category as c
@@ -221,7 +230,7 @@ class Product
 		return $result;
 	}
 
-
+	// getRelatedProduct function
 	public function getRelatedProduct($prodId, $catId) {
 		$query = "SELECT * FROM table_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
 		$result = $this->db->select($query);

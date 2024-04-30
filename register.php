@@ -1,3 +1,7 @@
+<!-- 
+  File name: register.php
+  File description: This file allows the user to register for an account
+ -->
 <?php 
 include 'lib/Session.php';
 Session::init();

@@ -1,3 +1,7 @@
+<!-- 
+  File name: login.php
+  File description: This file allows the user to login to their account
+ -->
 <?php 
 include 'lib/Session.php';
 Session::init();

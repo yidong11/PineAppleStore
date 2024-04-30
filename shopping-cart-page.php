@@ -1,3 +1,7 @@
+<!-- 
+  File name: shopping-cart-page.php
+  File description: This page is used to show the customer's shopping cart.
+ -->
 <?php include 'inc/header.php';?>
 
 <script>

@@ -6,13 +6,14 @@ include_once ($filepath.'/../helpers/Formate.php');
 ?>
 
 <?php
-
+// Category class
 class Category
 {
 	
 	private $db;
 	private $fm;
 
+	// Category constructor
 	public function __construct()
 	{
 		
@@ -20,6 +21,7 @@ class Category
 		$this->fm = new Format();
 	}
 
+	// catInsert function
 	public function catInsert($catName){
 		$catName = $this->fm->validation($catName);
         $catName = mysqli_real_escape_string($this->db->link, $catName);
@@ -40,6 +42,7 @@ class Category
 		}
 	}
 
+	// getAllCat function
 	public function getAllCat(){
 		$query = "SELECT * FROM table_category ORDER BY catId ASC";
 		$result = $this->db->select($query);
@@ -47,12 +50,14 @@ class Category
 
 	}
 
+	// getCatById function
 	public function getCatById($id){
 		$query = "SELECT * FROM table_category WHERE catId = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// catUpdate function
 	public function catUpdate($catName,$id){
 		$catName = $this->fm->validation($catName);
 		$catName = mysqli_real_escape_string($this->db->link, $catName);
@@ -78,6 +83,7 @@ class Category
 		}
 	}
 
+	// delcatById function
 	public function delcatById($id){
 
 		$query = "DELETE FROM table_category WHERE catId = '$id'";

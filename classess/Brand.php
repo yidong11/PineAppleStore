@@ -7,11 +7,12 @@ include_once ($filepath.'/../helpers/Formate.php');
 ?>
 
 <?php
-
+// Brand class
 class Brand {
 	private $db;
 	private $fm;
 
+	// Brand constructor
 	public function __construct()
 	{
 		
@@ -19,6 +20,7 @@ class Brand {
 		$this->fm = new Format();
 	}
 
+	// brandInsert function
 	public function brandInsert($brandName ){
 		$brandName = $this->fm->validation($brandName);
         $brandName = mysqli_real_escape_string($this->db->link, $brandName);
@@ -39,18 +41,21 @@ class Brand {
 		}
 	}
 
+	// getAllBrand function
 	public function getAllBrand() {
 		$query = "SELECT * FROM tbl_brand ORDER BY brandId DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getBrandById function
  	public function getBrandById($id){
 		$query = "SELECT * FROM tbl_brand WHERE brandId='$id'";
 		$result = $this->db->select($query);
 		return $result;
  	}
 
+	// brandUpdate function
  	public function brandUpdate($brandName,$id){
 		$brandName = $this->fm->validation($brandName);
 		$brandName = mysqli_real_escape_string($this->db->link, $brandName);
@@ -78,6 +83,7 @@ class Brand {
 		}
 	}
 
+	// delbrandById function
 	public function delbrandById($id){
 		$query = "DELETE FROM tbl_brand WHERE brandId = '$id'";
 		$deldata = $this->db->delete($query);

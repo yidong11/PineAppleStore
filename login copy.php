@@ -1,3 +1,7 @@
+<!-- 
+  File name: edit-email.php
+  File description: This file allows the user to edit their email address
+ -->
 <?php 
 include 'lib/Session.php';
 Session::init();

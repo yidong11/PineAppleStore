@@ -7,18 +7,21 @@ include_once ($filepath.'/../helpers/Formate.php');
 
 
 <?php
-
+// Customer class
 class Customer{
 	
 	private $db;
 	private $fm;
 
+	// Customer constructor
 	public function __construct()
 	{
 		
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
+
+	// customerRegistration function
 	public function customerRegistration($data) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
@@ -48,6 +51,7 @@ class Customer{
 		}
 	}
 
+	// customerLogin function
 	public function customerLogin($data) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
@@ -69,19 +73,21 @@ class Customer{
 		}
 	}
 
+	// getCustomerData function
 	public function getCustomerData($id){
 		$query = "SELECT * FROM table_user WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-
+	// getAllCustomer function
 	public function getAllCustomer() {
 		$query = "SELECT * FROM table_user ORDER BY id ASC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// delCustomerById function
 	public function delCustomerById($id) {
 		$query = "DELETE FROM table_user WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
@@ -94,6 +100,7 @@ class Customer{
 		}	
 	}
 
+	// customerUpdate function
 	public function rateUpdate($data,$cmrId){
 		$id = mysqli_real_escape_string($this->db->link, $data['id']);
 		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
@@ -137,6 +144,7 @@ class Customer{
 		}	
 	}
 
+	// customerUpdate function
 	public function customerUpdate($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
@@ -177,6 +185,7 @@ class Customer{
 		}
 	}
 
+	// UpdateName function
 	public function UpdateName($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 
@@ -204,6 +213,7 @@ class Customer{
 		}
 	}
 
+	// UpdateEmail function
 	public function UpdateEmail($data,$cmrId) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
@@ -231,6 +241,7 @@ class Customer{
 		}
 	}
 
+	// UpdateAddress function
 	public function UpdatePassword($data,$cmrId) {
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 

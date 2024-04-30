@@ -1,3 +1,7 @@
+<!-- 
+    File name: product-detail.php
+    File description: A page that displays the details of a product
+ -->
 <?php
 // start output buffering
 ob_start();

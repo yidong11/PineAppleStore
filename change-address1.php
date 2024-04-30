@@ -1,5 +1,8 @@
+<!-- 
+  * File Description: change-address1.php is a file that allows the user to change their address.
+ -->
 <?php
-
+// Path: classess/Customer.php
 include 'lib/Session.php';
 Session::init();
 

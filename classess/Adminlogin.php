@@ -20,21 +20,25 @@ class Adminlogin
 private $db;
 private $fm;
 
-	public function __construct()
-	{
-		
-		$this->db = new Database();
-		$this->fm = new Format();
-	}
+// adminlogin constructor
+public function __construct()
+{
+	
+	$this->db = new Database();
+	$this->fm = new Format();
+}
 
-	public function adminlogin($adminUser,$adminPassword){
+// adminlogin function
+public function adminlogin($adminUser,$adminPassword){
 
+// adminlogin validation
 $adminUser = $this->fm->validation($adminUser);
 $adminPassword = $this->fm->validation($adminPassword);
 
 $adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
 $adminPassword = mysqli_real_escape_string($this->db->link, $adminPassword);
 
+// adminlogin empty validation
 if (empty($adminUser) ||empty($adminPassword) ) {
 	
 	$loginmsg = "Username or Password must not be empty !";

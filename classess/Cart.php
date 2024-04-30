@@ -7,16 +7,19 @@ include_once ($filepath.'/../helpers/Formate.php');
 
 
 <?php
-
+// Cart class
 class Cart{
 	
 private $db;
 private $fm;
 
+	// Cart constructor
 	public function __construct() {
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
+
+	// addToCart function
 	public function addToCart($quantity, $id){
 		if ($quantity < 0) {
 			$msg = "Invalid Quantity!";
@@ -59,6 +62,7 @@ private $fm;
 		}
 	}
 
+	// getCartProduct function
 	public function getCartProduct(){
 
 		$sId  = session_id();
@@ -69,6 +73,7 @@ private $fm;
 
 	}
 
+	// updateCartQuantity function
 	public function updateCartQuantity($cartId,$quantity){
 
 		$cartId = mysqli_real_escape_string($this->db->link, $cartId);
@@ -89,7 +94,7 @@ private $fm;
 		}
 	}
 
-
+	// delProductByCart function
 	public function delProductByCart($delId){
 
 		$delId = mysqli_real_escape_string($this->db->link, $delId);
@@ -103,6 +108,7 @@ private $fm;
 		}
 	}
 
+	// checkCartTable function
 	public function checkCartTable(){
 		$sId  = session_id();
 		$query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
@@ -110,12 +116,14 @@ private $fm;
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function delCustomerCart(){
 		$sId  = session_id();
 		$query = "DELETE FROM table_shoppingcart WHERE sId = '$sId'";
 		$this->db->delete($query);
 	}
 
+	// getCartProductBy function
 	public function orderProduct($cmrId){
 		$bool = True;
 		$sId  = session_id();
@@ -154,36 +162,42 @@ private $fm;
 		return $bool;
 	}
 
+	// getCartProductBy function
 	public function getDeliveryProduct($cmrId){
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function getNotDispatchedProduct($cmrId){
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 0 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function getDeliveredProduct($cmrId){
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and (status = 2 or status = 3) ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function getOrderedProduct($cmrId){
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function getAllOrderProduct(){
 		$query = "SELECT * FROM table_order ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function delOrderById($id){
 		$query = "DELETE FROM table_order WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
@@ -195,12 +209,15 @@ private $fm;
 			return $msg;
 		}
 	}
+
+	// getCartProductBy function
 	public function getOrderById($id){
 		$query = "SELECT * FROM table_order WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
+	// getCartProductBy function
 	public function updateOrderStatus($id, $status){
 		$id = mysqli_real_escape_string($this->db->link, $id);
 		$status = mysqli_real_escape_string($this->db->link, $status);
@@ -218,6 +235,7 @@ private $fm;
 		}
 	}
 
+	// getCartProductBy function
 	public function productShifted($id){
 		$id = mysqli_real_escape_string($this->db->link, $id);
 
@@ -236,6 +254,7 @@ private $fm;
 
 	}
 
+	// getCartProductBy function
 	public function productShiftConfirm($id){
 		$id = mysqli_real_escape_string($this->db->link, $id);
 
