@@ -1,3 +1,7 @@
+<!-- 
+  File name: index.php
+  File description: Home page of the website
+ -->
 <?php include 'inc/header.php'; ?>
 
 

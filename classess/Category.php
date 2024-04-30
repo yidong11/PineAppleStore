@@ -6,13 +6,14 @@ include_once($filepath . '/../helpers/Formate.php');
 ?>
 
 <?php
-
+// Category class
 class Category
 {
 
 	private $db;
 	private $fm;
 
+	// Category constructor
 	public function __construct()
 	{
 
@@ -20,6 +21,7 @@ class Category
 		$this->fm = new Format();
 	}
 
+	// catInsert function
 	public function catInsert($catName)
 	{
 		$catName = $this->fm->validation($catName);
@@ -41,6 +43,7 @@ class Category
 		}
 	}
 
+	// getAllCat function
 	public function getAllCat()
 	{
 		$query = "SELECT * FROM table_category ORDER BY catId ASC";
@@ -48,6 +51,7 @@ class Category
 		return $result;
 	}
 
+	// getCatById function
 	public function getCatById($id)
 	{
 		$query = "SELECT * FROM table_category WHERE catId = '$id'";
@@ -55,6 +59,7 @@ class Category
 		return $result;
 	}
 
+	// catUpdate function
 	public function catUpdate($catName, $id)
 	{
 		$catName = $this->fm->validation($catName);
@@ -81,6 +86,7 @@ class Category
 		}
 	}
 
+	// delcatById function
 	public function delcatById($id)
 	{
 

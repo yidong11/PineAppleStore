@@ -7,21 +7,22 @@ include_once($filepath . '/../helpers/Formate.php');
 
 
 <?php
-
-class Customer
-{
-
+// Customer class
+class Customer{
+	
 	private $db;
 	private $fm;
 
+	// Customer constructor
 	public function __construct()
 	{
 
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
-	public function customerRegistration($data)
-	{
+
+	// customerRegistration function
+	public function customerRegistration($data) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
@@ -50,8 +51,8 @@ class Customer
 		}
 	}
 
-	public function customerLogin($data)
-	{
+	// customerLogin function
+	public function customerLogin($data) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 		if (empty($email) || empty($pass)) {
@@ -72,23 +73,22 @@ class Customer
 		}
 	}
 
-	public function getCustomerData($id)
-	{
+	// getCustomerData function
+	public function getCustomerData($id){
 		$query = "SELECT * FROM table_user WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-
-	public function getAllCustomer()
-	{
+	// getAllCustomer function
+	public function getAllCustomer() {
 		$query = "SELECT * FROM table_user ORDER BY id ASC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	public function delCustomerById($id)
-	{
+	// delCustomerById function
+	public function delCustomerById($id) {
 		$query = "DELETE FROM table_user WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
@@ -100,8 +100,8 @@ class Customer
 		}
 	}
 
-	public function rateUpdate($data, $cmrId)
-	{
+	// customerUpdate function
+	public function rateUpdate($data,$cmrId){
 		$id = mysqli_real_escape_string($this->db->link, $data['id']);
 		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
 
@@ -143,8 +143,8 @@ class Customer
 		}
 	}
 
-	public function customerUpdate($data, $cmrId)
-	{
+	// customerUpdate function
+	public function customerUpdate($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
 		$city = mysqli_real_escape_string($this->db->link, $data['city']);
@@ -184,8 +184,8 @@ class Customer
 		}
 	}
 
-	public function UpdateName($data, $cmrId)
-	{
+	// UpdateName function
+	public function UpdateName($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 
 
@@ -212,8 +212,8 @@ class Customer
 		}
 	}
 
-	public function UpdateEmail($data, $cmrId)
-	{
+	// UpdateEmail function
+	public function UpdateEmail($data,$cmrId) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
 
@@ -240,8 +240,8 @@ class Customer
 		}
 	}
 
-	public function UpdatePassword($data, $cmrId)
-	{
+	// UpdateAddress function
+	public function UpdatePassword($data,$cmrId) {
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
 

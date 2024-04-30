@@ -1,3 +1,7 @@
+<!-- 
+  * File Name: my-address.php
+  * File Description: This page is used to show the customer's address.
+ -->
 <?php include 'inc/header.php'; ?>
 
       <div>

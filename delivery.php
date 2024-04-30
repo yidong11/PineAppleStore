@@ -1,3 +1,7 @@
+<!-- 
+  File name: delivered.php
+  Description: This is the page where the customer can see the list of delivered products.
+ -->
 <?php include 'inc/header.php';?>
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->
     <!-- <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" /> -->

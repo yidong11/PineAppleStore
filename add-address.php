@@ -1,3 +1,7 @@
+<!-- 
+  * File Name: add-address.php
+  * Description: add address page for customer
+ -->
 <?php
 
 include 'lib/Session.php';

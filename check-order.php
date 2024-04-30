@@ -1,3 +1,7 @@
+<!-- 
+  * File Name: check-order.php
+  * Description: check order page for customer
+ -->
 <?php include 'inc/header.php';?>
 
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->
@@ -28,6 +32,7 @@
 <?php include_once './helpers/Formate.php';?>
 
 <?php
+  // session_start();
   $cmrId = Session::get("cmrId");
   if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $updateCmr = $cmr->rateUpdate($_POST,$cmrId);

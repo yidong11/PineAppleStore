@@ -6,7 +6,7 @@ class Format{
  public function formatDate($date){
   return date('F j, Y, g:i a', strtotime($date));
  }
-
+// public function formatDate
  public function textShorten($text, $limit = 400){
   $text = $text. " ";
   $text = substr($text, 0, $limit);
@@ -15,6 +15,7 @@ class Format{
   return $text;
  }
 
+ // public function textShorten
  public function validation($data){
   $data = trim($data);
   $data = stripcslashes($data);
@@ -22,6 +23,7 @@ class Format{
   return $data;
  }
 
+ // public function validation
  public function title(){
   $path = $_SERVER['SCRIPT_FILENAME'];
   $title = basename($path, '.php');

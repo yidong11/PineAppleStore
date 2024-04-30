@@ -1,5 +1,9 @@
+<!-- 
+  * File Name: change-password.php
+  * Description: change password page for customer
+ -->
 <?php
-
+// Path: change-password.php
 include 'lib/Session.php';
 Session::init();
 

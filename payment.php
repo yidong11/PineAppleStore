@@ -1,3 +1,7 @@
+<!-- 
+  File name: payment.php
+  File description: This file allows the user to view and edit their payment information
+ -->
 <?php
 
 include 'lib/Session.php';

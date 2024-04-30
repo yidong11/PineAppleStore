@@ -1,3 +1,7 @@
+<!-- 
+  File name: edit-name.php
+  File description: This file allows the user to edit their name
+ -->
 <?php
 
 include 'lib/Session.php';

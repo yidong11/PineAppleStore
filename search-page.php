@@ -1,3 +1,7 @@
+<!-- 
+  File name: search-page.php
+  File description: This page is used to search for products
+ -->
 <?php 
 include 'lib/Session.php';
 Session::init();

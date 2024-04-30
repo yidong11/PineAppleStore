@@ -1,5 +1,9 @@
+<!-- 
+  * File Name: change-address.php
+  * Description: change address page for customer
+ -->
 <?php
-
+// Path: change-address.php
 include 'lib/Session.php';
 Session::init();
 

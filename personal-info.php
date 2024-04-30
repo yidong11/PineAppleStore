@@ -1,3 +1,7 @@
+<!-- 
+  File name: personal-info.php
+  File description: This file allows the user to view and edit their personal information
+ -->
 <?php include 'inc/header.php'; ?>
 
 <div

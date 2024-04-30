@@ -1,5 +1,5 @@
 <?php
-
+// Path: lib/Session.php
 class Session{
  public static function init(){
   if (version_compare(phpversion(), '5.4.0', '<')) {
@@ -13,10 +13,12 @@ class Session{
     }
  }
 
+ // set function
  public static function set($key, $val){
   $_SESSION[$key] = $val;
  }
 
+ // get function
  public static function get($key){
   if (isset($_SESSION[$key])) {
    return $_SESSION[$key];
@@ -25,6 +27,7 @@ class Session{
   }
  }
 
+// check session function
  public static function checkSession(){
   self::init();
   if (self::get("adminlogin")== false) {
@@ -33,6 +36,7 @@ class Session{
   }
  }
 
+ // check login function
  public static function checkLogin(){
   self::init();
   if (self::get("adminlogin")== true) {
@@ -40,11 +44,13 @@ class Session{
   }
  }
 
+    // check login function
  public static function destroy(){
   session_destroy();
   header("Location:index.php");
  }
 
+    // check login function
  public static function destroy_admin(){
     session_destroy();
     header("Location:login.php");
