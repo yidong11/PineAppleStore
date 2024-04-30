@@ -1,11 +1,11 @@
 
 <?php
 $filepath = realpath(dirname(__FILE__));
-include_once ($filepath.'/../lib/Session.php');
+include_once($filepath . '/../lib/Session.php');
 Session::checkLogin();
 
-include_once ($filepath.'/../lib/Database.php');
-include_once ($filepath.'/../helpers/Formate.php');
+include_once($filepath . '/../lib/Database.php');
+include_once($filepath . '/../helpers/Formate.php');
 
 ?>
 
@@ -16,34 +16,31 @@ include_once ($filepath.'/../helpers/Formate.php');
 
 class Adminlogin
 {
-	
-private $db;
-private $fm;
 
-// adminlogin constructor
-public function __construct()
-{
-	
-	$this->db = new Database();
-	$this->fm = new Format();
-}
+	private $db;
+	private $fm;
 
-// adminlogin function
-public function adminlogin($adminUser,$adminPassword){
+	public function __construct()
+	{
 
-// adminlogin validation
-$adminUser = $this->fm->validation($adminUser);
-$adminPassword = $this->fm->validation($adminPassword);
+		$this->db = new Database();
+		$this->fm = new Format();
+	}
 
-$adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
-$adminPassword = mysqli_real_escape_string($this->db->link, $adminPassword);
+	public function adminlogin($adminUser, $adminPassword)
+	{
 
-// adminlogin empty validation
-if (empty($adminUser) ||empty($adminPassword) ) {
-	
-	$loginmsg = "Username or Password must not be empty !";
-	return $loginmsg;
-		} else{
+		$adminUser = $this->fm->validation($adminUser);
+		$adminPassword = $this->fm->validation($adminPassword);
+
+		$adminUser = mysqli_real_escape_string($this->db->link, $adminUser);
+		$adminPassword = mysqli_real_escape_string($this->db->link, $adminPassword);
+
+		if (empty($adminUser) || empty($adminPassword)) {
+
+			$loginmsg = "Username or Password must not be empty !";
+			return $loginmsg;
+		} else {
 
 
 			$query = "SELECT * FROM table_admin WHERE adminUser = '$adminUser'
@@ -54,20 +51,17 @@ if (empty($adminUser) ||empty($adminPassword) ) {
 			if ($result != false) {
 				$value = $result->fetch_assoc();
 
-				Session::set("adminlogin",true);
-				Session::set("adminId",$value['adminId']);
-				Session::set("adminUser",$value['adminUser']);
-				Session::set("adminName",$value['adminName']);
+				Session::set("adminlogin", true);
+				Session::set("adminId", $value['adminId']);
+				Session::set("adminUser", $value['adminUser']);
+				Session::set("adminName", $value['adminName']);
 
 				header("Location:dashboard.php");
-			} else{
+			} else {
 				$loginmsg = "Username or Password not match !";
 				return $loginmsg;
 			}
-
-
 		}
-
 	}
 }
 

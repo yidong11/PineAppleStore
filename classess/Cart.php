@@ -1,31 +1,33 @@
 <?php
 $filepath = realpath(dirname(__FILE__));
-include_once ($filepath.'/../lib/Database.php');
-include_once ($filepath.'/../helpers/Formate.php');
+include_once($filepath . '/../lib/Database.php');
+include_once($filepath . '/../helpers/Formate.php');
 
 ?>
 
 
 <?php
 // Cart class
-class Cart{
-	
-private $db;
-private $fm;
+class Cart
+{
+
+	private $db;
+	private $fm;
 
 	// Cart constructor
-	public function __construct() {
+	public function __construct()
+	{
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
 
 	// addToCart function
-	public function addToCart($quantity, $id){
+	public function addToCart($quantity, $id)
+	{
 		if ($quantity < 0) {
 			$msg = "Invalid Quantity!";
 			return $msg;
-		}
-		elseif ($quantity == 0) {
+		} elseif ($quantity == 0) {
 			$msg = "The product is sold out!";
 			return $msg;
 		}
@@ -50,12 +52,12 @@ private $fm;
 			$msg = "Product already added!";
 			return $msg;
 		} else {
-    		$query = "INSERT INTO table_shoppingcart(sId,productId,productName,price,quantity,image,rate) VALUES('$sId','$productId','$productName','$price','$quantity','$image','$rate') ";
+			$query = "INSERT INTO table_shoppingcart(sId,productId,productName,price,quantity,image,rate) VALUES('$sId','$productId','$productName','$price','$quantity','$image','$rate') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
 				$msg = "Product added to cart!";
 				return $msg;
-			} else{
+			} else {
 				$msg = "Product not added to cart!";
 				return $msg;
 			}
@@ -63,18 +65,18 @@ private $fm;
 	}
 
 	// getCartProduct function
-	public function getCartProduct(){
+	public function getCartProduct()
+	{
 
 		$sId  = session_id();
 		$query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
 		$result = $this->db->select($query);
 		return $result;
-		
-
 	}
 
 	// updateCartQuantity function
-	public function updateCartQuantity($cartId,$quantity){
+	public function updateCartQuantity($cartId, $quantity)
+	{
 
 		$cartId = mysqli_real_escape_string($this->db->link, $cartId);
 		$quantity = mysqli_real_escape_string($this->db->link, $quantity);
@@ -88,14 +90,15 @@ private $fm;
 		$updated_row = $this->db->update($query);
 		if ($updated_row) {
 			echo "<script>window.location = 'shopping-cart-page.php';</script>";
-		} else{
+		} else {
 			$msg = "<span class='error'>Quantity Not Updated !</span>";
 			return $msg;
 		}
 	}
 
 	// delProductByCart function
-	public function delProductByCart($delId){
+	public function delProductByCart($delId)
+	{
 
 		$delId = mysqli_real_escape_string($this->db->link, $delId);
 		$query = "DELETE FROM table_shoppingcart WHERE cartId = '$delId'";
@@ -109,7 +112,8 @@ private $fm;
 	}
 
 	// checkCartTable function
-	public function checkCartTable(){
+	public function checkCartTable()
+	{
 		$sId  = session_id();
 		$query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
 		$result = $this->db->select($query);
@@ -117,17 +121,19 @@ private $fm;
 	}
 
 	// getCartProductBy function
-	public function delCustomerCart(){
+	public function delCustomerCart()
+	{
 		$sId  = session_id();
 		$query = "DELETE FROM table_shoppingcart WHERE sId = '$sId'";
 		$this->db->delete($query);
 	}
 
 	// getCartProductBy function
-	public function orderProduct($cmrId){
+	public function orderProduct($cmrId)
+	{
 		$bool = True;
 		$sId  = session_id();
-	    $query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
+		$query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
 		$getPro = $this->db->select($query);
 		if ($getPro) {
 			while ($result = $getPro->fetch_assoc()) {
@@ -142,7 +148,7 @@ private $fm;
 				if ($getProd) {
 					while ($result = $getProd->fetch_assoc()) {
 						$stock = $result['stock'] - $quantity;
-						if($stock < 0){
+						if ($stock < 0) {
 							$bool = False;
 							continue;
 						}
@@ -153,7 +159,7 @@ private $fm;
 						$inserted_row = $this->db->update($query);
 					}
 				}
-				if(!$bool)
+				if (!$bool)
 					continue;
 				$query = "INSERT INTO table_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
 				$inserted_row = $this->db->insert($query);
@@ -163,62 +169,70 @@ private $fm;
 	}
 
 	// getCartProductBy function
-	public function getDeliveryProduct($cmrId){
+	public function getDeliveryProduct($cmrId)
+	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function getNotDispatchedProduct($cmrId){
+	public function getNotDispatchedProduct($cmrId)
+	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 0 ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function getDeliveredProduct($cmrId){
+	public function getDeliveredProduct($cmrId)
+	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and (status = 2 or status = 3) ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function getOrderedProduct($cmrId){
+	public function getOrderedProduct($cmrId)
+	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function getAllOrderProduct(){
+	public function getAllOrderProduct()
+	{
 		$query = "SELECT * FROM table_order ORDER BY date DESC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function delOrderById($id){
+	public function delOrderById($id)
+	{
 		$query = "DELETE FROM table_order WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
 			$msg = "<span class='success'>Order Deleted Successfully.</span>";
 			return $msg;
-		} else{
+		} else {
 			$msg = "<span class='error'>Order Not Deleted !</span>";
 			return $msg;
 		}
 	}
 
 	// getCartProductBy function
-	public function getOrderById($id){
+	public function getOrderById($id)
+	{
 		$query = "SELECT * FROM table_order WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
 	// getCartProductBy function
-	public function updateOrderStatus($id, $status){
+	public function updateOrderStatus($id, $status)
+	{
 		$id = mysqli_real_escape_string($this->db->link, $id);
 		$status = mysqli_real_escape_string($this->db->link, $status);
 
@@ -229,14 +243,15 @@ private $fm;
 		$updated_row = $this->db->update($query);
 		if ($updated_row) {
 			header("Location:order-list.php");
-		} else{
+		} else {
 			$msg = "<span class='error'>Not Updated !</span>";
 			return $msg;
 		}
 	}
 
 	// getCartProductBy function
-	public function productShifted($id){
+	public function productShifted($id)
+	{
 		$id = mysqli_real_escape_string($this->db->link, $id);
 
 		$query = "UPDATE table_order
@@ -247,15 +262,15 @@ private $fm;
 		if ($updated_row) {
 			$msg = "<span class='success'>Updated Successfully.</span>";
 			return $msg;
-		} else{
+		} else {
 			$msg = "<span class='error'>Not Updated !</span>";
 			return $msg;
 		}
-
 	}
 
 	// getCartProductBy function
-	public function productShiftConfirm($id){
+	public function productShiftConfirm($id)
+	{
 		$id = mysqli_real_escape_string($this->db->link, $id);
 
 		$query = "UPDATE table_order
@@ -266,7 +281,7 @@ private $fm;
 		if ($updated_row) {
 			$msg = "<span class='success'>Updated Successfully.</span>";
 			return $msg;
-		} else{
+		} else {
 			$msg = "<span class='error'>Not Updated !</span>";
 			return $msg;
 		}
