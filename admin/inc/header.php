@@ -6,16 +6,12 @@
 -->
  
 <?php
-// Include the Session class file
 include '../lib/Session.php';
 
 // Check if a session is active
 Session::checkSession();
 
-// Include the Database class file
 include '../lib/Database.php';
-
-// Include the Formate helper file
 include '../helpers/Formate.php';
 
 // Register an autoloader function to load classes dynamically
