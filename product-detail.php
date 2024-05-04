@@ -1,6 +1,6 @@
 <!-- 
-    File name: product-detail.php
-    File description: A page that displays the details of a product
+    This page is used to display the details of a product.
+    it displays the product image, name, id, ratings, sales, stock, price, and description.
  -->
 <?php
 // start output buffering
@@ -15,6 +15,7 @@ if (isset($_GET['proid'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    // if there is no enough stock, the quantity is not set in the form
     $quantity = 0;
     if (isset($_POST['quantity'])) {
         $quantity = $_POST['quantity'];
@@ -26,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         header("Location: shopping-cart-page.php");
     }
     else if ($_POST['submit'] == "add_cart" && $addCart == "Product added to cart!") {
+        // if the product is added to the cart successfully, refresh the page to show the success message and update the cart icon
         echo "<meta http-equiv = 'refresh' content ='0;URL=?proid=$id' />";
     }
 }
@@ -36,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 
 
 <?php 
+// get the product details from the database
 $getPd = $pd->getSingleProduct($id);
 if ($getPd) {
     while ($result = $getPd->fetch_assoc()) {

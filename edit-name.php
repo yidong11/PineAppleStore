@@ -1,6 +1,6 @@
 <!-- 
-  File name: edit-name.php
-  File description: This file allows the user to edit their name
+  This page is for changing the name of the customer.
+  It collects the new name from the customer, and updates the name in the database according to the user ID.
  -->
 <?php
 
@@ -22,6 +22,7 @@ $cmr = new Customer();
 ?>
 
 <?php
+// update the name of the customer if the form is submitted
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   $updateCmr = $cmr->UpdateName($_POST, $cmrId);

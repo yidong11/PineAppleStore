@@ -1,6 +1,6 @@
 <!-- 
-  File name: search-page.php
-  File description: This page is used to search for products
+  This page is to search for products based on keywords, category, and price range.
+  The customer can search for products using the search bar and filter the results based on the category and price range.
  -->
 <?php 
 include 'lib/Session.php';
@@ -26,6 +26,7 @@ header("Cache-Control: max-age=2592000");
 ?>
 
 <?php 
+// if logout is clicked, delete the customer's cart and destroy the session
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();

@@ -6,14 +6,19 @@ include_once($filepath . '/../helpers/Formate.php');
 ?>
 
 <?php
-// Category class
+/**
+ * The Category class represents a category in the PineAppleStore application.
+ */
 class Category
 {
 
 	private $db;
 	private $fm;
 
-	// Category constructor
+	/**
+	 * Category constructor.
+	 * Initializes a new instance of the Category class.
+	 */
 	public function __construct()
 	{
 
@@ -21,7 +26,12 @@ class Category
 		$this->fm = new Format();
 	}
 
-	// catInsert function
+	/**
+	 * Inserts a new category into the database.
+	 *
+	 * @param string $catName The name of the category.
+	 * @return string The success or error message.
+	 */
 	public function catInsert($catName)
 	{
 		$catName = $this->fm->validation($catName);
@@ -43,7 +53,11 @@ class Category
 		}
 	}
 
-	// getAllCat function
+	/**
+	 * Retrieves all categories from the database.
+	 *
+	 * @return array The array of categories.
+	 */
 	public function getAllCat()
 	{
 		$query = "SELECT * FROM table_category ORDER BY catId ASC";
@@ -51,7 +65,12 @@ class Category
 		return $result;
 	}
 
-	// getCatById function
+	/**
+	 * Retrieves a category by its ID from the database.
+	 *
+	 * @param int $id The ID of the category.
+	 * @return array The category details.
+	 */
 	public function getCatById($id)
 	{
 		$query = "SELECT * FROM table_category WHERE catId = '$id'";
@@ -59,7 +78,13 @@ class Category
 		return $result;
 	}
 
-	// catUpdate function
+	/**
+	 * Updates a category's name that has the specified ID in the database.
+	 *
+	 * @param string $catName The updated name of the category.
+	 * @param int $id The ID of the category to be updated.
+	 * @return string The success or error message.
+	 */
 	public function catUpdate($catName, $id)
 	{
 		$catName = $this->fm->validation($catName);
@@ -86,7 +111,12 @@ class Category
 		}
 	}
 
-	// delcatById function
+	/**
+	 * Deletes a category from the database.
+	 *
+	 * @param int $id The ID of the category to be deleted.
+	 * @return string The success or error message.
+	 */
 	public function delcatById($id)
 	{
 

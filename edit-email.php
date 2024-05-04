@@ -1,6 +1,6 @@
 <!-- 
-  File name: edit-email.php
-  File description: This file allows the user to edit their email address
+  This page is for changing the email of the customer.
+  It collects the new email address from the customer, and updates the email address in the database according to the user ID.
  -->
 <?php
 
@@ -22,6 +22,7 @@ $cmr = new Customer();
 ?>
 
 <?php
+// if the customer is not logged in, redirect to the login page
 $login = Session::get("cuslogin");
 if ($login == false) {
   header("Location:login.php");
@@ -29,6 +30,7 @@ if ($login == false) {
 ?>
 
 <?php
+// Update the email of the customer if the form is submitted
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   $updateCmr = $cmr->UpdateEmail($_POST, $cmrId);

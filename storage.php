@@ -1,6 +1,6 @@
 <!-- 
-    File name: storage.php
-    File description: A page that displays a message to the customer that some of the products they ordered are currently in short supply
+    this page is to display the product not enough information
+    when placing the order.
  -->
 <?php include 'inc/header.php';?>
 

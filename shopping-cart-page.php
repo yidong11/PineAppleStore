@@ -1,6 +1,8 @@
 <!-- 
-  File name: shopping-cart-page.php
-  File description: This page is used to show the customer's shopping cart.
+  This page lists all the products in the shopping cart.
+  It displays the total price of the products in the cart, as well as the image, name, quantity, etc, of each product.
+  The customer can update the quantity of the products in the cart.
+  The customer can also delete products from the cart.
  -->
 <?php include 'inc/header.php';?>
 
@@ -11,6 +13,7 @@ function submitForm(formid) {
 </script>
 
 <?php 
+// if the delete product button is clicked, delete the product from the cart
 if (isset($_GET['delpro'])) {
 	$delId = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['delpro']);
 	$delProduct = $ct->delProductByCart($delId);
@@ -18,12 +21,14 @@ if (isset($_GET['delpro'])) {
 ?>
 
 <?php 
+// if the update quantity button is clicked, update the quantity of the product in the cart
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cartId = $_POST['cartId'];
     $quantity = $_POST['quantity'];
     $updateCart = $ct->updateCartQuantity($cartId,$quantity);
 
     if ($quantity <=0) {
+      // remove the product from the cart if the quantity is set to 0
     	$delProduct = $ct->delProductByCart($cartId);
     }
 }

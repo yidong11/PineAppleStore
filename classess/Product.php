@@ -6,13 +6,18 @@ include_once($filepath . '/../helpers/Formate.php');
 ?>
 
 <?php
-// Product class
+/**
+ * The Product class represents a product in the PineAppleStore application.
+ */
 class Product
 {
 	private $db;
 	private $fm;
 
-	// Product constructor
+	/**
+	 * Product constructor.
+	 * Initializes the Database and Format objects.
+	 */
 	public function __construct()
 	{
 
@@ -20,10 +25,16 @@ class Product
 		$this->fm = new Format();
 	}
 
-	// productInsert function
+	/**
+	 * Inserts a new product into the database.
+	 *
+	 * @param array $data The product data.
+	 * @param array $file The uploaded file data.
+	 * @return string The success or error message.
+	 */
 	public function productInsert($data, $file)
 	{
-
+		// Validation and sanitization of input data
 		$productName = $this->fm->validation($data['productName']);
 		$catId = $this->fm->validation($data['catId']);
 		$body = $this->fm->validation($data['body']);
@@ -48,14 +59,15 @@ class Product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
+		// Validation checks
 		if ($productName == "" || $catId == ""  || $body == "" || $price == "" || $file_name == "" || $stock == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} elseif ($file_size > 1048567) {
-			$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
+			$msg = "<span class='error'>Image Size should be less than 1MB!</span>";
 			return $msg;
 		} elseif (in_array($file_ext, $permited) === false) {
-			$msg = "<span class='error'>You can upload only:-" . implode(', ', $permited) . "</span>";
+			$msg = "<span class='error'>You can upload only: " . implode(', ', $permited) . "</span>";
 			return $msg;
 		} elseif ($stock <= 0){
 			$msg = "<span class='error'>Stock must be greater than 0</span>";
@@ -73,7 +85,11 @@ class Product
 		}
 	}
 
-	// getAllProduct function
+	/**
+	 * Retrieves all products from the database.
+	 *
+	 * @return mixed The result of the database query.
+	 */
 	public function getAllProduct() {
 		$query = "SELECT p.*,c.catName
 		FROM table_product as p,table_category as c
@@ -84,7 +100,12 @@ class Product
 		return $result;
 	}
 
-	// productUpdate function
+	/**
+	 * Retrieves a product by its ID.
+	 *
+	 * @param int $id The product ID.
+	 * @return mixed The result of the database query.
+	 */
 	public function getProById($id)
 	{
 
@@ -93,7 +114,14 @@ class Product
 		return $result;
 	}
 
-	// productUpdate function
+	/**
+	 * Updates a product in the database.
+	 *
+	 * @param array $data The updated product data.
+	 * @param array $file The uploaded file data.
+	 * @param int $id The product ID.
+	 * @return string The success or error message.
+	 */
 	public function productUpdate($data, $file, $id){
 		$productName = $this->fm->validation($data['productName']);
 		$catId = $this->fm->validation($data['catId']);
@@ -121,6 +149,7 @@ class Product
 		$unique_image = substr(md5(time()), 0, 10) . '.' . $file_ext;
 		$uploaded_image = "uploads/" . $unique_image;
 
+		// Validation checks
 		if ($productName == "" || $catId == "" || $body == "" || $price == "" || $rate == "" || $sales == "" || $stock == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
@@ -130,10 +159,10 @@ class Product
 		} else {
 			if (!empty($file_name)) {
 				if ($file_size >1048567) {
-					$msg = "<span class='error'>Image Size should be less then 1MB!</span>";
+					$msg = "<span class='error'>Image Size should be less than 1MB!</span>";
 					return $msg;
 				} elseif (in_array($file_ext, $permited) === false) {
-					$msg = "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+					$msg = "<span class='error'>You can upload only: " . implode(', ', $permited) . "</span>";
 					return $msg;
 				} else {
 					move_uploaded_file($file_temp, $uploaded_image);
@@ -181,7 +210,12 @@ class Product
 		}
 	}
 
-	// delProById function
+	/**
+	 * Deletes a product from the database.
+	 *
+	 * @param int $id The product ID.
+	 * @return string The success or error message.
+	 */
 	public function delProById($id)
 	{
 		$query = "SELECT * FROM table_product WHERE productId = '$id'";
@@ -204,7 +238,11 @@ class Product
 		}
 	}
 
-	// getSingleProduct function
+	/**
+	 * Retrieves the slider products from the database.
+	 *
+	 * @return mixed The result of the database query.
+	 */
 	public function getSliderProduct()
 	{
 
@@ -213,7 +251,11 @@ class Product
 		return $result;
 	}
 
-	// getSingleProduct function
+	/**
+	 * Retrieves the trending products from the database.
+	 *
+	 * @return mixed The result of the database query.
+	 */
 	public function getTrendingProduct()
 	{
 		$query = "SELECT * FROM table_product ORDER BY sales DESC LIMIT 5";
@@ -221,7 +263,12 @@ class Product
 		return $result;
 	}
 
-	// getSingleProduct function
+	/**
+	 * Retrieves a single product by its ID.
+	 *
+	 * @param int $id The product ID.
+	 * @return mixed The result of the database query.
+	 */
 	public function getSingleProduct($id){
 		$query = "SELECT p.*,c.catName
 		FROM table_product as p,table_category as c
@@ -230,7 +277,13 @@ class Product
 		return $result;
 	}
 
-	// getRelatedProduct function
+	/**
+	 * Retrieves related products based on the category and product ID.
+	 *
+	 * @param int $prodId The product ID.
+	 * @param int $catId The category ID.
+	 * @return mixed The result of the database query.
+	 */
 	public function getRelatedProduct($prodId, $catId) {
 		$query = "SELECT * FROM table_product WHERE catId = '$catId' AND productId != '$prodId' ORDER BY rate DESC LIMIT 4";
 		$result = $this->db->select($query);

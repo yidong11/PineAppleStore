@@ -1,6 +1,6 @@
 <!-- 
-  File name: delivered.php
-  Description: This is the page where the customer can see the list of delivered products.
+  This file list all the orders that are currently being delivered to the customer.
+  This page is redirected from the check-order.php page.
  -->
 <?php include 'inc/header.php';?>
     <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->

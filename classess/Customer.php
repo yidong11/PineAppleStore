@@ -5,29 +5,36 @@ include_once($filepath . '/../helpers/Formate.php');
 
 ?>
 
-
 <?php
-// Customer class
+/**
+ * The Customer class represents a customer in the PineAppleStore application.
+ */
 class Customer{
 	
 	private $db;
 	private $fm;
 
-	// Customer constructor
+	/**
+	 * Constructs a new Customer object.
+	 */
 	public function __construct()
 	{
-
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
 
-	// customerRegistration function
+	/**
+	 * Registers a new customer.
+	 *
+	 * @param array $data The customer data.
+	 * @return string The registration message.
+	 */
 	public function customerRegistration($data) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
-
+		// Check if any field is empty
 		if ($name == "" || $email == "" || $pass == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
@@ -35,12 +42,16 @@ class Customer{
 
 		$mailquery = "SELECT * FROM table_user WHERE email = '$email' LIMIT 1";
 		$mailchk = $this->db->select($mailquery);
+
+		// Check if email already exists
 		if ($mailchk != false) {
 			$msg = "<span class='error'>Email already exist !</span>";
 			return $msg;
 		} else {
 			$query = "INSERT INTO table_user(name,email,pass) VALUES('$name','$email','$pass')";
 			$inserted_row = $this->db->insert($query);
+
+			// Check if customer data is inserted successfully
 			if ($inserted_row) {
 				$msg = "<span class='success'>Customer Data inserted Successfully.</span>";
 				return $msg;
@@ -51,16 +62,26 @@ class Customer{
 		}
 	}
 
-	// customerLogin function
+	/**
+	 * Logs in a customer.
+	 *
+	 * @param array $data The login data.
+	 * @return string The login message.
+	 */
 	public function customerLogin($data) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
+
+		// Check if email or password is empty
 		if (empty($email) || empty($pass)) {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		}
+
 		$query = "SELECT * FROM table_user WHERE email = '$email' AND pass = '$pass'";
 		$result = $this->db->select($query);
+
+		// Check if email and password match
 		if ($result != false) {
 			$value = $result->fetch_assoc();
 			Session::set("cuslogin", true);
@@ -73,24 +94,40 @@ class Customer{
 		}
 	}
 
-	// getCustomerData function
+	/**
+	 * Retrieves customer data by ID.
+	 *
+	 * @param int $id The customer ID.
+	 * @return mixed The customer data.
+	 */
 	public function getCustomerData($id){
 		$query = "SELECT * FROM table_user WHERE id = '$id'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	// getAllCustomer function
+	/**
+	 * Retrieves all customers.
+	 *
+	 * @return mixed All customers data.
+	 */
 	public function getAllCustomer() {
 		$query = "SELECT * FROM table_user ORDER BY id ASC";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	// delCustomerById function
+	/**
+	 * Deletes a customer by ID.
+	 *
+	 * @param int $id The customer ID.
+	 * @return string The deletion message.
+	 */
 	public function delCustomerById($id) {
 		$query = "DELETE FROM table_user WHERE id = '$id'";
 		$deldata = $this->db->delete($query);
+
+		// Check if customer data is deleted successfully
 		if ($deldata) {
 			$msg = "<span class='success'>User Data Deleted Successfully.</span>";
 			return $msg;
@@ -100,13 +137,21 @@ class Customer{
 		}
 	}
 
-	// customerUpdate function
+	/**
+	 * Updates the rating for a customer.
+	 *
+	 * @param array $data The rating data.
+	 * @param int $cmrId The customer ID.
+	 * @return string The rating message.
+	 */
 	public function rateUpdate($data,$cmrId){
 		$id = mysqli_real_escape_string($this->db->link, $data['id']);
 		$rate = mysqli_real_escape_string($this->db->link, $data['rate']);
 
 		$query = "SELECT * FROM table_order WHERE id = '$id'";
 		$getOrder = $this->db->select($query);
+
+		// Check if order exists
 		if ($getOrder) {
 			while ($resultOrder = $getOrder->fetch_assoc()) {
 				$productId = $resultOrder['productId'];
@@ -126,6 +171,8 @@ class Customer{
 								sales = '$sales'
 								WHERE productId = '$productId'";
 					$updated_row = $this->db->update($query);
+
+					// Check if rating is updated successfully
 					if ($updated_row) {
 						$query = "UPDATE table_order 
 						SET
@@ -143,7 +190,13 @@ class Customer{
 		}
 	}
 
-	// customerUpdate function
+	/**
+	 * Updates customer data.
+	 *
+	 * @param array $data The customer data.
+	 * @param int $cmrId The customer ID.
+	 * @return string The update message.
+	 */
 	public function customerUpdate($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 		$address = mysqli_real_escape_string($this->db->link, $data['address']);
@@ -153,7 +206,7 @@ class Customer{
 		$phone = mysqli_real_escape_string($this->db->link, $data['phone']);
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
-
+		// Check if any field is empty
 		if ($name == "" || $address == "" || $city == "" || $country == "" || $zip == "" || $phone == "" || $email == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
@@ -161,7 +214,6 @@ class Customer{
 			$query = "INSERT INTO table_user(name,address,city,country,zip,phone,email) VALUES('$name','$address','$city','$country','$zip','$phone','$email')";
 
 			$query = "UPDATE table_user
-
 			SET
 			name = '$name',
 			address = '$address', 
@@ -170,10 +222,11 @@ class Customer{
 			zip = '$zip', 
 			phone = '$phone', 
 			email = '$email' 
-
 			WHERE id = '$cmrId'";
 
 			$updated_row = $this->db->update($query);
+
+			// Check if customer data is updated successfully
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
 				return $msg;
@@ -184,24 +237,29 @@ class Customer{
 		}
 	}
 
-	// UpdateName function
+	/**
+	 * Updates the customer's name.
+	 *
+	 * @param array $data The name data.
+	 * @param int $cmrId The customer ID.
+	 * @return string The update message.
+	 */
 	public function UpdateName($data,$cmrId) {
 		$name = mysqli_real_escape_string($this->db->link, $data['name']);
 
-
+		// Check if name is empty
 		if ($name == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} else {
-
 			$query = "UPDATE table_user
-
 			SET
 			name = '$name'
-
 			WHERE id = '$cmrId'";
 
 			$updated_row = $this->db->update($query);
+
+			// Check if customer data is updated successfully
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
 				return $msg;
@@ -212,24 +270,29 @@ class Customer{
 		}
 	}
 
-	// UpdateEmail function
+	/**
+	 * Updates the customer's email.
+	 *
+	 * @param array $data The email data.
+	 * @param int $cmrId The customer ID.
+	 * @return string The update message.
+	 */
 	public function UpdateEmail($data,$cmrId) {
 		$email = mysqli_real_escape_string($this->db->link, $data['email']);
 
-
+		// Check if email is empty
 		if ($email == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} else {
-
 			$query = "UPDATE table_user
-
 			SET
 			email = '$email'
-
 			WHERE id = '$cmrId'";
 
 			$updated_row = $this->db->update($query);
+
+			// Check if customer data is updated successfully
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
 				return $msg;
@@ -240,24 +303,29 @@ class Customer{
 		}
 	}
 
-	// UpdateAddress function
+	/**
+	 * Updates the customer's password.
+	 *
+	 * @param array $data The password data.
+	 * @param int $cmrId The customer ID.
+	 * @return string The update message.
+	 */
 	public function UpdatePassword($data,$cmrId) {
 		$pass = mysqli_real_escape_string($this->db->link, md5($data['pass']));
 
-
+		// Check if password is empty
 		if ($pass == "") {
 			$msg = "<span class='error'>Fields must not be empty !</span>";
 			return $msg;
 		} else {
-
 			$query = "UPDATE table_user
-
 			SET
 			pass = '$pass'
-
 			WHERE id = '$cmrId'";
 
 			$updated_row = $this->db->update($query);
+
+			// Check if customer data is updated successfully
 			if ($updated_row) {
 				$msg = "<span class='success'>Customer Data Updated Successfully.</span>";
 				return $msg;
@@ -268,6 +336,4 @@ class Customer{
 		}
 	}
 }
-
-
 ?>

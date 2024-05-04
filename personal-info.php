@@ -1,6 +1,8 @@
 <!-- 
-  File name: personal-info.php
-  File description: This file allows the user to view and edit their personal information
+  This is the main page for editing and viewing user's information.
+  The user can view their account information and choose to edit their name, email, or password.
+  The user can also choose to view and edit their address information.
+  They can also view their orders and track them.
  -->
 <?php include 'inc/header.php'; ?>
 

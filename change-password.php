@@ -1,6 +1,5 @@
 <!-- 
-  * File Name: change-password.php
-  * Description: change password page for customer
+  This page is for changing the password of the customer.
  -->
 <?php
 // Path: change-password.php
@@ -22,6 +21,7 @@ $cmr = new Customer();
 ?>
 
 <?php
+// if the customer is not logged in, redirect to the login page
 $login = Session::get("cuslogin");
 if ($login == false) {
   header("Location:login.php");
@@ -29,6 +29,7 @@ if ($login == false) {
 ?>
 
 <?php
+// Update the password of the customer if the form is submitted
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
   $updateCmr = $cmr->UpdatePassword($_POST, $cmrId);

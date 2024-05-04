@@ -1,6 +1,6 @@
 <!-- 
-  File name: register.php
-  File description: This file allows the user to register for an account
+  This page is for the user to register for an account.
+  The user can enter their username, email, password, and confirm password to register.
  -->
 <?php 
 include 'lib/Session.php';
@@ -34,7 +34,7 @@ if (isset($_GET['cid'])) {
 ?>
 
 <?php
-
+// if the register form is submitted, try to register the customer
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
   if ($_POST['pass'] != $_POST['confirm_pass']) {
       $customerReg = "<span class='error'>Password and Confirm Password do not match!</span>";
@@ -195,6 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             }
           ?>
           <?php
+          // display the error message if the registration fails
             if (isset($customerReg)) {
               echo $customerReg;
           }

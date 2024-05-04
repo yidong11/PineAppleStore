@@ -1,6 +1,6 @@
 <!-- 
-  * File Name: my-address.php
-  * File Description: This page is used to show the customer's address.
+  This page is to display the user's address information.
+  The user can choose to edit their address information.
  -->
 <?php include 'inc/header.php'; ?>
 

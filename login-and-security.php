@@ -1,6 +1,6 @@
 <!-- 
-  File name: login-and-security.php
-  File description: This file allows the user to view and edit their login and security information
+  This is the main page for editing user's account information.
+  If can redirect to the page for editing email, name, or password.
  -->
 <?php include 'inc/header.php'; ?>
 

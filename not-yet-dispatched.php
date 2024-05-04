@@ -1,11 +1,8 @@
 <!-- 
-  File name: not-yet-dispatched.php
-  Description: This is the page where the customer can see the list of products that are not yet dispatched.
+  This page is for the customer to view the products that have not been dispatched yet.
+  This page is redirected from the check-order.php page.
  -->
 <?php include 'inc/header.php';?>
-    <!-- <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/text.css" media="screen" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" /> -->
     <link rel="stylesheet" type="text/css" href="css/layout.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/nav.css" media="screen" />
     <link href="css/table/demo_page.css" rel="stylesheet" type="text/css" />

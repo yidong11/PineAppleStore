@@ -5,25 +5,36 @@ include_once($filepath . '/../helpers/Formate.php');
 
 ?>
 
-
 <?php
-// Cart class
+/**
+ * The Cart class represents a shopping cart in an e-commerce application.
+ */
 class Cart
 {
 
 	private $db;
 	private $fm;
 
-	// Cart constructor
+	/**
+	 * Cart constructor.
+	 * Initializes a new instance of the Cart class.
+	 */
 	public function __construct()
 	{
 		$this->db = new Database();
 		$this->fm = new Format();
 	}
 
-	// addToCart function
+	/**
+	 * Adds a product to the cart.
+	 *
+	 * @param int $quantity The quantity of the product to add.
+	 * @param int $id The ID of the product to add.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function addToCart($quantity, $id)
 	{
+		// Validate the quantity
 		if ($quantity < 0) {
 			$msg = "Invalid Quantity!";
 			return $msg;
@@ -38,6 +49,7 @@ class Cart
 
 		$sId  = session_id();
 
+		// Get the product details from the database
 		$squery = "SELECT * FROM table_product WHERE productId = '$productId'";
 		$result = $this->db->select($squery)->fetch_assoc();
 
@@ -52,6 +64,7 @@ class Cart
 			$msg = "Product already added!";
 			return $msg;
 		} else {
+			// Insert the product into the cart
 			$query = "INSERT INTO table_shoppingcart(sId,productId,productName,price,quantity,image,rate) VALUES('$sId','$productId','$productName','$price','$quantity','$image','$rate') ";
 			$inserted_row = $this->db->insert($query);
 			if ($inserted_row) {
@@ -64,25 +77,32 @@ class Cart
 		}
 	}
 
-	// getCartProduct function
+	/**
+	 * Retrieves the products in the cart based on the session ID.
+	 *
+	 * @return mixed The result of the query.
+	 */
 	public function getCartProduct()
 	{
-
 		$sId  = session_id();
 		$query = "SELECT * FROM table_shoppingcart WHERE sId = '$sId'";
 		$result = $this->db->select($query);
 		return $result;
 	}
 
-	// updateCartQuantity function
+	/**
+	 * Updates the quantity of a product in the cart.
+	 *
+	 * @param int $cartId The ID of the cart item.
+	 * @param int $quantity The new quantity of the product.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function updateCartQuantity($cartId, $quantity)
 	{
-
 		$cartId = mysqli_real_escape_string($this->db->link, $cartId);
 		$quantity = mysqli_real_escape_string($this->db->link, $quantity);
 
 		$query = "UPDATE table_shoppingcart
-
 		SET
 		quantity = '$quantity' 
 		WHERE cartId = '$cartId'";
@@ -96,14 +116,19 @@ class Cart
 		}
 	}
 
-	// delProductByCart function
+	/**
+	 * Deletes a product from the cart.
+	 *
+	 * @param int $delId The ID of the cart item to delete.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function delProductByCart($delId)
 	{
-
 		$delId = mysqli_real_escape_string($this->db->link, $delId);
 		$query = "DELETE FROM table_shoppingcart WHERE cartId = '$delId'";
 		$deldata = $this->db->delete($query);
 		if ($deldata) {
+			// if the product is deleted successfully, redirect to the shopping cart page
 			echo "<script>window.location = 'shopping-cart-page.php';</script>";
 		} else {
 			$msg = "<span class='error'>Product Not Deleted !</span>";
@@ -111,7 +136,11 @@ class Cart
 		}
 	}
 
-	// checkCartTable function
+	/**
+	 * Checks if the cart table is empty.
+	 *
+	 * @return mixed The result of the query.
+	 */
 	public function checkCartTable()
 	{
 		$sId  = session_id();
@@ -120,7 +149,9 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Deletes all products from the cart for the current session.
+	 */
 	public function delCustomerCart()
 	{
 		$sId  = session_id();
@@ -128,7 +159,12 @@ class Cart
 		$this->db->delete($query);
 	}
 
-	// getCartProductBy function
+	/**
+	 * Places an order for the products in the cart.
+	 *
+	 * @param int $cmrId The ID of the customer placing the order.
+	 * @return bool True if the order is placed successfully, false otherwise.
+	 */
 	public function orderProduct($cmrId)
 	{
 		$bool = True;
@@ -137,6 +173,7 @@ class Cart
 		$getPro = $this->db->select($query);
 		if ($getPro) {
 			while ($result = $getPro->fetch_assoc()) {
+				// For each product in the cart, place an order
 				$productId = $result['productId'];
 				$productName = $result['productName'];
 				$quantity = $result['quantity'];
@@ -147,6 +184,7 @@ class Cart
 				$getProd = $this->db->select($query);
 				if ($getProd) {
 					while ($result = $getProd->fetch_assoc()) {
+						// Update the stock of the product
 						$stock = $result['stock'] - $quantity;
 						if ($stock < 0) {
 							$bool = False;
@@ -161,6 +199,7 @@ class Cart
 				}
 				if (!$bool)
 					continue;
+				// Insert the order into the table_order
 				$query = "INSERT INTO table_order(cmrId,productId,productName,quantity,price,image) VALUES('$cmrId','$productId','$productName','$quantity','$price','$image') ";
 				$inserted_row = $this->db->insert($query);
 			}
@@ -168,7 +207,12 @@ class Cart
 		return $bool;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves the products that have been delivered to a customer.
+	 *
+	 * @param int $cmrId The ID of the customer.
+	 * @return mixed The result of the query.
+	 */
 	public function getDeliveryProduct($cmrId)
 	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 1 ORDER BY date DESC";
@@ -176,7 +220,12 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves the products that have not been dispatched to a customer.
+	 *
+	 * @param int $cmrId The ID of the customer.
+	 * @return mixed The result of the query.
+	 */
 	public function getNotDispatchedProduct($cmrId)
 	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and status = 0 ORDER BY date DESC";
@@ -184,7 +233,12 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves the products that have been delivered or cancelled for a customer.
+	 *
+	 * @param int $cmrId The ID of the customer.
+	 * @return mixed The result of the query.
+	 */
 	public function getDeliveredProduct($cmrId)
 	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' and (status = 2 or status = 3) ORDER BY date DESC";
@@ -192,7 +246,12 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves all the products that have been ordered by a customer.
+	 *
+	 * @param int $cmrId The ID of the customer.
+	 * @return mixed The result of the query.
+	 */
 	public function getOrderedProduct($cmrId)
 	{
 		$query = "SELECT * FROM table_order WHERE cmrId = '$cmrId' ORDER BY date DESC";
@@ -200,7 +259,11 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves all the ordered products.
+	 *
+	 * @return mixed The result of the query.
+	 */
 	public function getAllOrderProduct()
 	{
 		$query = "SELECT * FROM table_order ORDER BY date DESC";
@@ -208,7 +271,12 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Deletes an order by its ID.
+	 *
+	 * @param int $id The ID of the order to delete.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function delOrderById($id)
 	{
 		$query = "DELETE FROM table_order WHERE id = '$id'";
@@ -222,7 +290,12 @@ class Cart
 		}
 	}
 
-	// getCartProductBy function
+	/**
+	 * Retrieves an order by its ID.
+	 *
+	 * @param int $id The ID of the order.
+	 * @return mixed The result of the query.
+	 */
 	public function getOrderById($id)
 	{
 		$query = "SELECT * FROM table_order WHERE id = '$id'";
@@ -230,7 +303,13 @@ class Cart
 		return $result;
 	}
 
-	// getCartProductBy function
+	/**
+	 * Updates the status of an order.
+	 *
+	 * @param int $id The ID of the order.
+	 * @param int $status The new status of the order.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function updateOrderStatus($id, $status)
 	{
 		$id = mysqli_real_escape_string($this->db->link, $id);
@@ -249,7 +328,12 @@ class Cart
 		}
 	}
 
-	// getCartProductBy function
+	/**
+	 * Marks a product as shifted.
+	 *
+	 * @param int $id The ID of the order.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function productShifted($id)
 	{
 		$id = mysqli_real_escape_string($this->db->link, $id);
@@ -268,7 +352,12 @@ class Cart
 		}
 	}
 
-	// getCartProductBy function
+	/**
+	 * Confirms the product shift.
+	 *
+	 * @param int $id The ID of the order.
+	 * @return string The message indicating the result of the operation.
+	 */
 	public function productShiftConfirm($id)
 	{
 		$id = mysqli_real_escape_string($this->db->link, $id);

@@ -1,6 +1,8 @@
 <!-- 
-  File name: payment.php
-  File description: This file allows the user to view and edit their payment information
+  This page is shown when the user checks out their shopping cart.
+  The user can see the products they are going to buy and the total price.
+  The user can also choose the payment method and place the order.
+  After confirming the information, an order is placed and the user is redirected to the list of orders.
  -->
 <?php
 
@@ -22,6 +24,7 @@ $cmr = new Customer();
 ?>
 
 <?php 
+  // if the customer is not logged in, redirect to the login page
   $login = Session::get("cuslogin");
   if ($login == false) {
     header("Location:login.php");
@@ -29,14 +32,17 @@ $cmr = new Customer();
 ?>
 
 <?php 
+  // if the form is submitted, place the order
   if (isset($_GET['orderid']) && $_GET['orderid'] == 'Order') {
     $cmrId = Session::get("cmrId");
     $insertOrder = $ct->orderProduct($cmrId);
     $delData = $ct->delCustomerCart();
     if(!$insertOrder){
+      // if there is not enough storage, redirect to the storage page
       header("Location:storage.php");
     }
     else{
+      // if the order is placed successfully, redirect to the list of orders
       header("Location:check-order.php");
     }
 }

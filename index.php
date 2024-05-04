@@ -1,6 +1,7 @@
 <!-- 
-  File name: index.php
-  File description: Home page of the website
+  This is the homepage of the website.
+  The homepage displays a slider with the most popular products.
+  It also displays the trending items.
  -->
 <?php include 'inc/header.php'; ?>
 

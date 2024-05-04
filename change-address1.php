@@ -1,5 +1,6 @@
 <!-- 
-  * File Description: change-address1.php is a file that allows the user to change their address.
+  This file is used to change the address of the customer.
+  Slightly different from the change-address.php file in redirection. Their functionalities are the same.
  -->
 <?php
 // Path: classess/Customer.php
@@ -22,6 +23,7 @@ $cmr = new Customer();
 ?>
 
 <?php 
+// if the customer is not logged in, redirect to the login page
 $login = Session::get("cuslogin");
 if ($login == false) {
     header("Location:login.php");
@@ -29,6 +31,7 @@ if ($login == false) {
  ?>
 
 <?php
+// Update the customer's address if the form is submitted
 $cmrId = Session::get("cmrId");
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $updateCmr = $cmr->customerUpdate($_POST,$cmrId);

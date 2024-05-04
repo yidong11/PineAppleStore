@@ -1,6 +1,8 @@
 <!-- 
-  File name: login.php
-  File description: This file allows the user to login to their account
+  This is the page for user login.
+  The user can enter their username and password to log in to their account.
+  They can also choose to redirect to the registration page if they do not have an account.
+  Admin users can also choose to go to the admin login page.
  -->
 <?php 
 include 'lib/Session.php';
@@ -19,6 +21,7 @@ $cat = new Category();
 $ct = new Cart();
 $cmr = new Customer();
 
+// Prevent caching, prevent back button after logout
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache"); 
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
@@ -35,6 +38,7 @@ if (isset($_GET['cid'])) {
 
 
 <?php
+// if the customer is already logged in, redirect to the home page
 $login = Session::get("cuslogin");
 if ($login == true) {
 	header("Location:index.php");
@@ -43,7 +47,7 @@ if ($login == true) {
 
 
 <?php
-
+// if the form is submitted, try to log in the customer
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 	$custLogin = $cmr->customerLogin($_POST);
 }
