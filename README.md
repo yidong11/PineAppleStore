@@ -4,6 +4,7 @@ The project PineApple is the official online shopping platform of the renowned r
 
 
 **how to Run**
+
 **Requirements:**
 1.	Download and install any local web server such as XAMPP/WAMP.
 (You may find these links helpful: https://www.wampserver.com/en/, https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170 )
