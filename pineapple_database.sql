@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1:3306
--- 生成日期： 2024-04-10 15:45:28
+-- 生成日期： 2024-05-04 10:29:34
 -- 服务器版本： 8.2.0
 -- PHP 版本： 8.2.13
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `table_category` (
   `catId` int NOT NULL AUTO_INCREMENT,
   `catName` varchar(255) NOT NULL,
   PRIMARY KEY (`catId`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `table_category`
@@ -71,7 +71,8 @@ INSERT INTO `table_category` (`catId`, `catName`) VALUES
 (6, 'CPU'),
 (7, 'Footwear'),
 (8, 'Sports &amp; fitness'),
-(9, 'Clothing');
+(9, 'Cloth'),
+(12, 'Electric Vehicle');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `table_order` (
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `table_order`
@@ -102,12 +103,16 @@ INSERT INTO `table_order` (`id`, `cmrId`, `productId`, `productName`, `quantity`
 (34, 2, 18, 'iPhone 8 Plus', 1, 109999.00, 'uploads/33ce6b99f4.jpg', '2024-03-30 19:06:56', 0),
 (35, 3, 15, 'Laundry machine ', 1, 3200.00, 'uploads/d712a37947.png', '2024-04-05 21:25:18', 0),
 (36, 4, 18, 'iPhone 8 Plus', 5, 549995.00, 'uploads/33ce6b99f4.jpg', '2024-04-07 19:10:55', 0),
-(37, 3, 37, 'Spalding React TF-250', 1, 329.00, 'uploads/21c7305a3c.jpg', '2024-04-08 01:21:22', 0),
+(37, 3, 37, 'Spalding React TF-250', 1, 329.00, 'uploads/21c7305a3c.jpg', '2024-04-08 01:21:22', 2),
 (38, 5, 4, 'Lakers 24 Kobe', 1, 399.00, 'uploads/83102d32c9.jpg', '2024-04-08 01:44:35', 0),
 (39, 5, 37, 'Spalding React TF-250', 4, 1316.00, 'uploads/21c7305a3c.jpg', '2024-04-08 01:44:35', 0),
 (40, 5, 6, 'Basketball Lover Boy Kunkun', 1, 49.00, 'uploads/ab10610f8e.jpg', '2024-04-08 01:44:35', 3),
 (41, 3, 37, 'Spalding React TF-250', 6, 1974.00, 'uploads/21c7305a3c.jpg', '2024-04-10 20:22:20', 0),
-(42, 3, 6, 'Basketball Lover Boy Kunkun', 1, 49.00, 'uploads/ab10610f8e.jpg', '2024-04-10 20:30:22', 0);
+(42, 3, 6, 'Basketball Lover Boy Kunkun', 1, 49.00, 'uploads/ab10610f8e.jpg', '2024-04-10 20:30:22', 0),
+(45, 8, 43, 'AMD Ryzen™ 9 7900X', 2, 5998.00, 'uploads/b274288606.jpg', '2024-04-11 15:24:07', 3),
+(46, 8, 5, 'SAMSUNG 16', 1, 18999.00, 'uploads/4b14d267ad.jpg', '2024-04-11 15:37:34', 3),
+(47, 3, 38, 'adidas Rihla Training', 1, 289.00, 'uploads/01cfe5e206.jpg', '2024-04-30 22:30:49', 0),
+(48, 3, 5, 'SAMSUNG 16', 1, 18999.00, 'uploads/4b14d267ad.jpg', '2024-04-30 22:30:49', 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `table_product` (
   `rate` float NOT NULL,
   `sales` int NOT NULL,
   PRIMARY KEY (`productId`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `table_product`
@@ -140,11 +145,11 @@ INSERT INTO `table_product` (`productId`, `productName`, `catId`, `brandId`, `bo
 (2, 'ASUS ROG Strix G16 Laptop', 2, 5, 'POWER UP YOUR PLAY - Win more games with Windows 11, a 14th Gen Intel Core i9-14900HX processor, and an NVIDIA GeForce RTX 4060 Laptop GPU at 140W Max TGP.\r\nBLAZING FAST MEMORY AND STORAGE – Multitask swiftly with 16GB of DDR5-5600MHz memory and 1TB of PCIe 4x4.\r\nROG INTELLIGENT COOLING – The Strix G16 features Thermal Grizzly’s Conductonaut Extreme liquid metal on the CPU, and a third intake fan among other premium features, to allow for sustained performance over long gaming sessions.', 13999.00, 'uploads/5030c05f99.jpg', 0, 7, 4.75, 4800),
 (3, 'LG Gram 16', 2, 2, '<p>Press the power button for 2 seconds, then the light will vibrate for a few seconds. Once the vibration stop, the BLUE led indicator to stay on and it is in ready mode. To make a video, simply press the power button one time, the lighter will vibrate 2 times and the blue LED indicator goes off, then the video recording begins. To stop filming, press the power again, then the light will vibrate 3 times. Now your file is saved and in ready mode again. To turn off, hold the power button for 2 seconds, and the lighter will vibrate 2 times.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>\r\n<p>Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.Product details will be go here.</p>', 9899.00, 'uploads/708e680c6f.jpg', 1, 4, 4.7, 435),
 (4, 'Lakers 24 Kobe', 8, 3, 'Great outfit for your future NBA player\r\nGreat for Lakers fans\r\nSuper stylish, dressy and trendy\r\nCombined shipping available. Seller will refund difference after check-out. Pay one shipping rate, then $2 for each additional item. Seller will refund the money.\r\nEasy snaps for diaper changes', 399.00, 'uploads/83102d32c9.jpg', 0, 8, 5, 24),
-(5, 'SAMSUNG 16', 2, 2, 'POWER FOR YOUR MOST PRODUCTIVE DAYS: Galaxy Book4 Pro models come with a new Intel Core Ultra 7 processor 155H or Intel Core Ultra 5 processor 125H with a higher-performance Intel ARC graphics & newly added AI neural processing unit (NPU)\r\nPOWERFUL. LIGHT. AMAZINGLY SLIM: Galaxy Book4 Pro is the epitome of portability and the lightest in our all-new Galaxy Book4 Series; 16” Thickness: 12.5mm, Weight: 3.44 lbs; 14\" Thickness: 11.6mm, Weight: 2.71 lbs', 18999.00, 'uploads/4b14d267ad.jpg', 1, 6, 4.1, 378),
+(5, 'SAMSUNG 16', 2, 2, 'POWER FOR YOUR MOST PRODUCTIVE DAYS: Galaxy Book4 Pro models come with a new Intel Core Ultra 7 processor 155H or Intel Core Ultra 5 processor 125H with a higher-performance Intel ARC graphics & newly added AI neural processing unit (NPU)\r\nPOWERFUL. LIGHT. AMAZINGLY SLIM: Galaxy Book4 Pro is the epitome of portability and the lightest in our all-new Galaxy Book4 Series; 16” Thickness: 12.5mm, Weight: 3.44 lbs; 14\" Thickness: 11.6mm, Weight: 2.71 lbs', 18999.00, 'uploads/4b14d267ad.jpg', 1, 6, 4.09983, 6667),
 (6, 'Basketball Lover Boy Kunkun', 4, 5, 'For the Ultimate Fan: If you\'re a die-hard enthusiast, this special gift is tailor-made for you. Make a bold statement about your passions and interests at any party!\r\nFor the Ultimate Fan: If you\'re a die-hard enthusiast, this special gift is tailor-made for you. Make a bold statement about your passions and interests at any party!\r\nFor the Ultimate Fan: If you\'re a die-hard enthusiast, this special gift is tailor-made for you. Make a bold statement about your passions and interests at any party!', 49.00, 'uploads/ab10610f8e.jpg', 1, 1, 2.49974, 5662),
 (7, 'ASUS TUF GeForce RTX 4090', 5, 2, 'NVIDIA Ada Lovelace Streaming Multiprocessors: Up to 2x performance and power efficiency\r\n4th Generation Tensor Cores: Up to 2X AI performance\r\n3rd Generation RT Cores: Up to 2X ray tracing performance\r\nAxial-tech fans scaled up for 23% more airflow\r\nDual Ball Fan Bearings last up to twice as long as conventional designs', 24899.00, 'uploads/4a46c9013f.jpg', 0, 5, 4.8, 871),
 (8, 'VIPERA NVIDIA GeForce RTX 4090', 5, 2, '16,384 NVIDIA CUDA Cores\r\nSupports 4K 120Hz HDR, 8K 60Hz HDR, and Variable Refresh Rate as specified in HDMI 2.1a\r\nNew Streaming Multiprocessors: Up to 2x performance and power efficiency\r\nFourth-Gen Tensor Cores: Up to 2x AI performance\r\nThird-Gen RT Cores: Up to 2x ray tracing performance\r\nAI-Accelerated Performance: NVIDIA DLSS 3\r\nGame-Winning Responsiveness: NVIDIA Reflex low-latency platform', 16999.00, 'uploads/5aad5a9752.jpg', 0, 4, 4.3, 579),
-(11, 'NVIDIA H100 80 GB Graphic Card', 5, 4, 'Accelerated Data Analytics\r\nReal-time Deep Learning Inference\r\nBuilt for AI, HPC, and data analytics\r\nUp to 7X higher performance for HPC applications', 99999.00, 'uploads/2f32e89726.jpg', 1, 8, 1.9, 6),
+(11, 'NVIDIA H100 80 GB Graphic Card', 5, 4, 'Accelerated Data Analytics\r\nReal-time Deep Learning Inference\r\nBuilt for AI, HPC, and data analytics\r\nUp to 7X higher performance for HPC applications', 9999.00, 'uploads/2f32e89726.jpg', 1, 8, 1.9, 6666),
 (12, 'NVIDIA Quadro RTX 4000', 5, 2, 'Experience fast, interactive, professional application performance\r\nLatest NVIDIA Turing GPU architecture and ultra-fast graphics memory\r\nNVidia RTX technology brings real time rendering to professionals\r\n36 RT cores accelerate photorealistic ray-traced rendering\r\nAdvanced rendering and shading features for immersive VR', 5999.00, 'uploads/d0d1fae017.jpg', 1, 2, 3.6, 84),
 (13, 'MSI GeForce RTX 4080 16GB SUPRIM X', 5, 5, 'V511-004R\r\nMemory Clock Speed : 1700\r\nProduct Dimensions : ?33.6 x 14.2 x 7.8 cm\r\nItem Weight: 798 Grams', 8799.00, 'uploads/10ea9204a8.jpg', 1, 6, 4.6, 45),
 (15, 'Dell Optiplex 7000 Intel i5-13500', 1, 2, 'Dell OptiPlex offers maximum efficiency and convenience in a small factor desktop tower PC. Processor: Intel i5-13500 (14 Cores, 6P + 8E; 2.5GHz – 4.8GHz / 1.8GHz – 3.5GHz, 24MB Cache)\r\nStorage: 512GB NVMe; RAM: 16GB DDR4-3200MHz. Dell OptiPlex offers lightning-fast responsiveness, rapid boot-up times, swift data access, and an overall improvement in system performance.\r\nGraphics: Intel UHD 770; This graphic card supports dual or quad monitors, 4K resolution for an elevated visual gaming experience or for complex office applications.\r\nOS: Windows 11 Pro. Optimized for School Education, Designers, Professionals, Small Business, Programmers, Gaming, Streaming, Video Conference and Online Classes, Remote Learning, Zoom Meeting.\r\nWarranty: 3 Year Dell Onsite Warranty / 3 Year Oemgenuine Limited Warranty. Memory & Hard Drive Upgrade | * - View Product Description for complete details and notes.', 8799.00, 'uploads/c3c6650bef.jpg', 0, 5, 4.2, 1146),
@@ -169,12 +174,12 @@ INSERT INTO `table_product` (`productId`, `productName`, `catId`, `brandId`, `bo
 (35, 'Jordan Air 7', 7, 0, 'Care instructionsMachine Wash\r\nSole materialRubber\r\nOuter materialLeather\r\nClosure typeLace-Up', 1799.00, 'uploads/a6d0fcfc56.jpg', 0, 6, 4.6, 199),
 (36, 'adidas Ultraboost 1.0 Sneaker', 7, 0, 'Men\'s shoes that provide the support and reliability needed to run with confidence\r\nSTRETCHWEB WITH CONTINENTAL RUBBER OUTSOLE: Stretchweb outsole flexes naturally for an energized ride, and Continental Rubber gives you superior traction; Officially licensed Continental product', 1399.00, 'uploads/c4cbe43933.jpg', 0, 18, 3.7, 191),
 (37, 'Spalding React TF-250', 8, 0, 'Official size and weight: Size 7, 29.5\"\r\nAll-surface composite leather cover\r\nButyl rubber bladder for air retention\r\nShipped inflated and game-ready\r\nDesigned for indoor and outdoor play', 329.00, 'uploads/21c7305a3c.jpg', 0, 8, 4.1, 4906),
-(38, 'adidas Rihla Training', 8, 0, 'adidas unisex-adult soccer ball', 289.00, 'uploads/01cfe5e206.jpg', 0, 8, 3.2, 98),
+(38, 'adidas Rihla Training', 8, 0, 'adidas unisex-adult soccer ball', 289.00, 'uploads/01cfe5e206.jpg', 0, 7, 3.2, 98),
 (39, '8 Legend Basketball Jersey', 9, 0, 'Fabric: 100% high quality polyester.This Youth Kids Boy Children #8 #24 legend basketball jersey is super soft,skin-friendly,lightweight breathable material and durable,quick dry.\r\nWashing: Hand washable/machine wash/line dry will not wrinkle or shrink after washing.Do not bleach.\r\nDesign style: Embroidered stitched letters and numbers jersey shirts, casual mens unisex clothing,fashion and trendy, straight fit design.', 139.00, 'uploads/c8798cf1a5.jpg', 0, 5, 4.2, 96),
 (40, 'Intel Core i3-14100F', 6, 0, '4 cores (4 P-cores + 0 E-cores) and 8 threads\r\nPerformance two core microarchitecture, prioritizing and distributing workloads to optimize performance\r\nUp to 4.7 GHz unlocked. 12MB Cache\r\nCompatible with Intel 600-series (with potential BIOS update) and 700-series chipset-based motherboards\r\nPCIe 5.0 & 4.0 support. DDR4 and DDR5 Memory support. RM1 thermal solution included. Discrete graphics required.', 699.00, 'uploads/40f0f9fc32.jpg', 0, 6, 4.7, 1651),
 (41, 'AMD Ryzen 3 4100', 6, 0, 'Can deliver smooth 100 plus FPS performance in the world\'s most popular games, discrete graphics card required\r\n4 Cores and 8 processing threads, bundled with the AMD Wraith Stealth cooler\r\n4.0 GHz Max Boost, unlocked for overclocking, 6 MB cache, DDR4-3200 support\r\nFor the advanced Socket AM4 platform', 639.00, 'uploads/066bab90ed.jpg', 0, 19, 4.7, 1961),
 (42, 'AMD Ryzen 7 5800X', 6, 0, 'AMD\'s fastest 8 core processor for mainstream desktop, with 16 procesing threads. OS Support-Windows 10 64-Bit Edition\r\nCan deliver elite 100-plus FPS performance in the world\'s most popular games\r\nCooler not included, high-performance cooler recommended\r\n4.7 GHz Max Boost, unlocked for overclocking, 36 MB of cache, DDR-3200 support\r\nFor the advanced Socket AM4 platform, can support PCIe 4.0 on X570 and B550 motherboards\r\nSystem Memory Specification: Up to 3200MHz', 1489.00, 'uploads/04452d72c4.jpg', 0, 1, 4.4, 1641),
-(43, 'AMD Ryzen™ 9 7900X', 6, 0, 'Processor is versatile, reliable, and offers convenient usage with high speed\r\nRyzen 9 product line processor for your convenience and optimal usage\r\n5 nm process technology for reliable performance with maximum productivity\r\nDodeca-core (12 Core) processor core allows multitasking with great reliability and fast processing speed', 2999.00, 'uploads/b274288606.jpg', 0, 15, 2.5, 2),
+(43, 'AMD Ryzen™ 9 7900X', 6, 0, 'Processor is versatile, reliable, and offers convenient usage with high speed\r\nRyzen 9 product line processor for your convenience and optimal usage\r\n5 nm process technology for reliable performance with maximum productivity\r\nDodeca-core (12 Core) processor core allows multitasking with great reliability and fast processing speed', 2999.00, 'uploads/b274288606.jpg', 0, 13, 2, 3),
 (44, 'AMD Ryzen™ 9 7950X', 6, 0, 'Processor consumes less power to offer maximum productivity with added usability\r\nRyzen 9 product line processor for better usability and increased efficiency\r\n5 nm process technology provides optimal processing results with added usability\r\nHexadeca-core (16 Core) processor core efficiently handles data to ensure quicker transfer of information with maximum usability\r\n16 MB L2 plus 64 MB L3 cache memory provides excellent hit rate in short access time enabling improved system performance\r\nProcessor with 4.50 GHz clock speed for quick and dependable processing of data to ensure maximum productivity\r\nComes with AMD Radeon Graphics controller for stunning picture quality', 4299.00, 'uploads/5f5bd3c324.jpg', 0, 16, 4.75, 72),
 (45, 'AMD Ryzen 7 7800X3D', 6, 0, 'Processor provides dependable and fast execution of tasks with maximum efficiency.Graphics Frequency : 2200 MHZ.Number of CPU Cores : 8. Maximum Operating Temperature (Tjmax) : 89°C.\r\nRyzen 7 product line processor for better usability and increased efficiency\r\n5 nm process technology for reliable performance with maximum productivity\r\nOcta-core (8 Core) processor core allows multitasking with great reliability and fast processing speed\r\n8 MB L2 plus 96 MB L3 cache memory provides excellent hit rate in short access time enabling improved system performance\r\nProcessor with 4.20 GHz clock speed for reliable and fast execution of instructions to ensure maximum convenience and feasibility\r\nComes with AMD Radeon Graphics controller for amazing graphics output', 2799.00, 'uploads/587e924a1c.jpg', 0, 15, 4.6, 198),
 (46, 'Icetea-kangshifu', 8, 0, 'Master Kong Iced Tea, a drink with ingredients such as water, sugar, black tea powder and table salt. Kobe\'s favorite.', 24.00, 'uploads/cad51b96b8.jpg', 0, 0, 2.4, 4824);
@@ -196,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `table_shoppingcart` (
   `image` varchar(255) NOT NULL,
   `rate` float NOT NULL,
   PRIMARY KEY (`cartId`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `table_shoppingcart`
@@ -224,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `table_user` (
   `email` varchar(255) NOT NULL,
   `pass` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- 转存表中的数据 `table_user`
@@ -233,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `table_user` (
 INSERT INTO `table_user` (`id`, `name`, `address`, `city`, `country`, `zip`, `phone`, `email`, `pass`) VALUES
 (3, 'Han Yang', '3817 Spruce Street,, 714 Mayer Residence Hall (Stouffer College House)', 'Philadelphia', 'Mexico', '19104', '55164512', 'mahlerrrr76@gmail.com', '202cb962ac59075b964b07152d234b70'),
 (4, '1', '1', '1', '1', '1', '1', '111', '698d51a19d8a121ce581499d7b701668'),
-(5, 'Han Yang', '3817 Spruce Street,', 'Philadelphia', 'United States', '999077', '12345', '123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b');
+(8, 'yang han', 'cwc', 'sha tin', 'United States', '999077', '111', '6666@gmail.com', '202cb962ac59075b964b07152d234b70');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
