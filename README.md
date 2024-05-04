@@ -45,8 +45,10 @@ The project PineApple is the official online shopping platform of the renowned r
 8.	Open a new window/tab in your browser and browse the web application. Visit http://localhost/PineAppleStore for the main website.
 9.	To login the admin panel, you can either use the link http://localhost/PineAppleStore/admin/login.php to directly access, or choose "go to admin" in the login page.
    
-   Admin Access:
-   
-   Username: admin
-   
-   Password: 122713
+      Admin Access:
+      
+      Username: admin
+      
+      Password: 122713
+
+If you have any problems, feel free to contact LUAN Changwen at 1155173774@link.cuhk.edu.hk.
