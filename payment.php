@@ -146,8 +146,8 @@ $cmr = new Customer();
           <div class="payment-paymentmethod">
             <h1 class="payment-text04">2&nbsp; &nbsp; Payment method</h1>
             <select name = "payment-method" size="1" class="payment-select1">
-              <option value="Wechat">Wechat</option>
-              <option value="AliPay">AliPay</option>
+              <option value="Wechat">WeChat</option>
+              <option value="AliPay">Alipay</option>
               <option value="MasterCard">MasterCard</option>
             </select>
           </div>
