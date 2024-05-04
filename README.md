@@ -6,31 +6,21 @@ The project PineApple is the official online shopping platform of the renowned r
 
 **Admin**
 
-Manage Category List
-
-Manage Products
-
-Manage Orders
-
-Manage Users
+1. Manage Category List
+2. Manage Products
+3. Manage Orders
+4. Manage Users
 
 **Client**
 
-Login/Registration
-
-Manage user profile
-
-Browse product with details
-
-Search product
-
-Shopping cart
-
-Check out
-
-Manage Orders
-
-Rate product
+1. Login/Registration
+2. Manage user profile
+3. Browse product with details
+4. Search product
+5. Shopping cart
+6. Check out
+7. Manage Orders
+8. Rate product
 
 
 ## How to Run
