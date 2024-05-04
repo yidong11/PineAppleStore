@@ -25,5 +25,7 @@ The project PineApple is the official online shopping platform of the renowned r
 8.	Open a new window/tab in your browser and browse the web application. Add "/admin/login.php" in your URL to access the admin panel. i.e. (http://localhost/ PineAppleStore) for the website and (http://localhost/ PineAppleStore/admin/login.php) for the admin panel.
    
    Admin Access:
+   
    Username: admin
+   
    Password: 122713
