@@ -42,10 +42,11 @@ The project PineApple is the official online shopping platform of the renowned r
 5.	Locate the provide SQL file in the extracted source code folder. The file is known as "pineapple_database.sql".
 6.	Create a new database naming "pineapple_database ".
 7.	Import the SQL file in your newly created database.
-8.	Open a new window/tab in your browser and browse the web application. Add "/admin/login.php" in your URL to access the admin panel. i.e. (http://localhost/ PineAppleStore) for the website and (http://localhost/ PineAppleStore/admin/login.php) for the admin panel.
+8.	Open a new window/tab in your browser and browse the web application. Visit http://localhost/PineAppleStore for the main website.
+9.	To login the admin panel, you can either use the link http://localhost/PineAppleStore/admin/login.php to directly access, or choose "go to admin" in the login page.
    
-      Admin Access:
-      
-      Username: admin
-      
-      Password: 122713
+   Admin Access:
+   
+   Username: admin
+   
+   Password: 122713
