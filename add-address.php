@@ -1,5 +1,6 @@
 <!-- 
   This file is used to add the address of the customer.
+  This page is called from the payment.php page, when the customer is making an order and its address is not provided.
  -->
 <?php
 

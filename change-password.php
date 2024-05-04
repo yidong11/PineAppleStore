@@ -198,6 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
       </header>
       <div class="change-password-container1">
         <?php
+        // Get the information of the currently logged in customer
         $id = Session::get("cmrId");
         $getdata = $cmr->getCustomerData($id);
         if ($getdata) {

@@ -1,4 +1,8 @@
-      </div>
+<!-- 
+  This is the footer without any contact information.
+ -->
+
+</div>
     </div>
     <script
       defer=""

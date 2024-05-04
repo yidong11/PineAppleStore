@@ -114,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             <h1>Checkout</h1>
           </div>
           <?php 
+          // Get the information of the currently logged in customer
     		    $id = Session::get("cmrId");
     		    $getdata = $cmr->getCustomerData($id);
     		    if ($getdata) {

@@ -1,3 +1,7 @@
+<!-- 
+  This is the footer with extra contact information and links to social media.
+ -->
+
 <footer class="homepage-footer">
           <div class="homepage-container15">
             <a href="index.php" class="homepage-navlink4">

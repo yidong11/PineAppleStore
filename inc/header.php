@@ -1,3 +1,8 @@
+<!-- 
+  This is a universal header file that is included in most of the pages.
+  It contains the header of the website, including the navigation bar, search bar, and buttons linked to the shopping cart and user information.
+  It also includes the necessary classes and functions to interact with the database and the user session.
+ -->
 <?php 
 include 'lib/Session.php';
 Session::init();
@@ -15,6 +20,7 @@ $cat = new Category();
 $ct = new Cart();
 $cmr = new Customer();
 
+// disable cache
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache"); 
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); 
@@ -22,6 +28,7 @@ header("Cache-Control: max-age=2592000");
 ?>
 
 <?php 
+// if logout is clicked, delete the session and redirect to the login page
 if (isset($_GET['cid'])) {
   $cmrId = Session::get("cmrId");
   $delData = $ct->delCustomerCart();

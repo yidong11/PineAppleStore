@@ -77,6 +77,7 @@
                 <tbody>
 
                   <?php
+                  // get all the ordered products of the currently logged in customer
                     $cmrId = Session::get("cmrId");
                     $qty = 0;
                     $getPd = $ct->getOrderedProduct($cmrId);
